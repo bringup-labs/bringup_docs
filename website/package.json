@@ -1,0 +1,64 @@
+{
+  "name": "bagmaster-website",
+  "description": "Bagmaster Documentation Website",
+  "version": "0.0.1",
+  "private": true,
+  "license": "MIT",
+  "homepage": "https://bagmaster.dev/",
+  "repository": "github:rahulkatiyar19955/bagmaster",
+  "bugs": {
+    "url": "https://github.com/rahulkatiyar19955/bagmaster/issues"
+  },
+  "scripts": {
+    "docusaurus": "docusaurus",
+    "start": "docusaurus start",
+    "build": "docusaurus build",
+    "build:fast": "PREVIEW_DEPLOY=true docusaurus build",
+    "swizzle": "docusaurus swizzle",
+    "deploy": "docusaurus deploy",
+    "clear": "docusaurus clear",
+    "serve": "docusaurus serve",
+    "write-translations": "docusaurus write-translations",
+    "write-heading-ids": "docusaurus write-heading-ids",
+    "typecheck": "tsc",
+    "version:cut": "docusaurus docs:version",
+    "prettier": "prettier --write src/**/*.scss src/**/*.css"
+  },
+  "dependencies": {
+    "@docusaurus/core": "3.9.2",
+    "@docusaurus/faster": "3.9.2",
+    "@docusaurus/plugin-google-gtag": "3.9.2",
+    "@docusaurus/plugin-pwa": "3.9.2",
+    "@docusaurus/preset-classic": "3.9.2",
+    "@mdx-js/react": "^3.0.0",
+    "clsx": "^2.0.0",
+    "docusaurus-plugin-sass": "^0.2.6",
+    "prism-react-renderer": "^2.3.0",
+    "react": "^19.1.2",
+    "react-dom": "^19.1.2"
+  },
+  "devDependencies": {
+    "@docusaurus/module-type-aliases": "3.9.2",
+    "@docusaurus/tsconfig": "3.9.2",
+    "@docusaurus/types": "3.9.2",
+    "prettier": "^3.7.4",
+    "sass": "1.97.1",
+    "typescript": "^5.9.3"
+  },
+  "browserslist": {
+    "production": [
+      ">0.5%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 3 chrome version",
+      "last 3 firefox version",
+      "last 5 safari version"
+    ]
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "packageManager": "yarn@4.12.0"
+}

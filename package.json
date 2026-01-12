@@ -1,0 +1,35 @@
+{
+  "name": "bagmaster-documentation-monorepo",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "workspaces": [
+    "website",
+    "packages/*",
+    "plugins/*"
+  ],
+  "scripts": {
+    "docusaurus": "yarn --cwd website docusaurus",
+    "start": "yarn --cwd website start",
+    "build": "yarn --cwd website build",
+    "build:fast": "yarn --cwd website build:fast",
+    "serve": "yarn --cwd website serve",
+    "lint": "eslint .",
+    "lint:website": "eslint ./website ./docs",
+    "update-lock": "yarn dedupe"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "@typescript-eslint/parser": "^8.48.1",
+    "eslint": "^9.39.2",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "globals": "^17.0.0",
+    "prettier": "^3.7.4",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.51.0"
+  },
+  "packageManager": "yarn@4.12.0"
+}
