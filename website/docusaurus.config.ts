@@ -21,6 +21,11 @@ const config: Config = {
     experimental_faster: (process.env.DOCUSAURUS_FASTER ?? 'true') === 'true',
   },
 
+  markdown: {
+    mermaid: true,
+  },
+  themes: ['@docusaurus/theme-mermaid'],
+
   title: 'Bagmaster',
   tagline: 'ROS Bag Management and Visualization Platform',
   organizationName: 'rahulkatiyar19955',

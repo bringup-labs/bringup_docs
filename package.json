@@ -5,20 +5,14 @@
   "engines": {
     "node": ">=22"
   },
-  "workspaces": [
-    "website",
-    "packages/*",
-    "plugins/*"
-  ],
   "scripts": {
-    "docusaurus": "yarn --cwd website docusaurus",
-    "start": "yarn --cwd website start",
-    "build": "yarn --cwd website build",
-    "build:fast": "yarn --cwd website build:fast",
-    "serve": "yarn --cwd website serve",
+    "docusaurus": "pnpm --filter bagmaster-website docusaurus",
+    "start": "pnpm --filter bagmaster-website start",
+    "build": "pnpm --filter bagmaster-website build",
+    "build:fast": "pnpm --filter bagmaster-website build:fast",
+    "serve": "pnpm --filter bagmaster-website serve",
     "lint": "eslint .",
-    "lint:website": "eslint ./website ./docs",
-    "update-lock": "yarn dedupe"
+    "lint:website": "eslint ./website ./docs"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.2",
@@ -31,5 +25,5 @@
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.51.0"
   },
-  "packageManager": "yarn@4.12.0"
+  "packageManager": "pnpm@10.5.2"
 }

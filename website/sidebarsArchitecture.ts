@@ -19,13 +19,18 @@ const sidebars: SidebarsConfig = {
         },
         {
             type: 'doc',
+            id: 'security',
+            label: 'Security Architecture',
+        },
+        {
+            type: 'doc',
             id: 'storage',
             label: 'Storage Architecture',
         },
         {
             type: 'doc',
             id: 'performance',
-            label: 'Performance Considerations',
+            label: 'Performance & Scalability',
         },
     ],
 };
