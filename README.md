@@ -1,74 +1,84 @@
 # Bagmaster Documentation
 
-This repository contains the documentation website for [Bagmaster](https://github.com/rahulkatiyar19955/bagmaster), powered by [Docusaurus 3](https://docusaurus.io/).
+The official documentation site for [Bagmaster](https://github.com/rahulkatiyar19955/bagmaster), built with [Docusaurus 3](https://docusaurus.io/).
 
-## 🚀 Getting Started
+## Prerequisites
 
-### Prerequisites
-
-- Node.js 22 or higher
-- Yarn 4.12.0
-
-### Installation
+- [Node.js](https://nodejs.org/) >= 22
+- [pnpm](https://pnpm.io/) (enabled via Corepack)
 
 ```bash
-# Enable Corepack (for Yarn 4)
 corepack enable
-
-# Install dependencies
-yarn install
 ```
 
-### Development
+## Getting Started
+
+Install dependencies:
 
 ```bash
-# Start the development server
-yarn start
+pnpm install
 ```
 
-The site will be available at `http://localhost:3000`.
-
-### Building
+Start the development server:
 
 ```bash
-# Build the production bundle
-yarn build
-
-# Serve the build locally
-yarn serve
+pnpm start
 ```
 
-## 📁 Project Structure
+The site will be available at `http://localhost:3000` with hot reload.
+
+## Build
+
+Generate a production build:
+
+```bash
+pnpm build
+```
+
+Preview the production build locally:
+
+```bash
+pnpm serve
+```
+
+## Docker
+
+Build and run the docs site in a container:
+
+```bash
+docker build -t bagmaster-docs .
+docker run -p 8080:80 bagmaster-docs
+```
+
+The site will be available at `http://localhost:8080`.
+
+## Project Structure
 
 ```
 bagmaster_docs/
-├── docs/                      # Main versioned documentation
+├── docs/                      # Main documentation
 │   ├── getting-started.md
 │   ├── installation.md
-│   ├── guides/               # User guides
-│   ├── api/                  # API reference
-│   └── advanced/             # Advanced topics
+│   ├── guides/
+│   ├── api/
+│   └── advanced/
 ├── website/
-│   ├── architecture/         # Architecture docs (unversioned)
-│   ├── contributing/         # Contributing guides
-│   ├── community/            # Community resources
-│   ├──blog/                 # Blog posts
-│   ├── src/
-│   │   ├── css/             # Custom styles
-│   │   ├── pages/           # React pages
-│   │   └── theme/           # Theme customizations
-│   ├── static/              # Static assets
-│   ├── docusaurus.config.ts # Main configuration
-│   └── sidebars.ts          # Sidebar configuration
-├── plugins/                  # Custom plugins
-└── packages/                 # Shared packages
+│   ├── architecture/          # Architecture docs
+│   ├── contributing/          # Contributing guides
+│   ├── community/             # Community resources
+│   ├── blog/                  # Blog posts
+│   ├── src/                   # Custom components and styles
+│   ├── static/                # Static assets
+│   ├── docusaurus.config.ts
+│   └── nginx.conf
+├── Dockerfile
+├── pnpm-workspace.yaml
+└── package.json
 ```
 
-## 📝 Writing Documentation
+## Writing Documentation
 
-### Adding a New Page
-
-1. Create a new Markdown file in the appropriate directory
+1. Create a Markdown file in the appropriate directory
 2. Add frontmatter:
    ```markdown
    ---
@@ -77,50 +87,33 @@ bagmaster_docs/
    sidebar_label: Sidebar Label
    ---
    ```
-3. Update the corresponding `sidebars.ts` file
+3. Update the corresponding `sidebars*.ts` file
 
-### Markdown Features
+### Supported Features
 
-- **Code blocks** with syntax highlighting
-- **Admonitions** for notes, warnings, etc.
-- **Mermaid diagrams** for visualizations
-- **Tabs** for multi-language examples
+- Code blocks with syntax highlighting
+- Admonitions (notes, warnings, tips, caution)
+- Mermaid diagrams
+- Tabs for multi-language examples
 
-See the [Docusaurus documentation](https://docusaurus.io/docs/markdown-features) for more features.
+See the [Docusaurus docs](https://docusaurus.io/docs/markdown-features) for the full feature set.
 
-## 🔄 Versioning
+## Versioning
 
 To create a new documentation version:
 
 ```bash
-cd website
-yarn version:cut <version>
+pnpm docusaurus docs:version <version>
 ```
 
-Example: `yarn version:cut 1.0.0`
-
-## 🎨Theming
-
-Custom styles are in `website/src/css/`. The site supports both light and dark modes.
-
-## 🤝 Contributing
-
-Contributions to the documentation are welcome! Please see our [Contributing Guide](./website/contributing/overview.md).
-
-### Quick Contribution
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch
 3. Make your changes
-4. Run `yarn build` to verify
+4. Run `pnpm build` to verify
 5. Submit a pull request
 
-## 📄 License
+## License
 
-MIT License - see LICENSE file for details.
-
-## 🔗 Links
-
-- [Bagmaster GitHub](https://github.com/rahulkatiyar19955/bagmaster)
-- [Documentation Website](https://bagmaster.dev)
-- [Report Issues](https://github.com/rahulkatiyar19955/bagmaster/issues)
+MIT

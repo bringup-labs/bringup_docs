@@ -4,94 +4,174 @@ title: Architecture Overview
 sidebar_label: Overview
 ---
 
-# Bagmaster Architecture
+# Architecture Overview
 
-This document provides an overview of Bagmaster's architecture and design principles.
+Bagmaster is an **enterprise-grade, cloud-native platform** for managing ROS bag data, orchestrating data pipelines, and running experiments at scale. Built on a microservices architecture, it delivers the modularity, security, and scalability that production robotics and autonomous systems teams demand.
 
-## System Components
+---
 
-Bagmaster is built as a modern microservices architecture:
+## High-Level Architecture
 
 ```mermaid
 graph TB
-    A[Web Frontend] --> B[API Gateway]
-    B --> C[Auth Service]
-    B --> D[Recording Service]
-    B --> E[Playback Service]
-    B --> F[Storage Service]
-    D --> G[MinIO/S3]
-    E --> G
-    F --> G
-    C --> H[PostgreSQL]
-    D --> H
-    E --> H
+    subgraph Client["Client Layer"]
+        FE["Web Dashboard<br/><small>Next.js 15 &bull; React 19</small>"]
+    end
+
+    subgraph Gateway["Edge Layer"]
+        KONG["API Gateway<br/><small>Kong &bull; OIDC &bull; Rate Limiting</small>"]
+    end
+
+    subgraph Auth["Identity & Access"]
+        KC["Keycloak<br/><small>SSO &bull; OAuth 2.0 &bull; PKCE</small>"]
+        CERBOS["Cerbos<br/><small>Policy Engine</small>"]
+        AUTH["Auth Service<br/><small>Multi-Tenant RBAC</small>"]
+    end
+
+    subgraph Core["Core Services"]
+        ROSBAG["Rosbag Service"]
+        EXP["Experiment Service"]
+        FLOW["Flow Service"]
+        TRANSPILER["Transpiler Service"]
+        ACTION["Action Service"]
+        STORAGE["Storage Service"]
+    end
+
+    subgraph Execution["Execution Layer"]
+        JENKINS["Jenkins<br/><small>Pipeline Orchestration</small>"]
+        JUPYTER["Jupyter<br/><small>Interactive Notebooks</small>"]
+        DOCKER["Container Runtime<br/><small>Isolated Execution</small>"]
+    end
+
+    subgraph Data["Data Layer"]
+        PG[("PostgreSQL<br/><small>Metadata &bull; State</small>")]
+        MINIO[("S3 / MinIO<br/><small>Object Storage</small>")]
+    end
+
+    FE --> KONG
+    KONG --> KC
+    KONG --> AUTH
+    KONG --> ROSBAG
+    KONG --> EXP
+    KONG --> FLOW
+    KONG --> TRANSPILER
+    KONG --> ACTION
+    KONG --> STORAGE
+    AUTH --> CERBOS
+    AUTH --> KC
+    ACTION --> JENKINS
+    ACTION --> JUPYTER
+    ACTION --> DOCKER
+    ROSBAG --> PG
+    EXP --> PG
+    FLOW --> PG
+    AUTH --> PG
+    ACTION --> PG
+    STORAGE --> MINIO
+    ACTION --> MINIO
+
+    classDef client fill:#4f46e5,stroke:#3730a3,color:#fff
+    classDef gateway fill:#0891b2,stroke:#0e7490,color:#fff
+    classDef auth fill:#7c3aed,stroke:#6d28d9,color:#fff
+    classDef core fill:#059669,stroke:#047857,color:#fff
+    classDef exec fill:#d97706,stroke:#b45309,color:#fff
+    classDef data fill:#dc2626,stroke:#b91c1c,color:#fff
+
+    class FE client
+    class KONG gateway
+    class KC,CERBOS,AUTH auth
+    class ROSBAG,EXP,FLOW,TRANSPILER,ACTION,STORAGE core
+    class JENKINS,JUPYTER,DOCKER exec
+    class PG,MINIO data
 ```
 
-### Frontend
+---
 
-- **Technology**: Next.js 14 with React 19
-- **UI Library**: Tailwind CSS, shadcn/ui
-- **State Management**: React Query, Zustand
-- **Purpose**: User interface and visualization
+## Platform Capabilities
 
-### API Gateway
+<table>
+<tr>
+<td width="50%">
 
-- **Technology**: Traefik
-- **Purpose**: Route requests, load balancing, TLS termination
+### Data Management
+- **Rosbag ingestion** with rich metadata indexing
+- **Dynamic metadata exploration** via JSON path queries
+- **Experiment tracking** with full lifecycle management
+- **Multi-format support** for ROS 1 and ROS 2 bag files
 
-### Authentication Service
+</td>
+<td width="50%">
 
-- **Technology**: FastAPI, Keycloak
-- **Purpose**: User authentication, authorization, RBAC
+### Pipeline Orchestration
+- **Visual flow designer** with YAML-based definitions
+- **Automatic transpilation** from flows to CI/CD pipelines
+- **Parameterized execution** with input validation
+- **Real-time status tracking** and log streaming
 
-### Recording Service
+</td>
+</tr>
+<tr>
+<td>
 
-- **Technology**: Python, ROS 2
-- **Purpose**: Manage bag file recording sessions
+### Interactive Analysis
+- **Jupyter notebook integration** with isolated environments
+- **Action library** of reusable analysis scripts
+- **Configurable compute resources** per session
+- **Automatic idle cleanup** to optimize resource usage
 
-### Playback Service
+</td>
+<td>
 
-- **Technology**: Python, ROS 2
-- **Purpose**: Bag file playback and streaming
+### Enterprise Security
+- **SSO via Keycloak** with OAuth 2.0 / PKCE
+- **Multi-tenant isolation** at every layer
+- **Policy-based authorization** with Cerbos
+- **API rate limiting** and CORS enforcement
 
-### Storage Service
+</td>
+</tr>
+</table>
 
-- **Technology**: MinIO (S3-compatible)
-- **Purpose**: Distributed object storage for bag files
-
-### Database
-
-- **Technology**: PostgreSQL 14+
-- **Purpose**: Metadata, user data, recordings index
+---
 
 ## Design Principles
 
-### Scalability
+### Modularity
 
-- Horizontal scaling of services
-- Distributed storage with MinIO
-- Stateless API design
+Every service is independently deployable, testable, and scalable. Services communicate exclusively through well-defined REST APIs via the API Gateway, ensuring loose coupling and clear domain boundaries.
 
-### Reliability
+### Security by Default
 
-- Service health monitoring
-- Automatic failover
-- Data replication
+Authentication and authorization are enforced at the gateway level. Every request passes through OIDC validation before reaching any service. Tenant isolation is guaranteed through header-based identity propagation and database-level query scoping.
 
-### Performance
+### Cloud-Native
 
-- Efficient bag file streaming
-- Caching strategies
-- Optimized database queries
+Bagmaster is containerized end-to-end with Docker. Each service ships with its own `Dockerfile`, health checks, and database migrations. The platform runs on any infrastructure that supports container orchestration.
 
-### Security
+### Horizontal Scalability
 
-- JWT-based authentication
-- Role-based access control (RBAC)
-- Encrypted storage
+All services are stateless by design. Database connections use async pooling. Object storage scales independently via S3-compatible backends. Pipeline execution fans out across distributed worker nodes.
 
-## Next Steps
+---
 
-- [System Design](./system-design) - Detailed component design
-- [Data Flow](./data-flow) - How data moves through the system
-- [Storage Architecture](./storage) - Storage implementation details
+## Technology Stack
+
+| Layer | Technology | Purpose |
+|-------|-----------|---------|
+| **Frontend** | Next.js 15, React 19, Tailwind CSS | Server-rendered dashboard with real-time updates |
+| **API Gateway** | Kong | Routing, OIDC auth, rate limiting, CORS |
+| **Identity** | Keycloak, Cerbos | SSO, OAuth 2.0, policy-based authorization |
+| **Services** | Python, FastAPI, async SQLAlchemy | High-performance async microservices |
+| **Execution** | Jenkins, Jupyter, Docker | Pipeline orchestration and interactive analysis |
+| **Database** | PostgreSQL | Metadata, state management, audit trails |
+| **Storage** | MinIO / S3 | Scalable object storage for bag files and artifacts |
+| **Orchestration** | Docker Compose | Service composition and deployment |
+
+---
+
+## What's Next
+
+- **[System Design](./system-design)** — Deep dive into each service and how they interact
+- **[Data Flow](./data-flow)** — Trace how data moves through the platform
+- **[Storage Architecture](./storage)** — Object storage design and multi-tenant isolation
+- **[Performance](./performance)** — Scalability patterns and optimization strategies
