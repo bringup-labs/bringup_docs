@@ -23,6 +23,9 @@ const config: Config = {
 
   markdown: {
     mermaid: true,
+    hooks: {
+      onBrokenMarkdownLinks: 'warn',
+    },
   },
   themes: ['@docusaurus/theme-mermaid'],
 
@@ -41,7 +44,6 @@ const config: Config = {
   },
 
   onBrokenLinks: 'warn',
-  onBrokenMarkdownLinks: 'warn',
 
   presets: [
     [
@@ -162,49 +164,15 @@ const config: Config = {
       style: 'dark',
       items: [
         {
-          label: 'Documentation',
-          type: 'dropdown',
-          position: 'left',
-          items: [
-            {
-              label: 'Getting Started',
-              type: 'doc',
-              docId: 'getting-started',
-            },
-            {
-              label: 'Guides',
-              type: 'doc',
-              docId: 'guides/index',
-            },
-            {
-              label: 'API Reference',
-              type: 'doc',
-              docId: 'api/index',
-            },
-            {
-              label: 'Architecture',
-              type: 'doc',
-              docId: 'overview',
-              docsPluginId: 'architecture',
-            },
-          ],
-        },
-        {
           type: 'doc',
-          docId: 'overview',
-          label: 'Community',
+          docId: 'getting-started',
+          label: 'Docs',
           position: 'left',
-          docsPluginId: 'community',
         },
         {
           to: '/blog',
           label: 'Blog',
           position: 'left',
-        },
-        {
-          type: 'docsVersionDropdown',
-          position: 'right',
-          dropdownActiveClassDisabled: true,
         },
         {
           href: 'https://github.com/rahulkatiyar19955/bagmaster',
@@ -224,27 +192,11 @@ const config: Config = {
               label: 'Getting Started',
               to: '/',
             },
-            {
-              label: 'Guides',
-              to: 'docs/guides',
-            },
-            {
-              label: 'API Reference',
-              to: 'docs/api',
-            },
-            {
-              label: 'Architecture',
-              to: 'architecture/overview',
-            },
           ],
         },
         {
           title: 'Community',
           items: [
-            {
-              label: 'Community',
-              to: 'community/overview',
-            },
             {
               label: 'GitHub',
               href: 'https://github.com/rahulkatiyar19955/bagmaster',
