@@ -6,7 +6,7 @@ import type {Config} from '@docusaurus/types';
 const isProductionDeployment = process.env.NODE_ENV === 'production';
 const isDeployPreview = process.env.PREVIEW_DEPLOY === 'true';
 
-const copyright = `Copyright © ${new Date().getFullYear()} Bagmaster Project`;
+const copyright = `Copyright © ${new Date().getFullYear()} Bringup Labs.`;
 
 const commonDocsOptions: Partial<PluginContentDocs.Options> = {
   breadcrumbs: false,
@@ -26,10 +26,10 @@ const config: Config = {
   },
   themes: ['@docusaurus/theme-mermaid'],
 
-  title: 'Bagmaster',
+  title: 'Bringup Labs',
   tagline: 'ROS Bag Management and Visualization Platform',
   organizationName: 'rahulkatiyar19955',
-  projectName: 'bagmaster',
+  projectName: 'Bringup Docs',
   url: 'https://bagmaster.dev',
   baseUrl: '/',
   favicon: 'img/favicon.ico',
@@ -93,16 +93,6 @@ const config: Config = {
     [
       'content-docs',
       {
-        id: 'contributing',
-        path: 'contributing',
-        routeBasePath: '/contributing',
-        sidebarPath: './sidebarsContributing.ts',
-        ...commonDocsOptions,
-      } satisfies PluginContentDocs.Options,
-    ],
-    [
-      'content-docs',
-      {
         id: 'community',
         path: 'community',
         routeBasePath: '/community',
@@ -129,7 +119,7 @@ const config: Config = {
           {
             tagName: 'meta',
             name: 'theme-color',
-            content: '#20232a',
+            content: '#101c22',
           },
           {
             tagName: 'meta',
@@ -162,10 +152,11 @@ const config: Config = {
       ],
     },
     navbar: {
-      title: 'Bagmaster',
+      title: 'Bringup Labs',
       logo: {
         src: 'img/logo.svg',
-        alt: 'Bagmaster Logo',
+        srcDark: 'img/logo.svg',
+        alt: 'Bringup Labs Logo',
       },
       style: 'dark',
       items: [
@@ -196,13 +187,6 @@ const config: Config = {
               docsPluginId: 'architecture',
             },
           ],
-        },
-        {
-          type: 'doc',
-          docId: 'overview',
-          label: 'Contributing',
-          position: 'left',
-          docsPluginId: 'contributing',
         },
         {
           type: 'doc',
@@ -256,10 +240,6 @@ const config: Config = {
         {
           title: 'Community',
           items: [
-            {
-              label: 'Contributing',
-              to: 'contributing/overview',
-            },
             {
               label: 'Community',
               to: 'community/overview',
