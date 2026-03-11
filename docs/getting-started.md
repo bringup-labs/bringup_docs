@@ -2,7 +2,7 @@
 id: getting-started
 title: Getting Started with Bagmaster
 sidebar_label: Getting Started
-slug: /getting-started
+slug: /
 ---
 
 # Getting Started with Bagmaster

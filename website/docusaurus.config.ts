@@ -49,6 +49,7 @@ const config: Config = {
       {
         docs: {
           path: '../docs',
+          routeBasePath: '/',
           sidebarPath: './sidebars.ts',
           editCurrentVersion: true,
           ...commonDocsOptions,
@@ -221,7 +222,7 @@ const config: Config = {
           items: [
             {
               label: 'Getting Started',
-              to: 'docs/getting-started',
+              to: '/',
             },
             {
               label: 'Guides',
