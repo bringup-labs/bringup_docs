@@ -160,6 +160,8 @@ const config: Config = {
         src: 'img/logo.svg',
         srcDark: 'img/logo.svg',
         alt: 'Bringup Labs Logo',
+        href: 'https://bringup.dev',
+        target: '_blank',
       },
       style: 'dark',
       items: [
