@@ -199,11 +199,7 @@ const config: Config = {
           items: [
             {
               label: 'GitHub',
-              href: 'https://github.com/rahulkatiyar19955/bagmaster',
-            },
-            {
-              label: 'Issues',
-              href: 'https://github.com/rahulkatiyar19955/bagmaster/issues',
+              href: 'https://github.com/bringup-labs',
             },
           ],
         },
