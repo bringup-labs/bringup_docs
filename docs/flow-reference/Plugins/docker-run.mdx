@@ -23,8 +23,9 @@ type: dev.bringup.plugin.docker.run
 
 ## Examples
 
-### Basic container execution
 
+<details>
+<summary>Basic container execution</summary>
 ```yml
 id: docker-hello
 namespace: examples
@@ -38,9 +39,11 @@ tasks:
       - echo "Hello from Docker!"
       - cat /etc/os-release
 ```
+</details>
 
-### With environment variables and volumes
 
+<details>
+<summary>With environment variables and volumes</summary>
 ```yaml
 id: docker-data-processing
 namespace: analytics
@@ -67,9 +70,11 @@ tasks:
         path: /results
     wait: true
 ```
+</details>
 
-### With resource limits
 
+<details>
+<summary>With resource limits</summary>
 ```yaml
 tasks:
   - id: limited-container
@@ -81,9 +86,11 @@ tasks:
     memory: "8g"
     privileged: false
 ```
+</details>
 
-### With GPU access
 
+<details>
+<summary>With GPU access</summary>
 ```yaml
 id: ml-inference
 namespace: ml
@@ -106,9 +113,11 @@ tasks:
     env:
       CUDA_VISIBLE_DEVICES: "0"
 ```
+</details>
 
-### With port bindings
 
+<details>
+<summary>With port bindings</summary>
 ```yaml
 tasks:
   - id: web-service
@@ -119,9 +128,11 @@ tasks:
         containerPort: 80
     wait: false
 ```
+</details>
 
-### Pull policy configuration
 
+<details>
+<summary>Pull policy configuration</summary>
 ```yaml
 tasks:
   - id: always-pull
@@ -131,9 +142,11 @@ tasks:
     commands:
       - ./start.sh
 ```
+</details>
 
-### Complete example with all features
 
+<details>
+<summary>Complete example with all features</summary>
 ```yaml
 id: full-docker-flow
 namespace: production
@@ -189,10 +202,13 @@ tasks:
 ```
 
 ---
+</details>
 
 ## Properties
 
-### `containerImage` *(Required)*
+
+<details>
+<summary>`containerImage` *(Required)*</summary>
 
 | | |
 |---|---|
@@ -200,7 +216,11 @@ tasks:
 | **Required** | Yes |
 | **Description** | Docker image to run. Supports full registry paths and tags (e.g., `ubuntu:22.04`, `myregistry.io/app:v1.2`). Template variables are supported. |
 
-### `commands`
+</details>
+
+
+<details>
+<summary>`commands`</summary>
 
 | | |
 |---|---|
@@ -209,7 +229,11 @@ tasks:
 | **Default** | `[]` |
 | **Description** | Commands to execute inside the container. Joined with newlines and passed to `/bin/sh -lc`. |
 
-### `env`
+</details>
+
+
+<details>
+<summary>`env`</summary>
 
 | | |
 |---|---|
@@ -218,7 +242,11 @@ tasks:
 | **Default** | `{}` |
 | **Description** | Environment variables to set inside the container. Each entry becomes a `-e KEY=VALUE` flag. Template variables are supported in values. |
 
-### `volumes`
+</details>
+
+
+<details>
+<summary>`volumes`</summary>
 
 | | |
 |---|---|
@@ -235,7 +263,11 @@ tasks:
 | `path` | `string` | Yes | Mount path inside the container |
 | `readOnly` | `boolean` | No | Mount as read-only (default: `false`) |
 
-### `portBindings`
+</details>
+
+
+<details>
+<summary>`portBindings`</summary>
 
 | | |
 |---|---|
@@ -251,7 +283,11 @@ tasks:
 | `hostPort` | `integer` | Yes | Port on the host |
 | `containerPort` | `integer` | Yes | Port inside the container |
 
-### `cpu`
+</details>
+
+
+<details>
+<summary>`cpu`</summary>
 
 | | |
 |---|---|
@@ -260,7 +296,11 @@ tasks:
 | **Default** | No limit |
 | **Description** | CPU limit for the container (e.g., `"2"`, `"0.5"`). Maps to Docker's `--cpus` flag. |
 
-### `memory`
+</details>
+
+
+<details>
+<summary>`memory`</summary>
 
 | | |
 |---|---|
@@ -269,7 +309,11 @@ tasks:
 | **Default** | No limit |
 | **Description** | Memory limit for the container (e.g., `"512m"`, `"4g"`). Maps to Docker's `--memory` flag. |
 
-### `privileged`
+</details>
+
+
+<details>
+<summary>`privileged`</summary>
 
 | | |
 |---|---|
@@ -278,7 +322,11 @@ tasks:
 | **Default** | `false` |
 | **Description** | Run the container in privileged mode. Use with caution as this grants full host access. |
 
-### `pullPolicy`
+</details>
+
+
+<details>
+<summary>`pullPolicy`</summary>
 
 | | |
 |---|---|
@@ -288,7 +336,11 @@ tasks:
 | **Possible Values** | `ALWAYS`, `NEVER`, `IF_NOT_PRESENT` |
 | **Description** | When to pull the Docker image. `ALWAYS` pulls every time, `NEVER` uses only local images, `IF_NOT_PRESENT` pulls only if the image is missing locally. |
 
-### `wait`
+</details>
+
+
+<details>
+<summary>`wait`</summary>
 
 | | |
 |---|---|
@@ -297,7 +349,11 @@ tasks:
 | **Default** | `true` |
 | **Description** | Whether to wait for the container to complete before proceeding. Set to `false` for long-running services. |
 
-### `deviceRequests`
+</details>
+
+
+<details>
+<summary>`deviceRequests`</summary>
 
 | | |
 |---|---|
@@ -314,6 +370,8 @@ tasks:
 | `count` | `integer` | No | Number of devices to request |
 
 ---
+
+</details>
 
 ## Common Task Properties
 

@@ -31,8 +31,9 @@ When a flow has inputs matching rosbag naming conventions (e.g., `rosbag_id`), t
 
 ## Examples
 
-### Basic rosbag loading
 
+<details>
+<summary>Basic rosbag loading</summary>
 ```yaml
 id: load-rosbag
 namespace: robotics
@@ -59,9 +60,11 @@ tasks:
       - cat ${BM_ROSBAGS_MANIFEST_PATH}
       - echo "Rosbag files downloaded successfully"
 ```
+</details>
 
-### Rosbag with Python analysis
 
+<details>
+<summary>Rosbag with Python analysis</summary>
 ```yaml
 id: rosbag-analysis
 namespace: analytics
@@ -98,9 +101,11 @@ tasks:
           print(f"  - {entry.get('filename', 'unknown')}")
           print(f"    Size: {entry.get('size', 'unknown')} bytes")
 ```
+</details>
 
-### Custom target directory
 
+<details>
+<summary>Custom target directory</summary>
 ```yaml
 tasks:
   - id: bm_rosbag_loader
@@ -108,9 +113,11 @@ tasks:
     targetDir: /workspace/custom-bags
     overwrite: true
 ```
+</details>
 
-### With overwrite control
 
+<details>
+<summary>With overwrite control</summary>
 ```yaml
 tasks:
   - id: bm_rosbag_loader
@@ -121,10 +128,13 @@ tasks:
 ```
 
 ---
+</details>
 
 ## Properties
 
-### `targetDir`
+
+<details>
+<summary>`targetDir`</summary>
 
 | | |
 |---|---|
@@ -133,7 +143,11 @@ tasks:
 | **Default** | `"${BM_ROSBAGS_DIR}"` |
 | **Description** | Directory where rosbag files will be downloaded. Defaults to the `BM_ROSBAGS_DIR` environment variable, typically `.bagmaster/rosbags`. |
 
-### `manifestPath`
+</details>
+
+
+<details>
+<summary>`manifestPath`</summary>
 
 | | |
 |---|---|
@@ -142,7 +156,11 @@ tasks:
 | **Default** | `"${BM_ROSBAGS_MANIFEST_PATH}"` |
 | **Description** | Path where the JIT manifest JSON file will be written. The manifest contains metadata about downloaded files including their paths and sizes. |
 
-### `overwrite`
+</details>
+
+
+<details>
+<summary>`overwrite`</summary>
 
 | | |
 |---|---|
@@ -152,6 +170,8 @@ tasks:
 | **Description** | Whether to overwrite existing rosbag files in the target directory. Set to `false` to skip downloading files that already exist. |
 
 ---
+
+</details>
 
 ## Common Task Properties
 
@@ -182,25 +202,6 @@ tasks:
     commands:
       - echo "Rosbag is already available at ${BM_ROSBAGS_DIR}"
 ```
-
----
-
-## Generated Jenkinsfile
-
-The ROS Bag Loader generates a shell script that downloads bags via presigned URLs:
-
-```groovy
-stage('bm_rosbag_loader') {
-    steps {
-        sh(label: 'Task: bm_rosbag_loader', script: '''
-mkdir -p ${BM_ROSBAGS_DIR}
-# JIT manifest download and rosbag retrieval
-# Uses presigned URLs from the Bagmaster API
-''')
-    }
-}
-```
-
 ---
 
 ## Notes

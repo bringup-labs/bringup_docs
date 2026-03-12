@@ -24,8 +24,9 @@ type: dev.bringup.plugin.core.http.Request
 
 ## Examples
 
-### Simple GET request
 
+<details>
+<summary>Simple GET request</summary>
 ```yaml
 id: health-check
 namespace: monitoring
@@ -37,9 +38,11 @@ tasks:
     url: https://api.example.com/health
     method: GET
 ```
+</details>
 
-### POST request with JSON body
 
+<details>
+<summary>POST request with JSON body</summary>
 ```yaml
 id: trigger-webhook
 namespace: integrations
@@ -66,9 +69,11 @@ tasks:
         "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
       }
 ```
+</details>
 
-### With authentication headers
 
+<details>
+<summary>With authentication headers</summary>
 ```yaml
 tasks:
   - id: fetch-data
@@ -79,9 +84,11 @@ tasks:
       Authorization: "Bearer {{ inputs.api_token }}"
       Accept: application/json
 ```
+</details>
 
-### Download a file
 
+<details>
+<summary>Download a file</summary>
 ```yaml
 tasks:
   - id: download-model
@@ -94,9 +101,11 @@ tasks:
     commands:
       - tar -xzf ./models/latest.tar.gz -C ./models/
 ```
+</details>
 
-### Chaining API calls
 
+<details>
+<summary>Chaining API calls</summary>
 ```yaml
 id: api-workflow
 namespace: integrations
@@ -126,10 +135,13 @@ tasks:
 ```
 
 ---
+</details>
 
 ## Properties
 
-### `url` *(Required)*
+
+<details>
+<summary>`url` *(Required)*</summary>
 
 | | |
 |---|---|
@@ -137,7 +149,11 @@ tasks:
 | **Required** | Yes |
 | **Description** | The URL to send the request to. Template variables are supported. |
 
-### `method`
+</details>
+
+
+<details>
+<summary>`method`</summary>
 
 | | |
 |---|---|
@@ -147,7 +163,11 @@ tasks:
 | **Possible Values** | `GET`, `POST`, `PUT`, `DELETE`, `PATCH`, `HEAD`, `OPTIONS` |
 | **Description** | HTTP method for the request. |
 
-### `headers`
+</details>
+
+
+<details>
+<summary>`headers`</summary>
 
 | | |
 |---|---|
@@ -156,7 +176,11 @@ tasks:
 | **Default** | `{}` |
 | **Description** | HTTP headers to include in the request. Template variables are supported in values. |
 
-### `body`
+</details>
+
+
+<details>
+<summary>`body`</summary>
 
 | | |
 |---|---|
@@ -165,7 +189,11 @@ tasks:
 | **Default** | `null` |
 | **Description** | Request body content. Template variables are supported. Typically used with POST/PUT/PATCH methods. |
 
-### `outputPath`
+</details>
+
+
+<details>
+<summary>`outputPath`</summary>
 
 | | |
 |---|---|
@@ -176,30 +204,14 @@ tasks:
 
 ---
 
+</details>
+
 ## Common Task Properties
 
 See [Shell > Common Task Properties](./shell.md#common-task-properties) for `id`, `type`, `description`, `disabled`, `timeout`, `retry`, `allow_failure`, `run_if`, and `worker_group`.
 
 ---
 
-## Generated Jenkinsfile
-
-The HTTP converter generates `curl` commands:
-
-```groovy
-stage('notify') {
-    steps {
-        sh(label: 'Task: notify', script: '''
-curl -X POST \
-  -H "Content-Type: application/json" \
-  -d '{"text": "Build completed successfully"}' \
-  "https://hooks.example.com/webhook"
-''')
-    }
-}
-```
-
----
 
 ## Notes
 

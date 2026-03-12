@@ -24,8 +24,9 @@ type: dev.bringup.plugin.scripts.python.Script
 
 ## Examples
 
-### Basic Python script
 
+<details>
+<summary>Basic Python script</summary>
 ```yaml
 id: python-hello
 namespace: examples
@@ -39,9 +40,11 @@ tasks:
       print(f"Hello from Python {platform.python_version()}!")
       print(f"Running on {platform.system()}")
 ```
+</details>
 
-### With dependencies
 
+<details>
+<summary>With dependencies</summary>
 ```yaml
 id: data-analysis
 namespace: analytics
@@ -74,9 +77,11 @@ tasks:
       - "*.png"
       - "*.csv"
 ```
+</details>
 
-### With input files and environment variables
 
+<details>
+<summary>With input files and environment variables</summary>
 ```yaml
 id: config-processor
 namespace: tools
@@ -111,9 +116,11 @@ tasks:
 
       print(json.dumps(config, indent=2))
 ```
+</details>
 
-### Commands mode (one-liners)
 
+<details>
+<summary>Commands mode (one-liners)</summary>
 ```yaml
 tasks:
   - id: quick-check
@@ -122,9 +129,11 @@ tasks:
       - "import sys; print(f'Python {sys.version}')"
       - "import json; print(json.dumps({'status': 'ok'}))"
 ```
+</details>
 
-### With before commands and custom working directory
 
+<details>
+<summary>With before commands and custom working directory</summary>
 ```yaml
 tasks:
   - id: ml-training
@@ -155,9 +164,11 @@ tasks:
     outputFiles:
       - "models/*.pkl"
 ```
+</details>
 
-### With structured output
 
+<details>
+<summary>With structured output</summary>
 ```yaml
 id: metric-calculator
 namespace: analytics
@@ -195,10 +206,13 @@ outputs:
 ```
 
 ---
+</details>
 
 ## Properties
 
-### `script` *(Required)*
+
+<details>
+<summary>`script` *(Required)*</summary>
 
 | | |
 |---|---|
@@ -206,7 +220,11 @@ outputs:
 | **Required** | Yes (or `commands`) |
 | **Description** | Python code to execute. Written to a temporary `.py` file and run inside an isolated virtual environment. |
 
-### `commands`
+</details>
+
+
+<details>
+<summary>`commands`</summary>
 
 | | |
 |---|---|
@@ -214,7 +232,11 @@ outputs:
 | **Required** | Yes (or `script`) |
 | **Description** | List of Python one-liner commands. Each is executed via `python -c`. |
 
-### `dependencies`
+</details>
+
+
+<details>
+<summary>`dependencies`</summary>
 
 | | |
 |---|---|
@@ -223,7 +245,11 @@ outputs:
 | **Default** | `[]` |
 | **Description** | Python packages to install via `pip` before execution. Supports version specifiers (e.g., `pandas>=2.0`, `numpy==1.24.0`). |
 
-### `pythonVersion`
+</details>
+
+
+<details>
+<summary>`pythonVersion`</summary>
 
 | | |
 |---|---|
@@ -232,7 +258,11 @@ outputs:
 | **Default** | `"python3"` |
 | **Description** | Python interpreter to use for creating the virtual environment. Must be available on the worker. |
 
-### `beforeCommands`
+</details>
+
+
+<details>
+<summary>`beforeCommands`</summary>
 
 | | |
 |---|---|
@@ -241,7 +271,11 @@ outputs:
 | **Default** | `[]` |
 | **Description** | Shell commands to run before the Python script executes. Useful for creating directories, downloading files, or setting up the environment. |
 
-### `inputFiles`
+</details>
+
+
+<details>
+<summary>`inputFiles`</summary>
 
 | | |
 |---|---|
@@ -250,7 +284,11 @@ outputs:
 | **Default** | `{}` |
 | **Description** | Files to create in the working directory before execution. Key is the filename, value is the file content. |
 
-### `outputFiles`
+</details>
+
+
+<details>
+<summary>`outputFiles`</summary>
 
 | | |
 |---|---|
@@ -259,7 +297,11 @@ outputs:
 | **Default** | `[]` |
 | **Description** | Glob patterns for files to archive after execution. |
 
-### `envVars`
+</details>
+
+
+<details>
+<summary>`envVars`</summary>
 
 | | |
 |---|---|
@@ -268,7 +310,11 @@ outputs:
 | **Default** | `{}` |
 | **Description** | Additional environment variables to set during script execution. |
 
-### `workingDir`
+</details>
+
+
+<details>
+<summary>`workingDir`</summary>
 
 | | |
 |---|---|
@@ -277,7 +323,11 @@ outputs:
 | **Default** | Current workspace directory |
 | **Description** | Working directory for script execution. |
 
-### `failOnStderr`
+</details>
+
+
+<details>
+<summary>`failOnStderr`</summary>
 
 | | |
 |---|---|
@@ -288,49 +338,14 @@ outputs:
 
 ---
 
+</details>
+
 ## Common Task Properties
 
 See [Shell > Common Task Properties](./shell.md#common-task-properties) for `id`, `type`, `description`, `disabled`, `timeout`, `retry`, `allow_failure`, `run_if`, and `worker_group`.
 
 ---
 
-## Generated Jenkinsfile
-
-The Python executor generates a multi-step shell block that:
-
-1. Creates an isolated Python virtual environment
-2. Installs specified dependencies via `pip`
-3. Creates any `inputFiles` in the working directory
-4. Writes the script to a temporary `.py` file
-5. Executes the script with the configured environment variables
-6. Archives any `outputFiles`
-7. Cleans up the virtual environment
-
-```groovy
-stage('analyze') {
-    steps {
-        sh(label: 'Task: analyze', script: '''
-python3 -m venv .venv_analyze
-. .venv_analyze/bin/activate
-pip install pandas>=2.0 numpy matplotlib
-
-cat > _task_analyze.py << 'BAGMASTER_PYTHON_EOF'
-import pandas as pd
-import numpy as np
-# ... script content ...
-BAGMASTER_PYTHON_EOF
-
-python _task_analyze.py
-rm -f _task_analyze.py
-deactivate
-rm -rf .venv_analyze
-''')
-        archiveArtifacts artifacts: '*.png,*.csv', allowEmptyArchive: true
-    }
-}
-```
-
----
 
 ## Notes
 

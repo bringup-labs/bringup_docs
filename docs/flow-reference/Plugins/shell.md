@@ -26,8 +26,9 @@ type: dev.bringup.plugin.core.shell.Shell
 
 ## Examples
 
-### Basic command execution
 
+<details>
+<summary>Basic command execution</summary>
 ```yaml
 id: hello-world
 namespace: examples
@@ -41,9 +42,11 @@ tasks:
       - date
       - whoami
 ```
+</details>
 
-### Using input variables
 
+<details>
+<summary>Using input variables</summary>
 ```yaml
 id: parameterized-build
 namespace: ci
@@ -68,9 +71,11 @@ tasks:
       - cmake -DCMAKE_BUILD_TYPE={{ inputs.build_type }} .
       - make -j$(nproc)
 ```
+</details>
 
-### Multi-line script with output files
 
+<details>
+<summary>Multi-line script with output files</summary>
 ```yaml
 id: data-processing
 namespace: analytics
@@ -90,9 +95,11 @@ tasks:
     outputFiles:
       - "output/*.csv"
 ```
+</details>
 
-### Conditional execution
 
+<details>
+<summary>Conditional execution</summary>
 ```yaml
 tasks:
   - id: check-env
@@ -111,9 +118,11 @@ tasks:
       max_attempt: 3
       interval: "10s"
 ```
+</details>
 
-### Bash-specific task type
 
+<details>
+<summary>Bash-specific task type</summary>
 ```yaml
 tasks:
   - id: bash-features
@@ -132,10 +141,13 @@ tasks:
 ```
 
 ---
+</details>
 
 ## Properties
 
-### `commands` *(Required)*
+
+<details>
+<summary>`commands` *(Required)*</summary>
 
 | | |
 |---|---|
@@ -143,7 +155,11 @@ tasks:
 | **Required** | Yes (or `script`) |
 | **Description** | List of shell commands to execute sequentially. Each command runs in the same shell session. |
 
-### `script`
+</details>
+
+
+<details>
+<summary>`script`</summary>
 
 | | |
 |---|---|
@@ -151,7 +167,11 @@ tasks:
 | **Required** | Yes (or `commands`) |
 | **Description** | Shell script content to execute. Use this for multi-line scripts as an alternative to `commands`. |
 
-### `outputFiles`
+</details>
+
+
+<details>
+<summary>`outputFiles`</summary>
 
 | | |
 |---|---|
@@ -161,6 +181,8 @@ tasks:
 | **Description** | Glob patterns for files to archive after execution. Matched files are captured as build artifacts in Jenkins. |
 
 ---
+
+</details>
 
 ## Common Task Properties
 
@@ -189,31 +211,6 @@ Shell tasks do not produce structured outputs by default. To pass data between t
 
 ---
 
-## Generated Jenkinsfile
-
-The Shell converter generates:
-
-**Declarative Pipeline:**
-```groovy
-stage('greet') {
-    steps {
-        sh(label: 'Task: greet', script: '''echo "Hello from Bagmaster!"
-date
-whoami''')
-    }
-}
-```
-
-**Scripted Pipeline:**
-```groovy
-stage('greet') {
-    sh(label: 'Task: greet', script: '''echo "Hello from Bagmaster!"
-date
-whoami''')
-}
-```
-
----
 
 ## Notes
 

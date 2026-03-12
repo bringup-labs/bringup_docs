@@ -24,8 +24,9 @@ type: dev.bringup.plugin.core.log.Log
 
 ## Examples
 
-### Simple message
 
+<details>
+<summary>Simple message</summary>
 ```yaml
 id: log-example
 namespace: examples
@@ -45,9 +46,11 @@ tasks:
     type: dev.bringup.plugin.core.log.Log
     message: "Flow execution completed successfully"
 ```
+</details>
 
-### With template variables
 
+<details>
+<summary>With template variables</summary>
 ```yaml
 id: parameterized-log
 namespace: examples
@@ -76,9 +79,11 @@ tasks:
     type: dev.bringup.plugin.core.log.Log
     message: "Deployment to {{ inputs.environment }} complete"
 ```
+</details>
 
-### Debug logging with conditional execution
 
+<details>
+<summary>Debug logging with conditional execution</summary>
 ```yaml
 tasks:
   - id: debug-info
@@ -88,10 +93,13 @@ tasks:
 ```
 
 ---
+</details>
 
 ## Properties
 
-### `message` *(Required)*
+
+<details>
+<summary>`message` *(Required)*</summary>
 
 | | |
 |---|---|
@@ -101,25 +109,14 @@ tasks:
 
 ---
 
+</details>
+
 ## Common Task Properties
 
 See [Shell > Common Task Properties](./shell.md#common-task-properties) for `id`, `type`, `description`, `disabled`, `timeout`, `retry`, `allow_failure`, `run_if`, and `worker_group`.
 
 ---
 
-## Generated Jenkinsfile
-
-The Log converter generates a simple `echo` command:
-
-```groovy
-stage('log-config') {
-    steps {
-        sh(label: 'Task: log-config', script: 'echo "Deploying as ${USER_NAME} to ${ENVIRONMENT}"')
-    }
-}
-```
-
----
 
 ## Notes
 
