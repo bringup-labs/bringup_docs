@@ -35,7 +35,7 @@ const config: Config = {
         hashed: true,
         indexBlog: true,
         indexDocs: true,
-        docsRouteBasePath: '/docs',
+        docsRouteBasePath: '/',
         searchBarShortcutHint: true,
         searchBarPosition: 'left',
       },
@@ -64,7 +64,7 @@ const config: Config = {
       {
         docs: {
           path: '../docs',
-          routeBasePath: '/docs',
+          routeBasePath: '/',
           sidebarPath: './sidebars.ts',
           editCurrentVersion: true,
           ...commonDocsOptions,
@@ -173,7 +173,7 @@ const config: Config = {
           items: [
             {
               label: 'Getting Started',
-              to: '/docs',
+              to: '/getting-started',
             },
           ],
         },
