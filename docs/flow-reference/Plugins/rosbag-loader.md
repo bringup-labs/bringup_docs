@@ -4,6 +4,8 @@
 
 ---
 
+import CollapsibleSection from '@site/src/components/CollapsibleSection';
+
 **Plugin:** `rosbag-loader`
 **Group:** Core / ROS
 
@@ -31,8 +33,7 @@ When a flow has inputs matching rosbag naming conventions (e.g., `rosbag_id`), t
 
 ## Examples
 
-<details>
-<summary>View Examples</summary>
+<CollapsibleSection title="View Examples">
 
 ### Basic rosbag loading
 
@@ -123,14 +124,13 @@ tasks:
     overwrite: false
 ```
 
-</details>
+</CollapsibleSection>
 
 ---
 
 ## Properties
 
-<details>
-<summary>View Properties</summary>
+<CollapsibleSection title="View Properties">
 
 ### `targetDir`
 
@@ -159,7 +159,7 @@ tasks:
 | **Default** | `true` |
 | **Description** | Whether to overwrite existing rosbag files in the target directory. Set to `false` to skip downloading files that already exist. |
 
-</details>
+</CollapsibleSection>
 
 ---
 

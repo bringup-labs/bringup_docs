@@ -4,6 +4,8 @@
 
 ---
 
+import CollapsibleSection from '@site/src/components/CollapsibleSection';
+
 **Plugin:** `docker-run`
 **Group:** Infrastructure
 
@@ -23,8 +25,7 @@ type: dev.bringup.plugin.docker.run
 
 ## Examples
 
-<details>
-<summary>View Examples</summary>
+<CollapsibleSection title="View Examples">
 
 ### Basic container execution
 ```yml
@@ -184,14 +185,13 @@ tasks:
       delay_factor: 2.0
 ```
 
-</details>
+</CollapsibleSection>
 
 ---
 
 ## Properties
 
-<details>
-<summary>View Properties</summary>
+<CollapsibleSection title="View Properties">
 
 ### `containerImage` *(Required)*
 
@@ -314,7 +314,7 @@ tasks:
 | `capabilities` | `List[string]` | Yes | Device capabilities (e.g., `["gpu"]`) |
 | `count` | `integer` | No | Number of devices to request |
 
-</details>
+</CollapsibleSection>
 
 ---
 

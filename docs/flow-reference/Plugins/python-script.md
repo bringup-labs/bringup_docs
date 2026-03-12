@@ -4,6 +4,8 @@
 
 ---
 
+import CollapsibleSection from '@site/src/components/CollapsibleSection';
+
 **Plugin:** `python-executor`
 **Group:** Scripts
 
@@ -24,8 +26,7 @@ type: dev.bringup.plugin.scripts.python.Script
 
 ## Examples
 
-<details>
-<summary>View Examples</summary>
+<CollapsibleSection title="View Examples">
 
 ### Basic Python script
 
@@ -197,14 +198,13 @@ outputs:
     description: The calculated mean value
 ```
 
-</details>
+</CollapsibleSection>
 
 ---
 
 ## Properties
 
-<details>
-<summary>View Properties</summary>
+<CollapsibleSection title="View Properties">
 
 ### `script` *(Required)*
 
@@ -294,7 +294,7 @@ outputs:
 | **Default** | `false` |
 | **Description** | If `true`, the task fails when anything is written to stderr. Useful for strict error checking, but note that many Python libraries write warnings to stderr. |
 
-</details>
+</CollapsibleSection>
 
 ---
 

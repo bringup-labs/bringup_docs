@@ -4,6 +4,8 @@
 
 ---
 
+import CollapsibleSection from '@site/src/components/CollapsibleSection';
+
 **Plugin:** `shell`
 **Group:** Core
 
@@ -26,8 +28,7 @@ type: dev.bringup.plugin.core.shell.Shell
 
 ## Examples
 
-<details>
-<summary>View Examples</summary>
+<CollapsibleSection title="View Examples">
 
 ### Basic command execution
 
@@ -134,14 +135,13 @@ tasks:
         done
 ```
 
-</details>
+</CollapsibleSection>
 
 ---
 
 ## Properties
 
-<details>
-<summary>View Properties</summary>
+<CollapsibleSection title="View Properties">
 
 ### `commands` *(Required)*
 
@@ -168,7 +168,7 @@ tasks:
 | **Default** | `[]` |
 | **Description** | Glob patterns for files to archive after execution. Matched files are captured as build artifacts in Jenkins. |
 
-</details>
+</CollapsibleSection>
 
 ---
 

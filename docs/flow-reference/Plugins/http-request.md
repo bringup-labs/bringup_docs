@@ -4,6 +4,8 @@
 
 ---
 
+import CollapsibleSection from '@site/src/components/CollapsibleSection';
+
 **Plugin:** `http`
 **Group:** Core
 
@@ -24,8 +26,7 @@ type: dev.bringup.plugin.core.http.Request
 
 ## Examples
 
-<details>
-<summary>View Examples</summary>
+<CollapsibleSection title="View Examples">
 
 ### Simple GET request
 
@@ -128,14 +129,13 @@ tasks:
       Accept: application/json
 ```
 
-</details>
+</CollapsibleSection>
 
 ---
 
 ## Properties
 
-<details>
-<summary>View Properties</summary>
+<CollapsibleSection title="View Properties">
 
 ### `url` *(Required)*
 
@@ -182,7 +182,7 @@ tasks:
 | **Default** | `null` |
 | **Description** | File path to save the response body. Used primarily with the `Download` task type. |
 
-</details>
+</CollapsibleSection>
 
 ---
 

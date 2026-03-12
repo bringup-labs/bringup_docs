@@ -4,6 +4,8 @@
 
 ---
 
+import CollapsibleSection from '@site/src/components/CollapsibleSection';
+
 **Plugin:** `log`
 **Group:** Core
 
@@ -24,8 +26,7 @@ type: dev.bringup.plugin.core.log.Log
 
 ## Examples
 
-<details>
-<summary>View Examples</summary>
+<CollapsibleSection title="View Examples">
 
 ### Simple message
 
@@ -90,14 +91,13 @@ tasks:
     run_if: "{{ inputs.debug_mode }}"
 ```
 
-</details>
+</CollapsibleSection>
 
 ---
 
 ## Properties
 
-<details>
-<summary>View Properties</summary>
+<CollapsibleSection title="View Properties">
 
 ### `message` *(Required)*
 
@@ -107,7 +107,7 @@ tasks:
 | **Required** | Yes |
 | **Description** | The message to log. Supports template variables (`{{ inputs.* }}`, `{{ variables.* }}`, `{{ task_outputs.*.* }}`). |
 
-</details>
+</CollapsibleSection>
 
 ---
 

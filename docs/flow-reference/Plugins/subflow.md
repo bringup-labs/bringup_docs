@@ -4,6 +4,8 @@
 
 ---
 
+import CollapsibleSection from '@site/src/components/CollapsibleSection';
+
 **Plugin:** `subflow`
 **Group:** Core / Orchestration
 
@@ -38,8 +40,7 @@ Subflows can reference flows in two ways:
 
 ## Examples
 
-<details>
-<summary>View Examples</summary>
+<CollapsibleSection title="View Examples">
 
 ### Reference an own flow
 
@@ -201,14 +202,13 @@ tasks:
     message: "Sum: {{ task_outputs.compute.sum }}, Average: {{ task_outputs.compute.average }}"
 ```
 
-</details>
+</CollapsibleSection>
 
 ---
 
 ## Properties
 
-<details>
-<summary>View Properties</summary>
+<CollapsibleSection title="View Properties">
 
 ### `flowId`
 
@@ -269,7 +269,7 @@ tasks:
 |----------|------|----------|-------------|
 | `type` | `InputType` | Yes | The data type of the output field |
 
-</details>
+</CollapsibleSection>
 
 ---
 

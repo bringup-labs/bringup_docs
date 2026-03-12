@@ -130,6 +130,10 @@ const config: Config = {
     ],
   ],
 
+  clientModules: [
+    './src/clientModules/anchor-reveal.ts',
+  ],
+
   themeConfig: {
     colorMode: {
       defaultMode: 'dark',
