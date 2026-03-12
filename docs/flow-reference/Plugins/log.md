@@ -26,8 +26,6 @@ type: dev.bringup.plugin.core.log.Log
 
 ## Examples
 
-<CollapsibleSection title="View Examples">
-
 ### Simple message
 
 ```yaml
@@ -49,6 +47,8 @@ tasks:
     type: dev.bringup.plugin.core.log.Log
     message: "Flow execution completed successfully"
 ```
+
+<CollapsibleSection title="View More Examples">
 
 ### With template variables
 

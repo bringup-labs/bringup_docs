@@ -26,8 +26,6 @@ type: dev.bringup.plugin.scripts.python.Script
 
 ## Examples
 
-<CollapsibleSection title="View Examples">
-
 ### Basic Python script
 
 ```yaml
@@ -43,6 +41,8 @@ tasks:
       print(f"Hello from Python {platform.python_version()}!")
       print(f"Running on {platform.system()}")
 ```
+
+<CollapsibleSection title="View More Examples">
 
 ### With dependencies
 

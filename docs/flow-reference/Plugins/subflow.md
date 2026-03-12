@@ -40,7 +40,21 @@ Subflows can reference flows in two ways:
 
 ## Examples
 
-<CollapsibleSection title="View Examples">
+
+### Reference a specific revision
+
+```yaml
+tasks:
+  - id: stable-process
+    type: dev.bringup.plugin.core.flow.Subflow
+    flowId: data-processor
+    namespace: analytics
+    revision: 5
+    inputs:
+      dataset: "{{ inputs.dataset_id }}"
+```
+
+<CollapsibleSection title="View More Examples">
 
 ### Reference an own flow
 
@@ -79,19 +93,6 @@ tasks:
         type: BOOLEAN
       coverage:
         type: FLOAT
-```
-
-### Reference a specific revision
-
-```yaml
-tasks:
-  - id: stable-process
-    type: dev.bringup.plugin.core.flow.Subflow
-    flowId: data-processor
-    namespace: analytics
-    revision: 5
-    inputs:
-      dataset: "{{ inputs.dataset_id }}"
 ```
 
 ### Reference a marketplace flow

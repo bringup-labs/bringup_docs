@@ -26,8 +26,6 @@ type: dev.bringup.plugin.core.http.Request
 
 ## Examples
 
-<CollapsibleSection title="View Examples">
-
 ### Simple GET request
 
 ```yaml
@@ -41,6 +39,8 @@ tasks:
     url: https://api.example.com/health
     method: GET
 ```
+
+<CollapsibleSection title="View More Examples">
 
 ### POST request with JSON body
 

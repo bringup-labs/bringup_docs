@@ -28,8 +28,6 @@ type: dev.bringup.plugin.core.shell.Shell
 
 ## Examples
 
-<CollapsibleSection title="View Examples">
-
 ### Basic command execution
 
 ```yaml
@@ -45,6 +43,8 @@ tasks:
       - date
       - whoami
 ```
+
+<CollapsibleSection title="View More Examples">
 
 ### Using input variables
 

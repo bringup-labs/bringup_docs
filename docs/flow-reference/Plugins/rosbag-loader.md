@@ -33,8 +33,6 @@ When a flow has inputs matching rosbag naming conventions (e.g., `rosbag_id`), t
 
 ## Examples
 
-<CollapsibleSection title="View Examples">
-
 ### Basic rosbag loading
 
 ```yaml
@@ -63,6 +61,8 @@ tasks:
       - cat ${BM_ROSBAGS_MANIFEST_PATH}
       - echo "Rosbag files downloaded successfully"
 ```
+
+<CollapsibleSection title="View More Examples">
 
 ### Rosbag with Python analysis
 
