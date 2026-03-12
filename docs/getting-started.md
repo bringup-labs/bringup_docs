@@ -2,7 +2,7 @@
 id: getting-started
 title: Getting Started
 sidebar_label: Getting Started
-slug: /docs
+sidebar_position: 2
 ---
 
 # Getting Started

@@ -1,0 +1,69 @@
+.overview {
+  margin-top: 0.5rem;
+}
+
+/* ── Section ────────────────────────────────────────────────── */
+.section {
+  padding: 0 0 2rem;
+}
+
+.sectionTitle {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--ifm-font-color-base);
+}
+
+/* ── Card grid ──────────────────────────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 0.75rem;
+}
+
+.card {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  border-radius: 10px;
+  border: 1px solid var(--ifm-toc-border-color);
+  background: var(--ifm-background-surface-color);
+  text-decoration: none !important;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.card:hover {
+  border-color: #0da6f2;
+  box-shadow: 0 0 0 1px rgba(13, 166, 242, 0.2);
+  text-decoration: none !important;
+}
+
+[data-theme='dark'] .card {
+  background: #162329;
+  border-color: #233648;
+}
+
+[data-theme='dark'] .card:hover {
+  border-color: #0da6f2;
+}
+
+.cardIcon {
+  font-size: 1.35rem;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.cardTitle {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ifm-font-color-base);
+  margin-bottom: 0.2rem;
+}
+
+.cardDescription {
+  font-size: 0.8rem;
+  color: var(--ifm-color-content-secondary);
+  line-height: 1.45;
+}

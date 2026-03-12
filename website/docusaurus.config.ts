@@ -12,7 +12,7 @@ const commonDocsOptions: Partial<PluginContentDocs.Options> = {
   breadcrumbs: false,
   showLastUpdateAuthor: true,
   showLastUpdateTime: true,
-  editUrl: 'https://github.com/rahulkatiyar19955/bagmaster/edit/main/bagmaster_docs/',
+  editUrl: 'https://github.com/bringup-labs/bagmaster_docs/edit/main/',
 };
 
 const config: Config = {
@@ -68,6 +68,8 @@ const config: Config = {
           sidebarPath: './sidebars.ts',
           editCurrentVersion: true,
           ...commonDocsOptions,
+          sidebarCollapsible: true,
+          sidebarCollapsed: false,
         },
         blog: {
           path: 'blog',
@@ -96,26 +98,6 @@ const config: Config = {
 
   plugins: [
     'docusaurus-plugin-sass',
-    [
-      'content-docs',
-      {
-        id: 'architecture',
-        path: 'architecture',
-        routeBasePath: '/architecture',
-        sidebarPath: './sidebarsArchitecture.ts',
-        ...commonDocsOptions,
-      } satisfies PluginContentDocs.Options,
-    ],
-    [
-      'content-docs',
-      {
-        id: 'community',
-        path: 'community',
-        routeBasePath: '/community',
-        sidebarPath: './sidebarsCommunity.ts',
-        ...commonDocsOptions,
-      } satisfies PluginContentDocs.Options,
-    ],
     [
       '@docusaurus/plugin-pwa',
       {
