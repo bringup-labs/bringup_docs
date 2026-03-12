@@ -197,22 +197,71 @@ div[class*='language-yml'] .token.punctuation {
 }
 
 .collapsible-section {
-  margin: 1rem 0;
-  border-radius: 6px;
+  margin: 1.5rem 0;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 8px;
+  background-color: var(--ifm-background-surface-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  overflow: hidden;
+}
+
+.collapsible-section:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border-color: var(--ifm-color-primary-light);
+}
+
+.collapsible-section.is-open {
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 4px 12px rgba(var(--ifm-color-primary-rgb, 13, 166, 242), 0.1);
 }
 
 .collapsible-header {
   width: 100%;
   text-align: left;
-  background: var(--ifm-background-surface-color);
-  padding: 10px 14px;
+  background: transparent;
+  padding: 16px 20px;
   font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--ifm-color-content);
   border: none;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background-color 0.2s ease;
 }
 
+.collapsible-header:hover {
+  background-color: var(--ifm-color-emphasis-100);
+}
+
+.is-open .collapsible-header {
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+  background-color: rgba(var(--ifm-color-primary-rgb, 13, 166, 242), 0.04);
+}
+
+.collapsible-header-icon {
+  flex-shrink: 0;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  color: var(--ifm-color-emphasis-600);
+}
+
+.collapsible-header-icon.is-open {
+  transform: rotate(180deg);
+  color: var(--ifm-color-primary);
+}
+
+/* We handle the actual hide/show via inline React style for deep querySelector, 
+   but we add an inner wrapper class for padding */
 .collapsible-content {
-  padding: 10px 16px;
+  padding: 20px;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 :target {

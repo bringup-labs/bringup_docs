@@ -45,16 +45,41 @@ export default function CollapsibleSection({
   }, []);
 
   return (
-    <div className="collapsible-section" ref={ref}>
+    <div className={`collapsible-section ${open ? 'is-open' : ''}`} ref={ref}>
       <button
         className="collapsible-header"
         onClick={() => setOpen(!open)}
+        aria-expanded={open}
       >
-        {open ? "▼" : "▶"} {title}
+        <span className="collapsible-header-title">{title}</span>
+        <svg
+          className={`collapsible-header-icon ${open ? 'is-open' : ''}`}
+          width="20"
+          height="20"
+          viewBox="0 0 20 20"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M5 7.5L10 12.5L15 7.5"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
       </button>
 
-      <div className="collapsible-content" style={{ display: open ? "block" : "none" }}>
-        {children}
+      <div 
+        className="collapsible-content-wrapper" 
+        style={{ 
+          display: open ? 'grid' : 'none',
+          gridTemplateRows: open ? '1fr' : '0fr'
+        }}
+      >
+        <div className="collapsible-content">
+          {children}
+        </div>
       </div>
     </div>
   );
