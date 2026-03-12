@@ -154,5 +154,12 @@
   background: #344c63;
 }
 
+/* ── Navbar search bar styling ────────────────────────────── */
+.navbar .DocSearch-Button,
+.navbar .navbar__search-input {
+  border-radius: 8px;
+  min-width: 280px;
+}
+
 /* ── PWA theme color matches dark navy ───────────────────── */
 /* (configured in docusaurus.config.ts themeColor) */

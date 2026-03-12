@@ -27,7 +27,20 @@ const config: Config = {
       onBrokenMarkdownLinks: 'warn',
     },
   },
-  themes: ['@docusaurus/theme-mermaid'],
+  themes: [
+    '@docusaurus/theme-mermaid',
+    [
+      '@easyops-cn/docusaurus-search-local',
+      {
+        hashed: true,
+        indexBlog: true,
+        indexDocs: true,
+        docsRouteBasePath: '/docs',
+        searchBarShortcutHint: true,
+        searchBarPosition: 'left',
+      },
+    ],
+  ],
 
   title: 'Bringup Labs',
   tagline: 'ROS Bag Management and Visualization Platform',
@@ -51,7 +64,7 @@ const config: Config = {
       {
         docs: {
           path: '../docs',
-          routeBasePath: '/',
+          routeBasePath: '/docs',
           sidebarPath: './sidebars.ts',
           editCurrentVersion: true,
           ...commonDocsOptions,
@@ -155,32 +168,18 @@ const config: Config = {
       ],
     },
     navbar: {
-      title: 'Bringup Labs',
+      title: 'Bringup Docs',
       logo: {
         src: 'img/logo.svg',
         srcDark: 'img/logo.svg',
         alt: 'Bringup Labs Logo',
-        href: 'https://bringup.dev',
-        target: '_blank',
+        href: '/',
       },
       style: 'dark',
       items: [
         {
-          type: 'doc',
-          docId: 'getting-started',
-          label: 'Docs',
+          type: 'search',
           position: 'left',
-        },
-        {
-          to: '/blog',
-          label: 'Blog',
-          position: 'left',
-        },
-        {
-          href: 'https://github.com/rahulkatiyar19955/bagmaster',
-          'aria-label': 'GitHub repository',
-          position: 'right',
-          className: 'navbar-github-link',
         },
       ],
     },
@@ -192,7 +191,7 @@ const config: Config = {
           items: [
             {
               label: 'Getting Started',
-              to: '/',
+              to: '/docs',
             },
           ],
         },
