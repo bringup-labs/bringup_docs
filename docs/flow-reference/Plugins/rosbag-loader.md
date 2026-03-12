@@ -9,8 +9,8 @@ import CollapsibleSection from '@site/src/components/CollapsibleSection';
 **Plugin:** `rosbag-loader`
 **Group:** Core / ROS
 
-| Task Type |
-|-----------|
+| Task Type                                 |
+| ----------------------------------------- |
 | `dev.bringup.plugin.core.rosbag.LoadById` |
 
 ---
@@ -39,8 +39,8 @@ inputs:
     description: The ID of the rosbag to download
 
 variables:
-  BM_ROSBAGS_DIR: .bagmaster/rosbags
-  BM_ROSBAGS_MANIFEST_PATH: .bagmaster/rosbags/manifest.json
+  BM_ROSBAGS_DIR: /tmp/bagmaster/rosbags
+  BM_ROSBAGS_MANIFEST_PATH: /tmp/bagmaster/rosbags/manifest.json
 
 tasks:
   - id: bm_rosbag_loader
@@ -69,8 +69,8 @@ inputs:
     required: true
 
 variables:
-  BM_ROSBAGS_DIR: .bagmaster/rosbags
-  BM_ROSBAGS_MANIFEST_PATH: .bagmaster/rosbags/manifest.json
+  BM_ROSBAGS_DIR: /tmp/bagmaster/rosbags
+  BM_ROSBAGS_MANIFEST_PATH: /tmp/bagmaster/rosbags/manifest.json
 
 tasks:
   - id: bm_rosbag_loader
@@ -111,8 +111,8 @@ tasks:
 tasks:
   - id: bm_rosbag_loader
     type: dev.bringup.plugin.core.rosbag.LoadById
-    targetDir: "${BM_ROSBAGS_DIR}"
-    manifestPath: "${BM_ROSBAGS_MANIFEST_PATH}"
+    targetDir: '${BM_ROSBAGS_DIR}'
+    manifestPath: '${BM_ROSBAGS_MANIFEST_PATH}'
     overwrite: false
 ```
 
@@ -126,29 +126,29 @@ tasks:
 
 ### `targetDir`
 
-| | |
-|---|---|
-| **Type** | `string` |
-| **Required** | No |
-| **Default** | `"${BM_ROSBAGS_DIR}"` |
-| **Description** | Directory where rosbag files will be downloaded. Defaults to the `BM_ROSBAGS_DIR` environment variable, typically `.bagmaster/rosbags`. |
+|                 |                                                                                                                                             |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Type**        | `string`                                                                                                                                    |
+| **Required**    | No                                                                                                                                          |
+| **Default**     | `"${BM_ROSBAGS_DIR}"`                                                                                                                       |
+| **Description** | Directory where rosbag files will be downloaded. Defaults to the `BM_ROSBAGS_DIR` environment variable, typically `/tmp/bagmaster/rosbags`. |
 
 ### `manifestPath`
 
-| | |
-|---|---|
-| **Type** | `string` |
-| **Required** | No |
-| **Default** | `"${BM_ROSBAGS_MANIFEST_PATH}"` |
+|                 |                                                                                                                                               |
+| --------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Type**        | `string`                                                                                                                                      |
+| **Required**    | No                                                                                                                                            |
+| **Default**     | `"${BM_ROSBAGS_MANIFEST_PATH}"`                                                                                                               |
 | **Description** | Path where the JIT manifest JSON file will be written. The manifest contains metadata about downloaded files including their paths and sizes. |
 
 ### `overwrite`
 
-| | |
-|---|---|
-| **Type** | `boolean` |
-| **Required** | No |
-| **Default** | `true` |
+|                 |                                                                                                                                  |
+| --------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| **Type**        | `boolean`                                                                                                                        |
+| **Required**    | No                                                                                                                               |
+| **Default**     | `true`                                                                                                                           |
 | **Description** | Whether to overwrite existing rosbag files in the target directory. Set to `false` to skip downloading files that already exist. |
 
 </CollapsibleSection>
@@ -184,6 +184,7 @@ tasks:
     commands:
       - echo "Rosbag is already available at ${BM_ROSBAGS_DIR}"
 ```
+
 ---
 
 ## Notes

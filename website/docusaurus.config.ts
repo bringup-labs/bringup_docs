@@ -45,9 +45,9 @@ const config: Config = {
 
   title: 'Bringup Labs',
   tagline: 'ROS Bag Management and Visualization Platform',
-  organizationName: 'rahulkatiyar19955',
+  organizationName: 'Bringup Labs',
   projectName: 'Bringup Docs',
-  url: 'https://bagmaster.dev',
+  url: 'https://docs.bringup.dev',
   baseUrl: '/',
   favicon: 'img/favicon.ico',
   titleDelimiter: '·',

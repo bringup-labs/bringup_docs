@@ -36,9 +36,11 @@ Before creating a flow, ensure you have:
 Navigate to the **Flows** section in the Bagmaster UI and click **"Create Flow"**.
 
 ![Flow Editor - Empty State](../assets/screenshots/placeholder-flow-editor-empty.png)
+
 <!-- PLACEHOLDER: Screenshot showing the empty Flow Editor with the YAML editor panel on the left and the visual preview on the right. The editor has syntax highlighting and line numbers. A toolbar at the top shows "Create Flow", "Validate", and "Save" buttons. -->
 
 You'll see a YAML editor where you can write your flow definition. The editor provides:
+
 - Syntax highlighting for YAML
 - Auto-completion for task types and properties
 - Real-time validation feedback
@@ -59,9 +61,11 @@ labels:
 ```
 
 ![Flow Metadata Fields](../assets/screenshots/placeholder-flow-metadata.png)
+
 <!-- PLACEHOLDER: Screenshot showing the top portion of the flow editor with the id, namespace, and description fields filled in. A sidebar panel may show a visual form for these metadata fields with the namespace shown as a dropdown. -->
 
 **Rules:**
+
 - `id` must match `^[a-zA-Z0-9][a-zA-Z0-9._-]*$` (letters, numbers, dots, underscores, hyphens)
 - `namespace` must be lowercase: `^[a-z0-9][a-z0-9._-]*$`
 - `description` is optional but highly recommended
@@ -105,6 +109,7 @@ inputs:
 ```
 
 ![Input Configuration Panel](../assets/screenshots/placeholder-inputs-panel.png)
+
 <!-- PLACEHOLDER: Screenshot showing the inputs section of the flow editor. Each input is displayed as a collapsible card showing the input id, type badge (STRING, INT, ENUM, BOOLEAN), required indicator, default value, and description. An "Add Input" button is visible at the bottom. -->
 
 For the full list of input types and their validation rules, see the [Inputs Reference](./inputs-reference.md).
@@ -123,6 +128,7 @@ variables:
 ```
 
 ![Variables Section](../assets/screenshots/placeholder-variables-section.png)
+
 <!-- PLACEHOLDER: Screenshot showing the variables section as a simple key-value editor with three entries. Each row has a "Key" input field and a "Value" input field, with a delete icon on the right and an "Add Variable" button below. -->
 
 Variables are referenced in tasks using `{{ variables.OUTPUT_DIR }}` syntax, which gets converted to `${OUTPUT_DIR}` environment variables during transpilation.
@@ -137,15 +143,15 @@ Tasks are the core of your flow — they define the actual work to perform. Task
 
 Select from the available task plugins:
 
-| Task Type | Use When... |
-|-----------|-------------|
-| [Shell](../plugins/shell.md) | Running shell commands, scripts, CLI tools |
-| [Python Script](../plugins/python-script.md) | Executing Python code with dependencies |
-| [Docker Run](../plugins/docker-run.md) | Running containers with specific images |
-| [ROS Bag Loader](../plugins/rosbag-loader.md) | Downloading ROS bag files |
-| [HTTP Request](../plugins/http-request.md) | Making API calls |
-| [Log](../plugins/log.md) | Logging messages for debugging/audit |
-| [Subflow](../plugins/subflow.md) | Calling another flow |
+| Task Type                                     | Use When...                                |
+| --------------------------------------------- | ------------------------------------------ |
+| [Shell](../plugins/shell.md)                  | Running shell commands, scripts, CLI tools |
+| [Python Script](../plugins/python-script.md)  | Executing Python code with dependencies    |
+| [Docker Run](../plugins/docker-run.md)        | Running containers with specific images    |
+| [ROS Bag Loader](../plugins/rosbag-loader.md) | Downloading ROS bag files                  |
+| [HTTP Request](../plugins/http-request.md)    | Making API calls                           |
+| [Log](../plugins/log.md)                      | Logging messages for debugging/audit       |
+| [Subflow](../plugins/subflow.md)              | Calling another flow                       |
 
 ### 5b. Add Your First Task
 
@@ -153,7 +159,7 @@ Select from the available task plugins:
 tasks:
   - id: log-start
     type: dev.bringup.plugin.core.log.Log
-    message: "Starting processing of {{ inputs.dataset_name }}"
+    message: 'Starting processing of {{ inputs.dataset_name }}'
 
   - id: process-data
     type: dev.bringup.plugin.scripts.python.Script
@@ -182,15 +188,16 @@ tasks:
 
       print(f"Results written to {output_path}")
     outputFiles:
-      - "*.csv"
-      - "*.json"
+      - '*.csv'
+      - '*.json'
 
   - id: log-complete
     type: dev.bringup.plugin.core.log.Log
-    message: "Processing complete for {{ inputs.dataset_name }}"
+    message: 'Processing complete for {{ inputs.dataset_name }}'
 ```
 
 ![Task List View](../assets/screenshots/placeholder-task-list.png)
+
 <!-- PLACEHOLDER: Screenshot showing the tasks section with three tasks displayed as sequential cards in a vertical pipeline view. Each card shows: task ID, task type with a colored badge (Log=blue, Python=green, Shell=gray), a brief preview of the task configuration, and expand/collapse controls. Connecting lines between cards show the execution order. -->
 
 ### 5c. Configure Task Properties
@@ -198,6 +205,7 @@ tasks:
 Each task type has its own set of properties. Click on a task card to expand its configuration:
 
 ![Task Configuration Expanded](../assets/screenshots/placeholder-task-config-expanded.png)
+
 <!-- PLACEHOLDER: Screenshot showing an expanded Python Script task configuration. The left side shows the YAML editor with syntax highlighting for the script field. The right side shows a visual form with sections for: Dependencies (tag-style input chips), Environment Variables (key-value rows), Output Files (list input), and Advanced Settings (timeout, retry, run_if collapsible section). -->
 
 ### 5d. Add Conditional Execution (Optional)
@@ -205,13 +213,13 @@ Each task type has its own set of properties. Click on a task card to expand its
 Use `run_if` to conditionally execute tasks:
 
 ```yaml
-  - id: verbose-debug
-    type: dev.bringup.plugin.core.shell.Shell
-    run_if: "{{ inputs.verbose }}"
-    commands:
-      - env | sort
-      - df -h
-      - free -m
+- id: verbose-debug
+  type: dev.bringup.plugin.core.shell.Shell
+  run_if: '{{ inputs.verbose }}'
+  commands:
+    - env | sort
+    - df -h
+    - free -m
 ```
 
 ### 5e. Add Error Handling (Optional)
@@ -219,17 +227,17 @@ Use `run_if` to conditionally execute tasks:
 Use `allow_failure`, `retry`, and error/finally tasks:
 
 ```yaml
-  - id: risky-task
-    type: dev.bringup.plugin.core.shell.Shell
-    allow_failure: true
-    retry:
-      type: exponential
-      max_attempt: 3
-      interval: "5s"
-      max_interval: "60s"
-      delay_factor: 2.0
-    commands:
-      - ./potentially-flaky-operation.sh
+- id: risky-task
+  type: dev.bringup.plugin.core.shell.Shell
+  allow_failure: true
+  retry:
+    type: exponential
+    max_attempt: 3
+    interval: '5s'
+    max_interval: '60s'
+    delay_factor: 2.0
+  commands:
+    - ./potentially-flaky-operation.sh
 ```
 
 ---
@@ -242,16 +250,17 @@ Outputs expose values from task results for use by parent flows or external cons
 outputs:
   - id: result_path
     type: STRING
-    value: "{{ task_outputs.process-data.output_path }}"
+    value: '{{ task_outputs.process-data.output_path }}'
     description: Path to the generated result file
 
   - id: sample_count_processed
     type: INT
-    value: "{{ task_outputs.process-data.count }}"
+    value: '{{ task_outputs.process-data.count }}'
     description: Number of samples actually processed
 ```
 
 ![Outputs Configuration](../assets/screenshots/placeholder-outputs-config.png)
+
 <!-- PLACEHOLDER: Screenshot showing the outputs section with two output entries. Each has fields for: ID, Type (dropdown showing STRING/INT/FLOAT etc.), Value (with template expression syntax highlighted), and Description. A helper tooltip shows available task_outputs references. -->
 
 ---
@@ -265,9 +274,11 @@ Before saving, validate your flow to catch errors early.
 Click the **"Validate"** button in the editor toolbar.
 
 ![Validation Results - Success](../assets/screenshots/placeholder-validation-success.png)
+
 <!-- PLACEHOLDER: Screenshot showing a green success banner at the top of the editor reading "Flow is valid" with a checkmark icon. Below the banner, a summary shows: "3 tasks validated, 0 errors, 0 warnings". -->
 
 ![Validation Results - Errors](../assets/screenshots/placeholder-validation-errors.png)
+
 <!-- PLACEHOLDER: Screenshot showing a red error banner with "2 validation errors found". Below it, an expandable error list shows: Error 1: "Task 'process-data': field 'script' is required for type dev.bringup.plugin.scripts.python.Script" with a link to line 25. Error 2: "Input 'dataset_name': pattern violation - id contains invalid characters" with a link to line 8. Each error has a severity icon and line reference. -->
 
 ### Via the API
@@ -280,6 +291,7 @@ curl -X POST https://api.dev.bringup.dev/flows/validate \
 ```
 
 **Response:**
+
 ```json
 {
   "valid": true,
@@ -299,6 +311,7 @@ curl -X POST https://api.dev.bringup.dev/transpiler/convert/jenkins/validate \
 ```
 
 **Response:**
+
 ```json
 {
   "convertible": true,
@@ -323,6 +336,7 @@ curl -X POST https://api.dev.bringup.dev/flows \
 ```
 
 ![Flow Created Confirmation](../assets/screenshots/placeholder-flow-created.png)
+
 <!-- PLACEHOLDER: Screenshot showing a success toast notification "Flow 'my-first-flow' created in namespace 'my-team' (revision 1)". The flow list page is visible behind it, showing the newly created flow with its ID, namespace, description, task count (3), and creation timestamp. -->
 
 The flow is now stored with **revision 1**. Every subsequent update creates a new revision.
@@ -338,16 +352,19 @@ The flow is now stored with **revision 1**. Every subsequent update creates a ne
 3. Click **"Run"**
 
 ![Execution Input Form](../assets/screenshots/placeholder-execution-form.png)
+
 <!-- PLACEHOLDER: Screenshot showing the flow execution modal/page. A form is displayed with fields auto-generated from the flow inputs: "Dataset Name" (text input, required, red asterisk), "Sample Count" (number input with value 100, up/down arrows), "Output Format" (dropdown showing csv/json/parquet), "Verbose" (toggle switch, off). A "Run Flow" button is at the bottom right. The flow name and revision are shown at the top. -->
 
 ### Via the API
 
 First, get the input schema:
+
 ```bash
 curl https://api.dev.bringup.dev/flows/my-team/my-first-flow/schema
 ```
 
 Then validate your inputs:
+
 ```bash
 curl -X POST https://api.dev.bringup.dev/flows/my-team/my-first-flow/validate-inputs \
   -H "Content-Type: application/json" \
@@ -370,16 +387,19 @@ Then trigger the transpiled Jenkins pipeline with those inputs.
 ### Execution View
 
 ![Execution Progress](../assets/screenshots/placeholder-execution-progress.png)
+
 <!-- PLACEHOLDER: Screenshot showing the execution detail page. A vertical timeline shows three stages: "log-start" (green checkmark, completed in 0.2s), "process-data" (spinning blue indicator, currently running, 12s elapsed), "log-complete" (gray circle, pending). A live console log panel on the right shows the output of the currently running task. The top banner shows: Flow ID, Revision, Start Time, Status: RUNNING. -->
 
 ### Console Output
 
 ![Task Console Output](../assets/screenshots/placeholder-console-output.png)
+
 <!-- PLACEHOLDER: Screenshot showing the console output panel for the "process-data" task. The output displays: "Processing sensor-data-2024 with 500 samples", "Output format: json", then a progress indicator, followed by "Results written to /data/results/result.json". The console has a dark background with monospace font, timestamps on the left, and a "Copy Output" button in the top-right corner. -->
 
 ### Artifacts
 
 ![Build Artifacts](../assets/screenshots/placeholder-artifacts.png)
+
 <!-- PLACEHOLDER: Screenshot showing the artifacts panel listing archived files: "result.json (2.4 KB)" and "result.csv (1.8 KB)" with download icons next to each. A "Download All" button is at the top right. File type icons distinguish JSON and CSV files. -->
 
 ---
@@ -397,7 +417,7 @@ inputs:
   - id: user_name
     type: STRING
     required: false
-    defaults: Bagmaster User
+    defaults: Bringup User
 
 tasks:
   - id: greet
@@ -426,8 +446,8 @@ inputs:
     defaults: quick
 
 variables:
-  BM_ROSBAGS_DIR: .bagmaster/rosbags
-  BM_ROSBAGS_MANIFEST_PATH: .bagmaster/rosbags/manifest.json
+  BM_ROSBAGS_DIR: /tmp/bagmaster/rosbags
+  BM_ROSBAGS_MANIFEST_PATH: /tmp/bagmaster/rosbags/manifest.json
 
 tasks:
   - id: bm_rosbag_loader
@@ -464,12 +484,12 @@ tasks:
 
   - id: report
     type: dev.bringup.plugin.core.log.Log
-    message: "Analysis complete: {{ task_outputs.analyze.files_analyzed }} files processed"
+    message: 'Analysis complete: {{ task_outputs.analyze.files_analyzed }} files processed'
 
 outputs:
   - id: files_count
     type: INT
-    value: "{{ task_outputs.analyze.files_analyzed }}"
+    value: '{{ task_outputs.analyze.files_analyzed }}'
 ```
 
 ### Example 3: Docker-Based CI/CD Pipeline
@@ -506,7 +526,7 @@ tasks:
     volumes:
       - hostPath: ./workspace
         path: /app
-    timeout: "300s"
+    timeout: '300s'
 
   - id: unit-tests
     type: dev.bringup.plugin.docker.run
@@ -520,17 +540,17 @@ tasks:
   - id: integration-tests
     type: dev.bringup.plugin.docker.run
     containerImage: node:20-alpine
-    run_if: "{{ inputs.run_integration_tests }}"
+    run_if: '{{ inputs.run_integration_tests }}'
     commands:
       - cd /app && npm run test:integration
     volumes:
       - hostPath: ./workspace
         path: /app
-    timeout: "600s"
+    timeout: '600s'
 
   - id: log-result
     type: dev.bringup.plugin.core.log.Log
-    message: "CI pipeline complete for {{ inputs.branch }}"
+    message: 'CI pipeline complete for {{ inputs.branch }}'
 ```
 
 ### Example 4: Multi-Stage Pipeline with Subflows
@@ -558,8 +578,8 @@ tasks:
     flowId: build-service
     namespace: ci
     inputs:
-      service: "{{ inputs.service_name }}"
-      version: "{{ inputs.version }}"
+      service: '{{ inputs.service_name }}'
+      version: '{{ inputs.version }}'
     outputSchema:
       image_tag:
         type: STRING
@@ -569,7 +589,7 @@ tasks:
     flowId: run-tests
     namespace: ci
     inputs:
-      image: "{{ task_outputs.build.image_tag }}"
+      image: '{{ task_outputs.build.image_tag }}'
     outputSchema:
       passed:
         type: BOOLEAN
@@ -579,8 +599,8 @@ tasks:
     flowId: deploy-service
     namespace: devops
     inputs:
-      image: "{{ task_outputs.build.image_tag }}"
-      environment: "{{ inputs.environment }}"
+      image: '{{ task_outputs.build.image_tag }}'
+      environment: '{{ inputs.environment }}'
 
   - id: notify
     type: dev.bringup.plugin.core.http.Request

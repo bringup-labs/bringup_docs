@@ -31,7 +31,7 @@ tasks:
   - id: greet
     type: dev.bringup.plugin.core.shell.Shell
     commands:
-      - echo "Hello from Bagmaster!"
+      - echo "Hello from Bringup Labs!"
       - date
       - whoami
 ```

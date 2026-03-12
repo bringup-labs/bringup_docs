@@ -4,10 +4,10 @@
   "version": "0.0.1",
   "private": true,
   "license": "MIT",
-  "homepage": "https://bagmaster.dev/",
-  "repository": "github:rahulkatiyar19955/bagmaster",
+  "homepage": "https://docs.bringup.dev/",
+  "repository": "github:bringup-labs/bagmaster_docs",
   "bugs": {
-    "url": "https://github.com/rahulkatiyar19955/bagmaster/issues"
+    "url": "https://github.com/bringup-labs/bagmaster_docs/issues"
   },
   "scripts": {
     "docusaurus": "docusaurus",
