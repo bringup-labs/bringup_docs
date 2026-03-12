@@ -24,9 +24,11 @@ type: dev.bringup.plugin.core.http.Request
 
 ## Examples
 
-
 <details>
-<summary>Simple GET request</summary>
+<summary>View Examples</summary>
+
+### Simple GET request
+
 ```yaml
 id: health-check
 namespace: monitoring
@@ -38,11 +40,9 @@ tasks:
     url: https://api.example.com/health
     method: GET
 ```
-</details>
 
+### POST request with JSON body
 
-<details>
-<summary>POST request with JSON body</summary>
 ```yaml
 id: trigger-webhook
 namespace: integrations
@@ -69,11 +69,9 @@ tasks:
         "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
       }
 ```
-</details>
 
+### With authentication headers
 
-<details>
-<summary>With authentication headers</summary>
 ```yaml
 tasks:
   - id: fetch-data
@@ -84,11 +82,9 @@ tasks:
       Authorization: "Bearer {{ inputs.api_token }}"
       Accept: application/json
 ```
-</details>
 
+### Download a file
 
-<details>
-<summary>Download a file</summary>
 ```yaml
 tasks:
   - id: download-model
@@ -101,11 +97,9 @@ tasks:
     commands:
       - tar -xzf ./models/latest.tar.gz -C ./models/
 ```
-</details>
 
+### Chaining API calls
 
-<details>
-<summary>Chaining API calls</summary>
 ```yaml
 id: api-workflow
 namespace: integrations
@@ -134,14 +128,16 @@ tasks:
       Accept: application/json
 ```
 
----
 </details>
+
+---
 
 ## Properties
 
-
 <details>
-<summary>`url` *(Required)*</summary>
+<summary>View Properties</summary>
+
+### `url` *(Required)*
 
 | | |
 |---|---|
@@ -149,11 +145,7 @@ tasks:
 | **Required** | Yes |
 | **Description** | The URL to send the request to. Template variables are supported. |
 
-</details>
-
-
-<details>
-<summary>`method`</summary>
+### `method`
 
 | | |
 |---|---|
@@ -163,11 +155,7 @@ tasks:
 | **Possible Values** | `GET`, `POST`, `PUT`, `DELETE`, `PATCH`, `HEAD`, `OPTIONS` |
 | **Description** | HTTP method for the request. |
 
-</details>
-
-
-<details>
-<summary>`headers`</summary>
+### `headers`
 
 | | |
 |---|---|
@@ -176,11 +164,7 @@ tasks:
 | **Default** | `{}` |
 | **Description** | HTTP headers to include in the request. Template variables are supported in values. |
 
-</details>
-
-
-<details>
-<summary>`body`</summary>
+### `body`
 
 | | |
 |---|---|
@@ -189,11 +173,7 @@ tasks:
 | **Default** | `null` |
 | **Description** | Request body content. Template variables are supported. Typically used with POST/PUT/PATCH methods. |
 
-</details>
-
-
-<details>
-<summary>`outputPath`</summary>
+### `outputPath`
 
 | | |
 |---|---|
@@ -202,9 +182,9 @@ tasks:
 | **Default** | `null` |
 | **Description** | File path to save the response body. Used primarily with the `Download` task type. |
 
----
-
 </details>
+
+---
 
 ## Common Task Properties
 

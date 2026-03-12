@@ -1,7 +1,7 @@
-import {themes as prismThemes} from 'prism-react-renderer';
+import { themes as prismThemes } from 'prism-react-renderer';
 import type * as PluginContentDocs from '@docusaurus/plugin-content-docs';
 import type * as Preset from '@docusaurus/preset-classic';
-import type {Config} from '@docusaurus/types';
+import type { Config } from '@docusaurus/types';
 
 const isProductionDeployment = process.env.NODE_ENV === 'production';
 const isDeployPreview = process.env.PREVIEW_DEPLOY === 'true';
@@ -144,7 +144,6 @@ const config: Config = {
         'diff',
         'json',
         'python',
-        'yaml',
         'cpp',
         'cmake',
         'docker',
@@ -206,12 +205,12 @@ const config: Config = {
     metadata: [
       {
         property: 'og:image',
-        content: 'https://bagmaster.dev/img/social-card.png',
+        content: 'https://bringup.dev/img/social-card.png',
       },
-      {name: 'twitter:card', content: 'summary_large_image'},
+      { name: 'twitter:card', content: 'summary_large_image' },
       {
         name: 'twitter:image',
-        content: 'https://bagmaster.dev/img/social-card.png',
+        content: 'https://bringup.dev/img/social-card.png',
       },
     ],
   } satisfies Preset.ThemeConfig,

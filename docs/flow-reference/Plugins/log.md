@@ -24,9 +24,11 @@ type: dev.bringup.plugin.core.log.Log
 
 ## Examples
 
-
 <details>
-<summary>Simple message</summary>
+<summary>View Examples</summary>
+
+### Simple message
+
 ```yaml
 id: log-example
 namespace: examples
@@ -46,11 +48,9 @@ tasks:
     type: dev.bringup.plugin.core.log.Log
     message: "Flow execution completed successfully"
 ```
-</details>
 
+### With template variables
 
-<details>
-<summary>With template variables</summary>
 ```yaml
 id: parameterized-log
 namespace: examples
@@ -79,11 +79,9 @@ tasks:
     type: dev.bringup.plugin.core.log.Log
     message: "Deployment to {{ inputs.environment }} complete"
 ```
-</details>
 
+### Debug logging with conditional execution
 
-<details>
-<summary>Debug logging with conditional execution</summary>
 ```yaml
 tasks:
   - id: debug-info
@@ -92,14 +90,16 @@ tasks:
     run_if: "{{ inputs.debug_mode }}"
 ```
 
----
 </details>
+
+---
 
 ## Properties
 
-
 <details>
-<summary>`message` *(Required)*</summary>
+<summary>View Properties</summary>
+
+### `message` *(Required)*
 
 | | |
 |---|---|
@@ -107,9 +107,9 @@ tasks:
 | **Required** | Yes |
 | **Description** | The message to log. Supports template variables (`{{ inputs.* }}`, `{{ variables.* }}`, `{{ task_outputs.*.* }}`). |
 
----
-
 </details>
+
+---
 
 ## Common Task Properties
 

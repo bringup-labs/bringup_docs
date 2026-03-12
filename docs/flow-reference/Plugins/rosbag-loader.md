@@ -31,9 +31,11 @@ When a flow has inputs matching rosbag naming conventions (e.g., `rosbag_id`), t
 
 ## Examples
 
-
 <details>
-<summary>Basic rosbag loading</summary>
+<summary>View Examples</summary>
+
+### Basic rosbag loading
+
 ```yaml
 id: load-rosbag
 namespace: robotics
@@ -60,11 +62,9 @@ tasks:
       - cat ${BM_ROSBAGS_MANIFEST_PATH}
       - echo "Rosbag files downloaded successfully"
 ```
-</details>
 
+### Rosbag with Python analysis
 
-<details>
-<summary>Rosbag with Python analysis</summary>
 ```yaml
 id: rosbag-analysis
 namespace: analytics
@@ -101,11 +101,9 @@ tasks:
           print(f"  - {entry.get('filename', 'unknown')}")
           print(f"    Size: {entry.get('size', 'unknown')} bytes")
 ```
-</details>
 
+### Custom target directory
 
-<details>
-<summary>Custom target directory</summary>
 ```yaml
 tasks:
   - id: bm_rosbag_loader
@@ -113,11 +111,9 @@ tasks:
     targetDir: /workspace/custom-bags
     overwrite: true
 ```
-</details>
 
+### With overwrite control
 
-<details>
-<summary>With overwrite control</summary>
 ```yaml
 tasks:
   - id: bm_rosbag_loader
@@ -127,14 +123,16 @@ tasks:
     overwrite: false
 ```
 
----
 </details>
+
+---
 
 ## Properties
 
-
 <details>
-<summary>`targetDir`</summary>
+<summary>View Properties</summary>
+
+### `targetDir`
 
 | | |
 |---|---|
@@ -143,11 +141,7 @@ tasks:
 | **Default** | `"${BM_ROSBAGS_DIR}"` |
 | **Description** | Directory where rosbag files will be downloaded. Defaults to the `BM_ROSBAGS_DIR` environment variable, typically `.bagmaster/rosbags`. |
 
-</details>
-
-
-<details>
-<summary>`manifestPath`</summary>
+### `manifestPath`
 
 | | |
 |---|---|
@@ -156,11 +150,7 @@ tasks:
 | **Default** | `"${BM_ROSBAGS_MANIFEST_PATH}"` |
 | **Description** | Path where the JIT manifest JSON file will be written. The manifest contains metadata about downloaded files including their paths and sizes. |
 
-</details>
-
-
-<details>
-<summary>`overwrite`</summary>
+### `overwrite`
 
 | | |
 |---|---|
@@ -169,9 +159,9 @@ tasks:
 | **Default** | `true` |
 | **Description** | Whether to overwrite existing rosbag files in the target directory. Set to `false` to skip downloading files that already exist. |
 
----
-
 </details>
+
+---
 
 ## Common Task Properties
 

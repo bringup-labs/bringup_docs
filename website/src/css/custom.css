@@ -163,3 +163,35 @@
 
 /* ── PWA theme color matches dark navy ───────────────────── */
 /* (configured in docusaurus.config.ts themeColor) */
+
+/* ── YAML code block colors (matches yaml-viewer.tsx) ────── */
+/* Keys / property names → green */
+div[class*='language-yaml'] .token.key,
+div[class*='language-yaml'] .token.atrule,
+div[class*='language-yml'] .token.key,
+div[class*='language-yml'] .token.atrule {
+  color: #22c55e !important;
+}
+
+/* Values: strings, numbers, booleans → orange */
+div[class*='language-yaml'] .token.string,
+div[class*='language-yaml'] .token.number,
+div[class*='language-yaml'] .token.boolean,
+div[class*='language-yml'] .token.string,
+div[class*='language-yml'] .token.number,
+div[class*='language-yml'] .token.boolean {
+  color: #f97316 !important;
+}
+
+/* Comments → gray italic */
+div[class*='language-yaml'] .token.comment,
+div[class*='language-yml'] .token.comment {
+  color: #6b7280 !important;
+  font-style: italic;
+}
+
+/* Punctuation / separators → light gray */
+div[class*='language-yaml'] .token.punctuation,
+div[class*='language-yml'] .token.punctuation {
+  color: #9ca3af !important;
+}

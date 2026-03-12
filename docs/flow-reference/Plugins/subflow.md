@@ -38,9 +38,11 @@ Subflows can reference flows in two ways:
 
 ## Examples
 
-
 <details>
-<summary>Reference an own flow</summary>
+<summary>View Examples</summary>
+
+### Reference an own flow
+
 ```yaml
 id: parent-flow
 namespace: workflows
@@ -77,11 +79,9 @@ tasks:
       coverage:
         type: FLOAT
 ```
-</details>
 
+### Reference a specific revision
 
-<details>
-<summary>Reference a specific revision</summary>
 ```yaml
 tasks:
   - id: stable-process
@@ -92,11 +92,9 @@ tasks:
     inputs:
       dataset: "{{ inputs.dataset_id }}"
 ```
-</details>
 
+### Reference a marketplace flow
 
-<details>
-<summary>Reference a marketplace flow</summary>
 ```yaml
 tasks:
   - id: community-task
@@ -108,11 +106,9 @@ tasks:
       processed:
         type: JSON
 ```
-</details>
 
+### Multi-stage pipeline with subflows
 
-<details>
-<summary>Multi-stage pipeline with subflows</summary>
 ```yaml
 id: ml-pipeline
 namespace: ml
@@ -183,11 +179,9 @@ outputs:
     type: JSON
     value: "{{ task_outputs.evaluate.metrics }}"
 ```
-</details>
 
+### Using outputs from subflows
 
-<details>
-<summary>Using outputs from subflows</summary>
 ```yaml
 tasks:
   - id: compute
@@ -207,466 +201,34 @@ tasks:
     message: "Sum: {{ task_outputs.compute.sum }}, Average: {{ task_outputs.compute.average }}"
 ```
 
----
 </details>
+
+---
 
 ## Properties
 
-
 <details>
-<summary>`flowId`</summary>
+<summary>View Properties</summary>
+
+### `flowId`
 
 | | |
 |---|---|
 | **Type** | `string` |
 | **Required** | Yes (if not using `marketplaceListingId`) |
-| **Pattern** | `^[a-zA-Z0-9][a-zA-Z0-9._-]*# Subflow
-
-> Compose workflows by calling other flows as tasks, enabling modular and reusable flow design.
-
----
-
-**Plugin:** `subflow`
-**Group:** Core / Orchestration
-
-| Task Type |
-|-----------|
-| `dev.bringup.plugin.core.flow.Subflow` |
-
----
-
-## Usage
-
-```yaml
-type: dev.bringup.plugin.core.flow.Subflow
-```
-
----
-
-## Overview
-
-The Subflow task allows you to invoke another flow as a step within your current flow. This enables:
-
-- **Modularity** - Break complex workflows into reusable components
-- **Composition** - Build parent flows that orchestrate multiple child flows
-- **Marketplace reuse** - Reference published flows from the Bagmaster Marketplace
-- **Input/output passing** - Pass data between parent and child flows
-
-Subflows can reference flows in two ways:
-1. **Own flows** - By `flowId` + `namespace` (+ optional `revision`)
-2. **Marketplace flows** - By `marketplaceListingId`
-
----
-
-## Examples
-
-
-<details>
-<summary>Reference an own flow</summary>
-```yaml
-id: parent-flow
-namespace: workflows
-description: Orchestrate multiple child flows
-
-inputs:
-  - id: project_name
-    type: STRING
-    defaults: my-project
-
-tasks:
-  - id: run-build
-    type: dev.bringup.plugin.core.flow.Subflow
-    flowId: build-pipeline
-    namespace: ci
-    inputs:
-      project: "{{ inputs.project_name }}"
-      branch: main
-    outputSchema:
-      build_artifact:
-        type: STRING
-      build_version:
-        type: STRING
-
-  - id: run-tests
-    type: dev.bringup.plugin.core.flow.Subflow
-    flowId: test-suite
-    namespace: ci
-    inputs:
-      artifact_path: "{{ task_outputs.run-build.build_artifact }}"
-    outputSchema:
-      test_passed:
-        type: BOOLEAN
-      coverage:
-        type: FLOAT
-```
-</details>
-
-
-<details>
-<summary>Reference a specific revision</summary>
-```yaml
-tasks:
-  - id: stable-process
-    type: dev.bringup.plugin.core.flow.Subflow
-    flowId: data-processor
-    namespace: analytics
-    revision: 5
-    inputs:
-      dataset: "{{ inputs.dataset_id }}"
-```
-</details>
-
-
-<details>
-<summary>Reference a marketplace flow</summary>
-```yaml
-tasks:
-  - id: community-task
-    type: dev.bringup.plugin.core.flow.Subflow
-    marketplaceListingId: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
-    inputs:
-      input_data: "{{ inputs.raw_data }}"
-    outputSchema:
-      processed:
-        type: JSON
-```
-</details>
-
-
-<details>
-<summary>Multi-stage pipeline with subflows</summary>
-```yaml
-id: ml-pipeline
-namespace: ml
-description: End-to-end ML pipeline using modular subflows
-
-inputs:
-  - id: dataset_id
-    type: STRING
-    required: true
-  - id: model_type
-    type: ENUM
-    values: [random_forest, xgboost, neural_net]
-    defaults: random_forest
-  - id: deploy
-    type: BOOLEAN
-    defaults: false
-
-tasks:
-  - id: prepare-data
-    type: dev.bringup.plugin.core.flow.Subflow
-    flowId: data-preparation
-    namespace: ml
-    inputs:
-      dataset_id: "{{ inputs.dataset_id }}"
-    outputSchema:
-      train_path:
-        type: STRING
-      test_path:
-        type: STRING
-
-  - id: train-model
-    type: dev.bringup.plugin.core.flow.Subflow
-    flowId: model-training
-    namespace: ml
-    inputs:
-      train_data: "{{ task_outputs.prepare-data.train_path }}"
-      model_type: "{{ inputs.model_type }}"
-    outputSchema:
-      model_path:
-        type: STRING
-      accuracy:
-        type: FLOAT
-
-  - id: evaluate
-    type: dev.bringup.plugin.core.flow.Subflow
-    flowId: model-evaluation
-    namespace: ml
-    inputs:
-      model_path: "{{ task_outputs.train-model.model_path }}"
-      test_data: "{{ task_outputs.prepare-data.test_path }}"
-    outputSchema:
-      metrics:
-        type: JSON
-
-  - id: deploy-model
-    type: dev.bringup.plugin.core.flow.Subflow
-    flowId: model-deployment
-    namespace: ml
-    run_if: "{{ inputs.deploy }}"
-    inputs:
-      model_path: "{{ task_outputs.train-model.model_path }}"
-
-outputs:
-  - id: model_accuracy
-    type: FLOAT
-    value: "{{ task_outputs.train-model.accuracy }}"
-  - id: evaluation_metrics
-    type: JSON
-    value: "{{ task_outputs.evaluate.metrics }}"
-```
-</details>
-
-
-<details>
-<summary>Using outputs from subflows</summary>
-```yaml
-tasks:
-  - id: compute
-    type: dev.bringup.plugin.core.flow.Subflow
-    flowId: calculator
-    namespace: tools
-    inputs:
-      values: "[1, 2, 3, 4, 5]"
-    outputSchema:
-      sum:
-        type: INT
-      average:
-        type: FLOAT
-
-  - id: report
-    type: dev.bringup.plugin.core.log.Log
-    message: "Sum: {{ task_outputs.compute.sum }}, Average: {{ task_outputs.compute.average }}"
-```
-
----
-</details>
-
-## Properties
- |
+| **Pattern** | `^[a-zA-Z0-9][a-zA-Z0-9._-]*$` |
 | **Description** | The ID of the flow to invoke. Must be combined with `namespace`. Mutually exclusive with `marketplaceListingId`. |
 
-</details>
-
-
-<details>
-<summary>`namespace`</summary>
+### `namespace`
 
 | | |
 |---|---|
 | **Type** | `string` |
 | **Required** | Yes (if using `flowId`) |
-| **Pattern** | `^[a-z0-9][a-z0-9._-]*# Subflow
-
-> Compose workflows by calling other flows as tasks, enabling modular and reusable flow design.
-
----
-
-**Plugin:** `subflow`
-**Group:** Core / Orchestration
-
-| Task Type |
-|-----------|
-| `dev.bringup.plugin.core.flow.Subflow` |
-
----
-
-## Usage
-
-```yaml
-type: dev.bringup.plugin.core.flow.Subflow
-```
-
----
-
-## Overview
-
-The Subflow task allows you to invoke another flow as a step within your current flow. This enables:
-
-- **Modularity** - Break complex workflows into reusable components
-- **Composition** - Build parent flows that orchestrate multiple child flows
-- **Marketplace reuse** - Reference published flows from the Bagmaster Marketplace
-- **Input/output passing** - Pass data between parent and child flows
-
-Subflows can reference flows in two ways:
-1. **Own flows** - By `flowId` + `namespace` (+ optional `revision`)
-2. **Marketplace flows** - By `marketplaceListingId`
-
----
-
-## Examples
-
-
-<details>
-<summary>Reference an own flow</summary>
-```yaml
-id: parent-flow
-namespace: workflows
-description: Orchestrate multiple child flows
-
-inputs:
-  - id: project_name
-    type: STRING
-    defaults: my-project
-
-tasks:
-  - id: run-build
-    type: dev.bringup.plugin.core.flow.Subflow
-    flowId: build-pipeline
-    namespace: ci
-    inputs:
-      project: "{{ inputs.project_name }}"
-      branch: main
-    outputSchema:
-      build_artifact:
-        type: STRING
-      build_version:
-        type: STRING
-
-  - id: run-tests
-    type: dev.bringup.plugin.core.flow.Subflow
-    flowId: test-suite
-    namespace: ci
-    inputs:
-      artifact_path: "{{ task_outputs.run-build.build_artifact }}"
-    outputSchema:
-      test_passed:
-        type: BOOLEAN
-      coverage:
-        type: FLOAT
-```
-</details>
-
-
-<details>
-<summary>Reference a specific revision</summary>
-```yaml
-tasks:
-  - id: stable-process
-    type: dev.bringup.plugin.core.flow.Subflow
-    flowId: data-processor
-    namespace: analytics
-    revision: 5
-    inputs:
-      dataset: "{{ inputs.dataset_id }}"
-```
-</details>
-
-
-<details>
-<summary>Reference a marketplace flow</summary>
-```yaml
-tasks:
-  - id: community-task
-    type: dev.bringup.plugin.core.flow.Subflow
-    marketplaceListingId: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
-    inputs:
-      input_data: "{{ inputs.raw_data }}"
-    outputSchema:
-      processed:
-        type: JSON
-```
-</details>
-
-
-<details>
-<summary>Multi-stage pipeline with subflows</summary>
-```yaml
-id: ml-pipeline
-namespace: ml
-description: End-to-end ML pipeline using modular subflows
-
-inputs:
-  - id: dataset_id
-    type: STRING
-    required: true
-  - id: model_type
-    type: ENUM
-    values: [random_forest, xgboost, neural_net]
-    defaults: random_forest
-  - id: deploy
-    type: BOOLEAN
-    defaults: false
-
-tasks:
-  - id: prepare-data
-    type: dev.bringup.plugin.core.flow.Subflow
-    flowId: data-preparation
-    namespace: ml
-    inputs:
-      dataset_id: "{{ inputs.dataset_id }}"
-    outputSchema:
-      train_path:
-        type: STRING
-      test_path:
-        type: STRING
-
-  - id: train-model
-    type: dev.bringup.plugin.core.flow.Subflow
-    flowId: model-training
-    namespace: ml
-    inputs:
-      train_data: "{{ task_outputs.prepare-data.train_path }}"
-      model_type: "{{ inputs.model_type }}"
-    outputSchema:
-      model_path:
-        type: STRING
-      accuracy:
-        type: FLOAT
-
-  - id: evaluate
-    type: dev.bringup.plugin.core.flow.Subflow
-    flowId: model-evaluation
-    namespace: ml
-    inputs:
-      model_path: "{{ task_outputs.train-model.model_path }}"
-      test_data: "{{ task_outputs.prepare-data.test_path }}"
-    outputSchema:
-      metrics:
-        type: JSON
-
-  - id: deploy-model
-    type: dev.bringup.plugin.core.flow.Subflow
-    flowId: model-deployment
-    namespace: ml
-    run_if: "{{ inputs.deploy }}"
-    inputs:
-      model_path: "{{ task_outputs.train-model.model_path }}"
-
-outputs:
-  - id: model_accuracy
-    type: FLOAT
-    value: "{{ task_outputs.train-model.accuracy }}"
-  - id: evaluation_metrics
-    type: JSON
-    value: "{{ task_outputs.evaluate.metrics }}"
-```
-</details>
-
-
-<details>
-<summary>Using outputs from subflows</summary>
-```yaml
-tasks:
-  - id: compute
-    type: dev.bringup.plugin.core.flow.Subflow
-    flowId: calculator
-    namespace: tools
-    inputs:
-      values: "[1, 2, 3, 4, 5]"
-    outputSchema:
-      sum:
-        type: INT
-      average:
-        type: FLOAT
-
-  - id: report
-    type: dev.bringup.plugin.core.log.Log
-    message: "Sum: {{ task_outputs.compute.sum }}, Average: {{ task_outputs.compute.average }}"
-```
-
----
-</details>
-
-## Properties
- |
+| **Pattern** | `^[a-z0-9][a-z0-9._-]*$` |
 | **Description** | The namespace of the flow to invoke. |
 
-</details>
-
-
-<details>
-<summary>`revision`</summary>
+### `revision`
 
 | | |
 |---|---|
@@ -675,11 +237,7 @@ tasks:
 | **Default** | Latest revision |
 | **Description** | Specific revision of the flow to invoke. If omitted, the latest revision is used. |
 
-</details>
-
-
-<details>
-<summary>`marketplaceListingId`</summary>
+### `marketplaceListingId`
 
 | | |
 |---|---|
@@ -687,11 +245,7 @@ tasks:
 | **Required** | Yes (if not using `flowId` + `namespace`) |
 | **Description** | UUID of a marketplace listing to invoke. Mutually exclusive with `flowId` + `namespace`. |
 
-</details>
-
-
-<details>
-<summary>`inputs`</summary>
+### `inputs`
 
 | | |
 |---|---|
@@ -700,11 +254,7 @@ tasks:
 | **Default** | `{}` |
 | **Description** | Input values to pass to the subflow. Keys must match the subflow's input IDs. Template variables are supported in values. |
 
-</details>
-
-
-<details>
-<summary>`outputSchema`</summary>
+### `outputSchema`
 
 | | |
 |---|---|
@@ -719,9 +269,9 @@ tasks:
 |----------|------|----------|-------------|
 | `type` | `InputType` | Yes | The data type of the output field |
 
----
-
 </details>
+
+---
 
 ## Common Task Properties
 

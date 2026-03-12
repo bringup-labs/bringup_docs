@@ -24,9 +24,11 @@ type: dev.bringup.plugin.scripts.python.Script
 
 ## Examples
 
-
 <details>
-<summary>Basic Python script</summary>
+<summary>View Examples</summary>
+
+### Basic Python script
+
 ```yaml
 id: python-hello
 namespace: examples
@@ -40,11 +42,9 @@ tasks:
       print(f"Hello from Python {platform.python_version()}!")
       print(f"Running on {platform.system()}")
 ```
-</details>
 
+### With dependencies
 
-<details>
-<summary>With dependencies</summary>
 ```yaml
 id: data-analysis
 namespace: analytics
@@ -77,11 +77,9 @@ tasks:
       - "*.png"
       - "*.csv"
 ```
-</details>
 
+### With input files and environment variables
 
-<details>
-<summary>With input files and environment variables</summary>
 ```yaml
 id: config-processor
 namespace: tools
@@ -116,11 +114,9 @@ tasks:
 
       print(json.dumps(config, indent=2))
 ```
-</details>
 
+### Commands mode (one-liners)
 
-<details>
-<summary>Commands mode (one-liners)</summary>
 ```yaml
 tasks:
   - id: quick-check
@@ -129,11 +125,9 @@ tasks:
       - "import sys; print(f'Python {sys.version}')"
       - "import json; print(json.dumps({'status': 'ok'}))"
 ```
-</details>
 
+### With before commands and custom working directory
 
-<details>
-<summary>With before commands and custom working directory</summary>
 ```yaml
 tasks:
   - id: ml-training
@@ -164,11 +158,9 @@ tasks:
     outputFiles:
       - "models/*.pkl"
 ```
-</details>
 
+### With structured output
 
-<details>
-<summary>With structured output</summary>
 ```yaml
 id: metric-calculator
 namespace: analytics
@@ -205,14 +197,16 @@ outputs:
     description: The calculated mean value
 ```
 
----
 </details>
+
+---
 
 ## Properties
 
-
 <details>
-<summary>`script` *(Required)*</summary>
+<summary>View Properties</summary>
+
+### `script` *(Required)*
 
 | | |
 |---|---|
@@ -220,11 +214,7 @@ outputs:
 | **Required** | Yes (or `commands`) |
 | **Description** | Python code to execute. Written to a temporary `.py` file and run inside an isolated virtual environment. |
 
-</details>
-
-
-<details>
-<summary>`commands`</summary>
+### `commands`
 
 | | |
 |---|---|
@@ -232,11 +222,7 @@ outputs:
 | **Required** | Yes (or `script`) |
 | **Description** | List of Python one-liner commands. Each is executed via `python -c`. |
 
-</details>
-
-
-<details>
-<summary>`dependencies`</summary>
+### `dependencies`
 
 | | |
 |---|---|
@@ -245,11 +231,7 @@ outputs:
 | **Default** | `[]` |
 | **Description** | Python packages to install via `pip` before execution. Supports version specifiers (e.g., `pandas>=2.0`, `numpy==1.24.0`). |
 
-</details>
-
-
-<details>
-<summary>`pythonVersion`</summary>
+### `pythonVersion`
 
 | | |
 |---|---|
@@ -258,11 +240,7 @@ outputs:
 | **Default** | `"python3"` |
 | **Description** | Python interpreter to use for creating the virtual environment. Must be available on the worker. |
 
-</details>
-
-
-<details>
-<summary>`beforeCommands`</summary>
+### `beforeCommands`
 
 | | |
 |---|---|
@@ -271,11 +249,7 @@ outputs:
 | **Default** | `[]` |
 | **Description** | Shell commands to run before the Python script executes. Useful for creating directories, downloading files, or setting up the environment. |
 
-</details>
-
-
-<details>
-<summary>`inputFiles`</summary>
+### `inputFiles`
 
 | | |
 |---|---|
@@ -284,11 +258,7 @@ outputs:
 | **Default** | `{}` |
 | **Description** | Files to create in the working directory before execution. Key is the filename, value is the file content. |
 
-</details>
-
-
-<details>
-<summary>`outputFiles`</summary>
+### `outputFiles`
 
 | | |
 |---|---|
@@ -297,11 +267,7 @@ outputs:
 | **Default** | `[]` |
 | **Description** | Glob patterns for files to archive after execution. |
 
-</details>
-
-
-<details>
-<summary>`envVars`</summary>
+### `envVars`
 
 | | |
 |---|---|
@@ -310,11 +276,7 @@ outputs:
 | **Default** | `{}` |
 | **Description** | Additional environment variables to set during script execution. |
 
-</details>
-
-
-<details>
-<summary>`workingDir`</summary>
+### `workingDir`
 
 | | |
 |---|---|
@@ -323,11 +285,7 @@ outputs:
 | **Default** | Current workspace directory |
 | **Description** | Working directory for script execution. |
 
-</details>
-
-
-<details>
-<summary>`failOnStderr`</summary>
+### `failOnStderr`
 
 | | |
 |---|---|
@@ -336,9 +294,9 @@ outputs:
 | **Default** | `false` |
 | **Description** | If `true`, the task fails when anything is written to stderr. Useful for strict error checking, but note that many Python libraries write warnings to stderr. |
 
----
-
 </details>
+
+---
 
 ## Common Task Properties
 
