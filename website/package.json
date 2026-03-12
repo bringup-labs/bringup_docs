@@ -4,10 +4,10 @@
   "version": "0.0.1",
   "private": true,
   "license": "MIT",
-  "homepage": "https://bagmaster.dev/",
-  "repository": "github:rahulkatiyar19955/bagmaster",
+  "homepage": "https://docs.bringup.dev/",
+  "repository": "github:bringup-labs/bagmaster_docs",
   "bugs": {
-    "url": "https://github.com/rahulkatiyar19955/bagmaster/issues"
+    "url": "https://github.com/bringup-labs/bagmaster_docs/issues"
   },
   "scripts": {
     "docusaurus": "docusaurus",
@@ -31,6 +31,7 @@
     "@docusaurus/plugin-pwa": "3.9.2",
     "@docusaurus/preset-classic": "3.9.2",
     "@docusaurus/theme-mermaid": "^3.9.2",
+    "@easyops-cn/docusaurus-search-local": "^0.55.1",
     "@mdx-js/react": "^3.1.1",
     "clsx": "^2.0.0",
     "docusaurus-plugin-sass": "^0.2.6",

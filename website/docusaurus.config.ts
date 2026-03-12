@@ -1,18 +1,18 @@
-import {themes as prismThemes} from 'prism-react-renderer';
+import { themes as prismThemes } from 'prism-react-renderer';
 import type * as PluginContentDocs from '@docusaurus/plugin-content-docs';
 import type * as Preset from '@docusaurus/preset-classic';
-import type {Config} from '@docusaurus/types';
+import type { Config } from '@docusaurus/types';
 
 const isProductionDeployment = process.env.NODE_ENV === 'production';
 const isDeployPreview = process.env.PREVIEW_DEPLOY === 'true';
 
-const copyright = `Copyright © ${new Date().getFullYear()} Bagmaster Project`;
+const copyright = `Copyright © ${new Date().getFullYear()} Bringup Labs.`;
 
 const commonDocsOptions: Partial<PluginContentDocs.Options> = {
   breadcrumbs: false,
   showLastUpdateAuthor: true,
   showLastUpdateTime: true,
-  editUrl: 'https://github.com/rahulkatiyar19955/bagmaster/edit/main/bagmaster_docs/',
+  editUrl: 'https://github.com/bringup-labs/bagmaster_docs/edit/main/',
 };
 
 const config: Config = {
@@ -23,14 +23,31 @@ const config: Config = {
 
   markdown: {
     mermaid: true,
+    hooks: {
+      onBrokenMarkdownLinks: 'warn',
+      onBrokenMarkdownImages: 'warn',
+    },
   },
-  themes: ['@docusaurus/theme-mermaid'],
+  themes: [
+    '@docusaurus/theme-mermaid',
+    [
+      '@easyops-cn/docusaurus-search-local',
+      {
+        hashed: true,
+        indexBlog: true,
+        indexDocs: true,
+        docsRouteBasePath: '/',
+        searchBarShortcutHint: true,
+        searchBarPosition: 'left',
+      },
+    ],
+  ],
 
-  title: 'Bagmaster',
+  title: 'Bringup Labs',
   tagline: 'ROS Bag Management and Visualization Platform',
-  organizationName: 'rahulkatiyar19955',
-  projectName: 'bagmaster',
-  url: 'https://bagmaster.dev',
+  organizationName: 'Bringup Labs',
+  projectName: 'Bringup Docs',
+  url: 'https://docs.bringup.dev',
   baseUrl: '/',
   favicon: 'img/favicon.ico',
   titleDelimiter: '·',
@@ -41,7 +58,6 @@ const config: Config = {
   },
 
   onBrokenLinks: 'warn',
-  onBrokenMarkdownLinks: 'warn',
 
   presets: [
     [
@@ -49,9 +65,12 @@ const config: Config = {
       {
         docs: {
           path: '../docs',
+          routeBasePath: '/',
           sidebarPath: './sidebars.ts',
           editCurrentVersion: true,
           ...commonDocsOptions,
+          sidebarCollapsible: true,
+          sidebarCollapsed: false,
         },
         blog: {
           path: 'blog',
@@ -81,36 +100,6 @@ const config: Config = {
   plugins: [
     'docusaurus-plugin-sass',
     [
-      'content-docs',
-      {
-        id: 'architecture',
-        path: 'architecture',
-        routeBasePath: '/architecture',
-        sidebarPath: './sidebarsArchitecture.ts',
-        ...commonDocsOptions,
-      } satisfies PluginContentDocs.Options,
-    ],
-    [
-      'content-docs',
-      {
-        id: 'contributing',
-        path: 'contributing',
-        routeBasePath: '/contributing',
-        sidebarPath: './sidebarsContributing.ts',
-        ...commonDocsOptions,
-      } satisfies PluginContentDocs.Options,
-    ],
-    [
-      'content-docs',
-      {
-        id: 'community',
-        path: 'community',
-        routeBasePath: '/community',
-        sidebarPath: './sidebarsCommunity.ts',
-        ...commonDocsOptions,
-      } satisfies PluginContentDocs.Options,
-    ],
-    [
       '@docusaurus/plugin-pwa',
       {
         debug: !isProductionDeployment,
@@ -129,7 +118,7 @@ const config: Config = {
           {
             tagName: 'meta',
             name: 'theme-color',
-            content: '#20232a',
+            content: '#101c22',
           },
           {
             tagName: 'meta',
@@ -139,6 +128,10 @@ const config: Config = {
         ],
       },
     ],
+  ],
+
+  clientModules: [
+    './src/clientModules/anchor-reveal.ts',
   ],
 
   themeConfig: {
@@ -155,77 +148,24 @@ const config: Config = {
         'diff',
         'json',
         'python',
-        'yaml',
         'cpp',
         'cmake',
         'docker',
       ],
     },
     navbar: {
-      title: 'Bagmaster',
+      title: 'Bringup Docs',
       logo: {
         src: 'img/logo.svg',
-        alt: 'Bagmaster Logo',
+        srcDark: 'img/logo.svg',
+        alt: 'Bringup Labs Logo',
+        href: '/',
       },
       style: 'dark',
       items: [
         {
-          label: 'Documentation',
-          type: 'dropdown',
+          type: 'search',
           position: 'left',
-          items: [
-            {
-              label: 'Getting Started',
-              type: 'doc',
-              docId: 'getting-started',
-            },
-            {
-              label: 'Guides',
-              type: 'doc',
-              docId: 'guides/index',
-            },
-            {
-              label: 'API Reference',
-              type: 'doc',
-              docId: 'api/index',
-            },
-            {
-              label: 'Architecture',
-              type: 'doc',
-              docId: 'overview',
-              docsPluginId: 'architecture',
-            },
-          ],
-        },
-        {
-          type: 'doc',
-          docId: 'overview',
-          label: 'Contributing',
-          position: 'left',
-          docsPluginId: 'contributing',
-        },
-        {
-          type: 'doc',
-          docId: 'overview',
-          label: 'Community',
-          position: 'left',
-          docsPluginId: 'community',
-        },
-        {
-          to: '/blog',
-          label: 'Blog',
-          position: 'left',
-        },
-        {
-          type: 'docsVersionDropdown',
-          position: 'right',
-          dropdownActiveClassDisabled: true,
-        },
-        {
-          href: 'https://github.com/rahulkatiyar19955/bagmaster',
-          'aria-label': 'GitHub repository',
-          position: 'right',
-          className: 'navbar-github-link',
         },
       ],
     },
@@ -237,19 +177,7 @@ const config: Config = {
           items: [
             {
               label: 'Getting Started',
-              to: 'docs/getting-started',
-            },
-            {
-              label: 'Guides',
-              to: 'docs/guides',
-            },
-            {
-              label: 'API Reference',
-              to: 'docs/api',
-            },
-            {
-              label: 'Architecture',
-              to: 'architecture/overview',
+              to: '/getting-started',
             },
           ],
         },
@@ -257,20 +185,8 @@ const config: Config = {
           title: 'Community',
           items: [
             {
-              label: 'Contributing',
-              to: 'contributing/overview',
-            },
-            {
-              label: 'Community',
-              to: 'community/overview',
-            },
-            {
               label: 'GitHub',
-              href: 'https://github.com/rahulkatiyar19955/bagmaster',
-            },
-            {
-              label: 'Issues',
-              href: 'https://github.com/rahulkatiyar19955/bagmaster/issues',
+              href: 'https://github.com/bringup-labs',
             },
           ],
         },
@@ -293,12 +209,12 @@ const config: Config = {
     metadata: [
       {
         property: 'og:image',
-        content: 'https://bagmaster.dev/img/social-card.png',
+        content: 'https://bringup.dev/img/social-card.png',
       },
-      {name: 'twitter:card', content: 'summary_large_image'},
+      { name: 'twitter:card', content: 'summary_large_image' },
       {
         name: 'twitter:image',
-        content: 'https://bagmaster.dev/img/social-card.png',
+        content: 'https://bringup.dev/img/social-card.png',
       },
     ],
   } satisfies Preset.ThemeConfig,

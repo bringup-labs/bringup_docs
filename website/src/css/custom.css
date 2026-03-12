@@ -1,30 +1,270 @@
 /**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
+ * Bringup Labs theme for Docusaurus.
+ * Colors derived from bringup-website design system.
  */
 
-/* You can override the default Infima variables here. */
+/* Import Space Grotesk font */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
+
+/* Primary accent: #0da6f2 (bringup blue) */
+/* Generate Infima palette from #0da6f2:
+   Use https://docusaurus.io/docs/styling-layout#styling-your-site-with-infima */
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
+  --ifm-color-primary: #0da6f2;
+  --ifm-color-primary-dark: #0b95da;
+  --ifm-color-primary-darker: #0a8dcf;
+  --ifm-color-primary-darkest: #0874aa;
+  --ifm-color-primary-light: #28b0f4;
+  --ifm-color-primary-lighter: #35b5f4;
+  --ifm-color-primary-lightest: #60c6f7;
+
+  /* Light mode backgrounds (bringup cream palette) */
+  --ifm-background-color: #faf9f6;
+  --ifm-background-surface-color: #ffffff;
+  --ifm-navbar-background-color: #faf9f6;
+  --ifm-footer-background-color: #faf9f6;
+
+  /* Borders */
+  --ifm-toc-border-color: #e2e8f0;
+  --ifm-color-emphasis-300: #e2e8f0;
+
   --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --docusaurus-highlighted-code-line-bg: rgba(13, 166, 242, 0.1);
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --ifm-color-primary: #0da6f2;
+  --ifm-color-primary-dark: #0b95da;
+  --ifm-color-primary-darker: #0a8dcf;
+  --ifm-color-primary-darkest: #0874aa;
+  --ifm-color-primary-light: #28b0f4;
+  --ifm-color-primary-lighter: #35b5f4;
+  --ifm-color-primary-lightest: #60c6f7;
+
+  /* Dark mode backgrounds (bringup dark navy palette) */
+  --ifm-background-color: #101c22;
+  --ifm-background-surface-color: #162329;
+  --ifm-navbar-background-color: #101c22;
+  --ifm-footer-background-color: #0a0a0a;
+
+  /* Borders */
+  --ifm-toc-border-color: #233648;
+  --ifm-color-emphasis-300: #233648;
+
+  --docusaurus-highlighted-code-line-bg: rgba(13, 166, 242, 0.15);
+}
+
+/* ── Navbar brand title ──────────────────────────────────────── */
+.navbar__brand .navbar__title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+/* ── Navbar ──────────────────────────────────────────────── */
+.navbar {
+  border-bottom: 1px solid var(--ifm-toc-border-color);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+[data-theme='dark'] .navbar {
+  background-color: rgba(16, 28, 34, 0.9);
+  border-bottom-color: #233648;
+}
+
+[data-theme='light'] .navbar {
+  background-color: rgba(250, 249, 246, 0.9);
+}
+
+/* Navbar logo: invert in dark mode (logo is black monochrome) */
+[data-theme='dark'] .navbar__logo img {
+  filter: invert(1);
+}
+
+/* ── Footer ──────────────────────────────────────────────── */
+.footer {
+  border-top: 1px solid var(--ifm-toc-border-color);
+}
+
+[data-theme='dark'] .footer {
+  border-top-color: #283339;
+}
+
+/* ── Sidebar ─────────────────────────────────────────────── */
+[data-theme='dark'] .menu {
+  background-color: #101c22;
+}
+
+[data-theme='dark'] .menu__link--active {
+  background-color: rgba(13, 166, 242, 0.12);
+}
+
+/* ── Hero gradient (home page) ────────────────────────────── */
+[data-theme='light'] .hero {
+  background: radial-gradient(
+      ellipse at top,
+      rgba(13, 166, 242, 0.18) 0%,
+      rgba(99, 102, 241, 0.12) 40%,
+      transparent 70%
+    ),
+    #faf9f6;
+  color: #171717;
+}
+
+[data-theme='dark'] .hero {
+  background: radial-gradient(
+      ellipse at top,
+      rgba(13, 166, 242, 0.3) 0%,
+      rgba(99, 102, 241, 0.2) 40%,
+      transparent 70%
+    ),
+    #101c22;
+  color: #fffff2;
+}
+
+
+/* ── Cards / feature boxes ────────────────────────────────── */
+[data-theme='dark'] .card {
+  background-color: #162329;
+  border-color: #233648;
+}
+
+/* ── Scrollbar (matching bringup-website) ─────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+[data-theme='dark'] ::-webkit-scrollbar-thumb {
+  background: #233648;
+}
+[data-theme='dark'] ::-webkit-scrollbar-thumb:hover {
+  background: #344c63;
+}
+
+/* ── Navbar search bar styling ────────────────────────────── */
+.navbar .DocSearch-Button,
+.navbar .navbar__search-input {
+  border-radius: 8px;
+  min-width: 280px;
+}
+
+/* ── PWA theme color matches dark navy ───────────────────── */
+/* (configured in docusaurus.config.ts themeColor) */
+
+/* ── YAML code block colors (matches yaml-viewer.tsx) ────── */
+/* Keys / property names → green */
+div[class*='language-yaml'] .token.key,
+div[class*='language-yaml'] .token.atrule,
+div[class*='language-yml'] .token.key,
+div[class*='language-yml'] .token.atrule {
+  color: #22c55e !important;
+}
+
+/* Values: strings, numbers, booleans → orange */
+div[class*='language-yaml'] .token.string,
+div[class*='language-yaml'] .token.number,
+div[class*='language-yaml'] .token.boolean,
+div[class*='language-yml'] .token.string,
+div[class*='language-yml'] .token.number,
+div[class*='language-yml'] .token.boolean {
+  color: #f97316 !important;
+}
+
+/* Comments → gray italic */
+div[class*='language-yaml'] .token.comment,
+div[class*='language-yml'] .token.comment {
+  color: #6b7280 !important;
+  font-style: italic;
+}
+
+/* Punctuation / separators → light gray */
+div[class*='language-yaml'] .token.punctuation,
+div[class*='language-yml'] .token.punctuation {
+  color: #9ca3af !important;
+}
+
+.collapsible-section {
+  margin: 1.5rem 0;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 8px;
+  background-color: var(--ifm-background-surface-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  overflow: hidden;
+}
+
+.collapsible-section:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border-color: var(--ifm-color-primary-light);
+}
+
+.collapsible-section.is-open {
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 4px 12px rgba(var(--ifm-color-primary-rgb, 13, 166, 242), 0.1);
+}
+
+.collapsible-header {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  padding: 16px 20px;
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--ifm-color-content);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background-color 0.2s ease;
+}
+
+.collapsible-header:hover {
+  background-color: var(--ifm-color-emphasis-100);
+}
+
+.is-open .collapsible-header {
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+  background-color: rgba(var(--ifm-color-primary-rgb, 13, 166, 242), 0.04);
+}
+
+.collapsible-header-icon {
+  flex-shrink: 0;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  color: var(--ifm-color-emphasis-600);
+}
+
+.collapsible-header-icon.is-open {
+  transform: rotate(180deg);
+  color: var(--ifm-color-primary);
+}
+
+/* We handle the actual hide/show via inline React style for deep querySelector, 
+   but we add an inner wrapper class for padding */
+.collapsible-content {
+  padding: 20px;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+:target {
+  scroll-margin-top: 90px;
+  background: rgba(19, 191, 76, 0.796);
 }
