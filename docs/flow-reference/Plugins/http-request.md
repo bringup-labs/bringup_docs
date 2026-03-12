@@ -16,14 +16,6 @@ import CollapsibleSection from '@site/src/components/CollapsibleSection';
 
 ---
 
-## Usage
-
-```yaml
-type: dev.bringup.plugin.core.http.Request
-```
-
----
-
 ## Examples
 
 ### Simple GET request

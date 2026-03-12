@@ -15,14 +15,6 @@ import CollapsibleSection from '@site/src/components/CollapsibleSection';
 
 ---
 
-## Usage
-
-```yaml
-type: dev.bringup.plugin.core.flow.Subflow
-```
-
----
-
 ## Overview
 
 The Subflow task allows you to invoke another flow as a step within your current flow. This enables:

@@ -18,14 +18,6 @@ import CollapsibleSection from '@site/src/components/CollapsibleSection';
 
 ---
 
-## Usage
-
-```yaml
-type: dev.bringup.plugin.core.shell.Shell
-```
-
----
-
 ## Examples
 
 ### Basic command execution

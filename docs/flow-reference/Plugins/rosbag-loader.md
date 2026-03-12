@@ -15,14 +15,6 @@ import CollapsibleSection from '@site/src/components/CollapsibleSection';
 
 ---
 
-## Usage
-
-```yaml
-type: dev.bringup.plugin.core.rosbag.LoadById
-```
-
----
-
 ## Overview
 
 The ROS Bag Loader is a specialized task for downloading ROS bag files from cloud storage. It uses a JIT manifest system with presigned URLs to securely download bag files without requiring permanent credentials.
