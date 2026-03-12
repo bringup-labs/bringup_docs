@@ -56,7 +56,7 @@ const cards: CardProps[] = [
     icon: '💬',
     title: 'Community',
     description: 'Join the conversation on GitHub and connect with other users.',
-    to: 'https://github.com/rahulkatiyar19955/bagmaster/discussions',
+    to: 'https://github.com/bringup-labs/bagmaster/discussions',
   },
 ];
 
