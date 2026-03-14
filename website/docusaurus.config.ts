@@ -161,7 +161,6 @@ const config: Config = {
         alt: 'Bringup Labs Logo',
         href: '/',
       },
-      style: 'dark',
       items: [
         {
           type: 'search',
