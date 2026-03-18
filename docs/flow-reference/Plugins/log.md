@@ -1,6 +1,6 @@
 # Log
 
-> Echo messages to the console with full template variable support.
+Echo messages to the console with full template variable support.
 
 ---
 

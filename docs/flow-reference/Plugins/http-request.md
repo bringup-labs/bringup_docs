@@ -1,6 +1,6 @@
 # HTTP Request
 
-> Make HTTP/REST API calls using curl within a flow.
+Make HTTP/REST API calls using curl within a flow.
 
 ---
 

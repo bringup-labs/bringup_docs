@@ -1,27 +1,9 @@
 # Flow Reference
 
-> Complete reference documentation for Bagmaster Flow definitions, task plugins, and workflow orchestration.
-
----
 
 ## Overview
 
-Bagmaster Flows are YAML-based workflow definitions that describe automated pipelines for ROS bag processing, data analysis, CI/CD orchestration, and more. Flows are managed by the **Flow Service** and transpiled into executable Jenkins pipelines by the **Transpiler Service**.
-
-### Architecture
-
-```
-+-------------------+       +---------------------+       +-------------------+
-|   Flow Editor     | ----> |   Flow Service      | ----> |   Transpiler      |
-|   (Frontend UI)   |       |   (CRUD + Validate) |       |   (YAML -> Jenkins)|
-+-------------------+       +---------------------+       +-------------------+
-                                     |                              |
-                                     v                              v
-                            +------------------+          +-------------------+
-                            |   PostgreSQL     |          |   Jenkinsfile     |
-                            |   (Flow Store)   |          |   (Executable)    |
-                            +------------------+          +-------------------+
-```
+Bagmaster Flows are YAML-based workflow definitions that describe automated pipelines for ROS bag processing, data analysis and more.
 
 ---
 
@@ -100,32 +82,6 @@ tasks:
     commands:
       - echo "Hello, {{ inputs.name }}!"
 ```
-
-### 2. Validate it
-
-```bash
-curl -X POST https://api.dev.bringup.dev/flows/validate \
-  -H "Content-Type: application/x-yaml" \
-  -d @my-flow.yaml
-```
-
-### 3. Create the flow
-
-```bash
-curl -X POST https://api.dev.bringup.dev/flows \
-  -H "Content-Type: application/x-yaml" \
-  -H "x-oidc-sub: your-user-id" \
-  -d @my-flow.yaml
-```
-
-### 4. Transpile to Jenkinsfile
-
-```bash
-curl -X POST https://api.dev.bringup.dev/transpiler/convert/jenkins \
-  -H "Content-Type: application/json" \
-  -d '{"id": "hello-world", "namespace": "quickstart", ...}'
-```
-
 ---
 
 ## Template Expressions
@@ -144,39 +100,10 @@ During transpilation, these are converted to shell environment variables:
 
 ---
 
-## API Endpoints
 
-### Flow Service
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| `POST` | `/flows` | Create a new flow |
-| `GET` | `/flows/{namespace}/{flow_id}` | Get a flow by ID |
-| `PUT` | `/flows/{namespace}/{flow_id}` | Update a flow (new revision) |
-| `DELETE` | `/flows/{namespace}/{flow_id}` | Soft-delete a flow |
-| `GET` | `/flows/{namespace}` | List flows in a namespace |
-| `GET` | `/flows/search` | Search flows with filters |
-| `POST` | `/flows/validate` | Validate YAML without saving |
-| `GET` | `/flows/{ns}/{id}/schema` | Get JSON Schema for inputs |
-| `POST` | `/flows/{ns}/{id}/validate-inputs` | Validate runtime inputs |
-
-### Transpiler Service
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| `POST` | `/transpiler/convert/jenkins` | Convert flow to Jenkinsfile |
-| `POST` | `/transpiler/convert/jenkins/validate` | Check convertibility |
-| `GET` | `/transpiler/plugins` | List available converter plugins |
-| `GET` | `/transpiler/plugins/{name}` | Get plugin details and schema |
-
----
 
 ## Versioning
 
-Every time a flow is updated via `PUT`, a new **revision** is created. Previous revisions are preserved and can be retrieved:
-
-```bash
-GET /flows/{namespace}/{flow_id}?revision=3
-```
+Every time a flow is updated via UI (yaml editor), a new **revision** is created. Previous revisions are preserved and can be retrieved by specifying the `revision` parameter when fetching flow details.
 
 The latest revision is returned by default when no `revision` parameter is specified.

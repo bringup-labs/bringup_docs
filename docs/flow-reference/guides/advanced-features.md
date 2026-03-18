@@ -107,44 +107,6 @@ tasks:
 
 ---
 
-## Concurrency Control
-
-Control how many instances of a flow can run simultaneously:
-
-```yaml
-concurrency:
-  limit: 3
-  behavior: QUEUE
-```
-
-### Behaviors
-
-| Behavior | Description |
-|----------|-------------|
-| `QUEUE` | New executions wait in a queue until a slot is available |
-| `CANCEL` | New executions are cancelled if the limit is reached |
-| `FAIL` | New executions fail immediately if the limit is reached |
-
-### Example: Single Execution
-
-```yaml
-id: deploy-production
-namespace: devops
-description: Production deployment (only one at a time)
-
-concurrency:
-  limit: 1
-  behavior: QUEUE
-
-tasks:
-  - id: deploy
-    type: dev.bringup.plugin.core.shell.Shell
-    commands:
-      - ./deploy.sh --env production
-```
-
----
-
 ## Pre-Execution Checks
 
 Checks run before the flow executes, providing guardrails and validation:
@@ -331,30 +293,6 @@ Default flow timeout: `"200s"`
 
 ---
 
-## Worker Groups
-
-Assign tasks to specific worker pools:
-
-```yaml
-tasks:
-  - id: gpu-task
-    type: dev.bringup.plugin.docker.run
-    worker_group:
-      key: gpu-workers
-    containerImage: nvidia/cuda:12.0
-    commands:
-      - python train.py
-
-  - id: cpu-task
-    type: dev.bringup.plugin.core.shell.Shell
-    worker_group:
-      key: standard-workers
-    commands:
-      - ./process.sh
-```
-
----
-
 ## Flow Labels
 
 Labels are key-value metadata for organizing and filtering flows:
@@ -367,31 +305,9 @@ labels:
   environment: production
 ```
 
-Labels are searchable and can be used to filter flows in the UI and API:
-
-```bash
-GET /flows/search?labels.category=ml-training&labels.team=data-science
-```
+Labels are searchable and can be used to filter flows in the UI.
 
 ---
-
-## Flow Versioning
-
-Every update creates a new revision:
-
-```bash
-# Create (revision 1)
-POST /flows
-
-# Update (creates revision 2)
-PUT /flows/{namespace}/{flow_id}
-
-# Get specific revision
-GET /flows/{namespace}/{flow_id}?revision=1
-
-# Get latest (default)
-GET /flows/{namespace}/{flow_id}
-```
 
 ### Subflow Revision Pinning
 
@@ -416,21 +332,8 @@ Share your flows with the community:
 
 ### 1. Submit for Review
 
-```bash
-POST /flows/admin/publish
-Content-Type: application/json
-
-{
-  "flow_id": "my-useful-flow",
-  "namespace": "tools",
-  "revision": 3,
-  "title": "My Useful Flow",
-  "category": "Data Processing",
-  "tags": ["analytics", "pandas", "csv"],
-  "long_description": "A comprehensive data processing flow...",
-  "features": ["CSV support", "Auto-cleanup", "Retry on failure"]
-}
-```
+- Submit flow with metadata, description, and tags
+- Include a brief description and usage instructions
 
 ### 2. Review Process
 
@@ -464,10 +367,6 @@ labels:
   team: platform
 
 timeout: "7200s"
-
-concurrency:
-  limit: 1
-  behavior: QUEUE
 
 retry:
   type: exponential
