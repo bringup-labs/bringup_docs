@@ -33,17 +33,23 @@ Before creating a flow, ensure you have:
 
 ## Step 1: Open the Flow Editor
 
-Navigate to the **Flows** section in the Bagmaster UI and click **"Create Flow"**.
+Navigate to the **Flows** section in the Bagmaster UI and click the flow sidebar item.
 
-![Flow Editor - Empty State](../assets/screenshots/placeholder-flow-editor-empty.png)
+![Flow Page - List of Flows](../assets/screenshots/flow_main_page.png)
+
+Click the **"Create Flow"** button to create a new flow. This will ask you to enter few basic details.
+
+![Flow Editor - Empty State](../assets/screenshots/create_new_flow.png)
 
 <!-- PLACEHOLDER: Screenshot showing the empty Flow Editor with the YAML editor panel on the left and the visual preview on the right. The editor has syntax highlighting and line numbers. A toolbar at the top shows "Create Flow", "Validate", and "Save" buttons. -->
 
-You'll see a YAML editor where you can write your flow definition. The editor provides:
+Go to the Edit tab, there you'll see a YAML editor where you can write your flow definition. The editor provides:
 
 - Syntax highlighting for YAML
 - Auto-completion for task types and properties
 - Real-time validation feedback
+
+![Flow Editor - Empty State](../assets/screenshots/flow_yaml_editor.png)
 
 ---
 
@@ -52,15 +58,20 @@ You'll see a YAML editor where you can write your flow definition. The editor pr
 Start with the flow's identity and description:
 
 ```yaml
-id: my-first-flow
-namespace: my-team
-description: A getting-started flow that processes input data
+id: demo-pipeline-flow
+namespace: example.demo
+description: This is a demo flow
 labels:
   category: tutorial
   difficulty: beginner
+tasks:
+  - id: log
+    type: dev.bringup.plugin.core.log.Log
+    message: Created for demo-pipeline-flow
+
 ```
 
-![Flow Metadata Fields](../assets/screenshots/placeholder-flow-metadata.png)
+<!-- ![Flow Metadata Fields](../assets/screenshots/placeholder-flow-metadata.png) -->
 
 <!-- PLACEHOLDER: Screenshot showing the top portion of the flow editor with the id, namespace, and description fields filled in. A sidebar panel may show a visual form for these metadata fields with the namespace shown as a dropdown. -->
 

@@ -1,6 +1,6 @@
 # ROS Bag Loader
 
-> Download ROS bag files using JIT (Just-In-Time) manifest with presigned URLs.
+Download ROS bag files using JIT (Just-In-Time) manifest with presigned URLs.
 
 ---
 

@@ -1,6 +1,6 @@
 # Python Script
 
-> Execute Python code in an isolated virtual environment with automatic dependency management.
+Execute Python code in an isolated virtual environment with automatic dependency management.
 
 ---
 

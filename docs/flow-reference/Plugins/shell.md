@@ -1,6 +1,6 @@
 # Shell
 
-> Execute shell commands and Bash scripts within a flow.
+Execute shell commands and Bash scripts within a flow.
 
 ---
 
