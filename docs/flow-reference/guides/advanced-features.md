@@ -7,16 +7,13 @@
 ## Table of Contents
 
 1. [Retry Configuration](#retry-configuration)
-2. [Concurrency Control](#concurrency-control)
-3. [Pre-Execution Checks](#pre-execution-checks)
-4. [Error Handling](#error-handling)
-5. [Finally Tasks](#finally-tasks)
-6. [Triggers](#triggers)
-7. [Timeout Configuration](#timeout-configuration)
-8. [Worker Groups](#worker-groups)
-9. [Flow Labels](#flow-labels)
-10. [Flow Versioning](#flow-versioning)
-11. [Marketplace Publishing](#marketplace-publishing)
+2. [Pre-Execution Checks](#pre-execution-checks)
+3. [Error Handling](#error-handling)
+4. [Finally Tasks](#finally-tasks)
+5. [Triggers](#triggers)
+6. [Timeout Configuration](#timeout-configuration)
+7. [Flow Labels](#flow-labels)
+8. [Marketplace Publishing](#marketplace-publishing)
 
 ---
 
