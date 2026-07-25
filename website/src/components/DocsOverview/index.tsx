@@ -24,39 +24,39 @@ function DocCard({icon, title, description, to}: CardProps) {
 const cards: CardProps[] = [
   {
     icon: '🚀',
-    title: 'Getting Started',
-    description: 'Install Bagmaster and manage your first ROS bag in minutes.',
-    to: '/getting-started',
+    title: 'Get Started',
+    description: 'Install the desktop app, set up the daemon, and connect your first device.',
+    to: '/get-started/install',
   },
   {
     icon: '📖',
-    title: 'Guides',
-    description: 'Step-by-step guides for recording, playing back, and visualizing ROS bags.',
-    to: '/getting-started',
+    title: 'Tutorials',
+    description: 'Walkthroughs for the things you will do most: shells, files, and deploys.',
+    to: '/tutorials/get-a-shell',
+  },
+  {
+    icon: '🧩',
+    title: 'Extensions',
+    description: 'Reference for every extension, from Fleet Manager to Bag Master.',
+    to: '/extensions/',
   },
   {
     icon: '⚙️',
-    title: 'API Reference',
-    description: 'Full reference for the Bagmaster REST API and SDK.',
-    to: '/getting-started',
-  },
-  {
-    icon: '🏗️',
-    title: 'Architecture',
-    description: 'Understand how Bagmaster is designed under the hood.',
-    to: '/getting-started',
-  },
-  {
-    icon: '🤝',
-    title: 'Contributing',
-    description: 'Help improve Bagmaster — code, docs, or community support.',
-    to: '/getting-started',
+    title: 'Reference',
+    description: 'The bringup CLI, file locations, update channels, and the daemon.',
+    to: '/reference/cli',
   },
   {
     icon: '💬',
-    title: 'Community',
-    description: 'Join the conversation on GitHub and connect with other users.',
-    to: 'https://github.com/bringup-labs/bagmaster/discussions',
+    title: 'FAQ',
+    description: 'Setup problems, how updates work, and answers about plans and licensing.',
+    to: '/faq',
+  },
+  {
+    icon: '🤝',
+    title: 'GitHub',
+    description: 'Source-available code, issues, and releases.',
+    to: 'https://github.com/bringup-labs',
   },
 ];
 
