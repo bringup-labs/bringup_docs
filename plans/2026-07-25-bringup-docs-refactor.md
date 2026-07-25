@@ -385,11 +385,25 @@ Expected: 18 hits across 5 files.
 
 - [ ] **Step 2: Rewrite each occurrence by meaning, not by find-and-replace**
 
+**Rewrite prose only. Do NOT touch literal identifiers.**
+
+`BM_ROSBAGS_DIR` and the path `/tmp/bagmaster/rosbags` appear in YAML samples and an
+options table. They are runtime contract, not product naming — and the plugin that owns
+them (`dev.bringup.plugin.core.rosbag.LoadById`) is **not in this checkout**, so their
+current values cannot be verified here. Renaming them would risk documenting a path that
+does not exist, which is worse than an outdated brand name.
+
 Rules:
-- "Bagmaster Flows are…" → "Flows are…" (they are a Bag Master feature, not a separate product).
-- "Bagmaster uses Pebble-style template expressions" → "Flows use Pebble-style template expressions".
-- Where the sentence needs a subject, use "the Bag Master extension" — two words, matching `ext_data/package.json` `displayName`.
-- Never leave the string "Bagmaster" (one word) anywhere.
+- **Prose** — rewrite. "Bagmaster Flows are…" → "Flows are…"; "Bagmaster uses Pebble-style
+  template expressions" → "Flows use Pebble-style template expressions"; "the Bagmaster
+  UI" → "the Bag Master extension"; "the Bagmaster cloud storage endpoint" → "the Bringup
+  cloud storage endpoint"; "the Bagmaster Marketplace" → "the Bringup Marketplace".
+- Where a sentence needs a subject, use "the Bag Master extension" — two words, matching
+  `ext_data/package.json` `displayName`.
+- **Literals — leave exactly as they are**: `BM_ROSBAGS_DIR`, `BM_ROSBAGS_MANIFEST_PATH`,
+  and every `/tmp/bagmaster/...` path, in both YAML code fences and the options table
+  (`rosbag-loader.md:42-43,72-73,134`; `flow-creation-guide.md:460-461`).
+- Report these untouched literals so maintainers can confirm the real defaults.
 
 - [ ] **Step 3: Fix the internal plugin links in `index.md`**
 
@@ -410,10 +424,17 @@ Do **not** delete them — they record which screenshots are still wanted. Task 
 - [ ] **Step 5: Verify**
 
 ```bash
-grep -rniI "bagmaster" docs/ ; grep -rn "](./plugins/" docs/extensions/bag-master/flow-reference/index.md
+grep -rn "](./plugins/" docs/extensions/bag-master/flow-reference/index.md
 ```
 
-Expected: **no output** from either.
+Expected: **no output**.
+
+```bash
+grep -rniI "bagmaster" docs/ | grep -viI "BM_ROSBAGS\|/tmp/bagmaster"
+```
+
+Expected: **no output** — every remaining hit must be one of the deliberately preserved
+literals from Step 2.
 
 ```bash
 grep -c "^!\[" docs/extensions/bag-master/flow-reference/guides/flow-creation-guide.md
