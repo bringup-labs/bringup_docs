@@ -19,7 +19,7 @@ Go to [bringup.dev/download](https://bringup.dev/download) and choose your platf
 
 ## Install the package
 
-- **macOS** — open the downloaded `.pkg` and follow the installer. The build isn't notarized by Apple, so Gatekeeper may warn that it's from an unidentified developer the first time you open it; if that happens, allow it via System Settings → Privacy & Security.
+- **macOS** — open the downloaded `.pkg` and follow the installer.
 - **Linux** — install the downloaded `.deb` with your package manager, for example:
 
 ```bash
