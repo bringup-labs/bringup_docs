@@ -46,7 +46,7 @@ Each plugin defines a task type you can use in your flow's `tasks` list.
 |--------|-----------|-------------|
 | [Shell](./Plugins/shell.md) | `dev.bringup.plugin.core.shell.Shell` | Execute shell commands and scripts |
 | [Python Script](./Plugins/python-script.md) | `dev.bringup.plugin.scripts.python.Script` | Run Python code with dependency management |
-| [Docker Run](./Plugins/docker-run.md) | `dev.bringup.plugin.docker.run` | Run containers with full Docker configuration |
+| [Docker Run](./Plugins/docker-run.mdx) | `dev.bringup.plugin.docker.run` | Run containers with full Docker configuration |
 | [ROS Bag Loader](./Plugins/rosbag-loader.md) | `dev.bringup.plugin.core.rosbag.LoadById` | Download ROS bag files via JIT manifest |
 | [HTTP Request](./Plugins/http-request.md) | `dev.bringup.plugin.core.http.Request` | Make HTTP/REST API calls |
 | [Log](./Plugins/log.md) | `dev.bringup.plugin.core.log.Log` | Echo messages with template variable support |

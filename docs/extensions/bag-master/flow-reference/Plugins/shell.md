@@ -175,7 +175,7 @@ These properties are available on all task types:
 | `description` | `string` | `null` | Human-readable description of what this task does. |
 | `disabled` | `boolean` | `false` | Skip this task during execution. |
 | `timeout` | `string` | `null` | Task-specific timeout (e.g., `"60s"`, `"5m"`, `"1h"`). Overrides flow-level timeout. |
-| `retry` | `RetryConfig` | `null` | Retry configuration. See [Advanced Features](../guides/advanced-features.md#retry). |
+| `retry` | `RetryConfig` | `null` | Retry configuration. See [Advanced Features](../guides/advanced-features.md#retry-configuration). |
 | `allow_failure` | `boolean` | `false` | Continue flow execution even if this task fails. |
 | `run_if` | `string` | `null` | Template expression that must evaluate to truthy for the task to run. |
 | `worker_group` | `WorkerGroup` | `null` | Assign this task to a specific worker pool. |

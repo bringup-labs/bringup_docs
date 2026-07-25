@@ -156,13 +156,13 @@ Select from the available task plugins:
 
 | Task Type                                     | Use When...                                |
 | --------------------------------------------- | ------------------------------------------ |
-| [Shell](../plugins/shell.md)                  | Running shell commands, scripts, CLI tools |
-| [Python Script](../plugins/python-script.md)  | Executing Python code with dependencies    |
-| [Docker Run](../plugins/docker-run.md)        | Running containers with specific images    |
-| [ROS Bag Loader](../plugins/rosbag-loader.md) | Downloading ROS bag files                  |
-| [HTTP Request](../plugins/http-request.md)    | Making API calls                           |
-| [Log](../plugins/log.md)                      | Logging messages for debugging/audit       |
-| [Subflow](../plugins/subflow.md)              | Calling another flow                       |
+| [Shell](../Plugins/shell.md)                  | Running shell commands, scripts, CLI tools |
+| [Python Script](../Plugins/python-script.md)  | Executing Python code with dependencies    |
+| [Docker Run](../Plugins/docker-run.mdx)       | Running containers with specific images    |
+| [ROS Bag Loader](../Plugins/rosbag-loader.md) | Downloading ROS bag files                  |
+| [HTTP Request](../Plugins/http-request.md)    | Making API calls                           |
+| [Log](../Plugins/log.md)                      | Logging messages for debugging/audit       |
+| [Subflow](../Plugins/subflow.md)              | Calling another flow                       |
 
 ### 5b. Add Your First Task
 
