@@ -1,6 +1,6 @@
 # Inputs Reference
 
-> Complete reference for all 13 input types available in Bagmaster Flows.
+> Complete reference for all 13 input types available in Flows.
 
 ---
 

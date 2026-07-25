@@ -1,6 +1,6 @@
 # Flow Creation Guide
 
-> A step-by-step guide to creating, validating, and running your first Bagmaster Flow.
+> A step-by-step guide to creating, validating, and running your first Flow.
 
 ---
 
@@ -25,15 +25,15 @@
 
 Before creating a flow, ensure you have:
 
-- Access to the Bagmaster UI (login at your organization's Bagmaster instance)
+- Access to the Bag Master extension (login at your organization's Bringup instance)
 - A namespace assigned to your team/project
-- Knowledge of the task types you want to use (see [Plugin Reference](../README.md#task-plugins))
+- Knowledge of the task types you want to use (see [Plugin Reference](../index.md#task-plugins))
 
 ---
 
 ## Step 1: Open the Flow Editor
 
-Navigate to the **Flows** section in the Bagmaster UI and click the flow sidebar item.
+Navigate to the **Flows** section in the Bag Master extension and click the flow sidebar item.
 
 ![Flow Page - List of Flows](../assets/screenshots/flow_main_page.png)
 
@@ -86,7 +86,7 @@ tasks:
 
 ## Step 3: Add Inputs
 
-Inputs define the parameters users provide when running the flow. Bagmaster supports **13 input types**.
+Inputs define the parameters users provide when running the flow. The Bag Master extension supports **13 input types**.
 
 ```yaml
 inputs:
@@ -119,7 +119,7 @@ inputs:
     description: Enable verbose logging
 ```
 
-![Input Configuration Panel](../assets/screenshots/placeholder-inputs-panel.png)
+<!-- ![Input Configuration Panel](../assets/screenshots/placeholder-inputs-panel.png) -->
 
 <!-- PLACEHOLDER: Screenshot showing the inputs section of the flow editor. Each input is displayed as a collapsible card showing the input id, type badge (STRING, INT, ENUM, BOOLEAN), required indicator, default value, and description. An "Add Input" button is visible at the bottom. -->
 
@@ -138,7 +138,7 @@ variables:
   API_ENDPOINT: https://api.example.com/v1
 ```
 
-![Variables Section](../assets/screenshots/placeholder-variables-section.png)
+<!-- ![Variables Section](../assets/screenshots/placeholder-variables-section.png) -->
 
 <!-- PLACEHOLDER: Screenshot showing the variables section as a simple key-value editor with three entries. Each row has a "Key" input field and a "Value" input field, with a delete icon on the right and an "Add Variable" button below. -->
 
@@ -207,7 +207,7 @@ tasks:
     message: 'Processing complete for {{ inputs.dataset_name }}'
 ```
 
-![Task List View](../assets/screenshots/placeholder-task-list.png)
+<!-- ![Task List View](../assets/screenshots/placeholder-task-list.png) -->
 
 <!-- PLACEHOLDER: Screenshot showing the tasks section with three tasks displayed as sequential cards in a vertical pipeline view. Each card shows: task ID, task type with a colored badge (Log=blue, Python=green, Shell=gray), a brief preview of the task configuration, and expand/collapse controls. Connecting lines between cards show the execution order. -->
 
@@ -215,7 +215,7 @@ tasks:
 
 Each task type has its own set of properties. Click on a task card to expand its configuration:
 
-![Task Configuration Expanded](../assets/screenshots/placeholder-task-config-expanded.png)
+<!-- ![Task Configuration Expanded](../assets/screenshots/placeholder-task-config-expanded.png) -->
 
 <!-- PLACEHOLDER: Screenshot showing an expanded Python Script task configuration. The left side shows the YAML editor with syntax highlighting for the script field. The right side shows a visual form with sections for: Dependencies (tag-style input chips), Environment Variables (key-value rows), Output Files (list input), and Advanced Settings (timeout, retry, run_if collapsible section). -->
 
@@ -270,7 +270,7 @@ outputs:
     description: Number of samples actually processed
 ```
 
-![Outputs Configuration](../assets/screenshots/placeholder-outputs-config.png)
+<!-- ![Outputs Configuration](../assets/screenshots/placeholder-outputs-config.png) -->
 
 <!-- PLACEHOLDER: Screenshot showing the outputs section with two output entries. Each has fields for: ID, Type (dropdown showing STRING/INT/FLOAT etc.), Value (with template expression syntax highlighted), and Description. A helper tooltip shows available task_outputs references. -->
 
@@ -284,11 +284,11 @@ Before saving, validate your flow to catch errors early.
 
 Click the **"Validate"** button in the editor toolbar.
 
-![Validation Results - Success](../assets/screenshots/placeholder-validation-success.png)
+<!-- ![Validation Results - Success](../assets/screenshots/placeholder-validation-success.png) -->
 
 <!-- PLACEHOLDER: Screenshot showing a green success banner at the top of the editor reading "Flow is valid" with a checkmark icon. Below the banner, a summary shows: "3 tasks validated, 0 errors, 0 warnings". -->
 
-![Validation Results - Errors](../assets/screenshots/placeholder-validation-errors.png)
+<!-- ![Validation Results - Errors](../assets/screenshots/placeholder-validation-errors.png) -->
 
 <!-- PLACEHOLDER: Screenshot showing a red error banner with "2 validation errors found". Below it, an expandable error list shows: Error 1: "Task 'process-data': field 'script' is required for type dev.bringup.plugin.scripts.python.Script" with a link to line 25. Error 2: "Input 'dataset_name': pattern violation - id contains invalid characters" with a link to line 8. Each error has a severity icon and line reference. -->
 
@@ -346,7 +346,7 @@ curl -X POST https://api.dev.bringup.dev/flows \
   -d @my-flow.yaml
 ```
 
-![Flow Created Confirmation](../assets/screenshots/placeholder-flow-created.png)
+<!-- ![Flow Created Confirmation](../assets/screenshots/placeholder-flow-created.png) -->
 
 <!-- PLACEHOLDER: Screenshot showing a success toast notification "Flow 'my-first-flow' created in namespace 'my-team' (revision 1)". The flow list page is visible behind it, showing the newly created flow with its ID, namespace, description, task count (3), and creation timestamp. -->
 
@@ -362,7 +362,7 @@ The flow is now stored with **revision 1**. Every subsequent update creates a ne
 2. Fill in the input form (generated automatically from your input definitions)
 3. Click **"Run"**
 
-![Execution Input Form](../assets/screenshots/placeholder-execution-form.png)
+<!-- ![Execution Input Form](../assets/screenshots/placeholder-execution-form.png) -->
 
 <!-- PLACEHOLDER: Screenshot showing the flow execution modal/page. A form is displayed with fields auto-generated from the flow inputs: "Dataset Name" (text input, required, red asterisk), "Sample Count" (number input with value 100, up/down arrows), "Output Format" (dropdown showing csv/json/parquet), "Verbose" (toggle switch, off). A "Run Flow" button is at the bottom right. The flow name and revision are shown at the top. -->
 
@@ -397,19 +397,19 @@ Then trigger the transpiled Jenkins pipeline with those inputs.
 
 ### Execution View
 
-![Execution Progress](../assets/screenshots/placeholder-execution-progress.png)
+<!-- ![Execution Progress](../assets/screenshots/placeholder-execution-progress.png) -->
 
 <!-- PLACEHOLDER: Screenshot showing the execution detail page. A vertical timeline shows three stages: "log-start" (green checkmark, completed in 0.2s), "process-data" (spinning blue indicator, currently running, 12s elapsed), "log-complete" (gray circle, pending). A live console log panel on the right shows the output of the currently running task. The top banner shows: Flow ID, Revision, Start Time, Status: RUNNING. -->
 
 ### Console Output
 
-![Task Console Output](../assets/screenshots/placeholder-console-output.png)
+<!-- ![Task Console Output](../assets/screenshots/placeholder-console-output.png) -->
 
 <!-- PLACEHOLDER: Screenshot showing the console output panel for the "process-data" task. The output displays: "Processing sensor-data-2024 with 500 samples", "Output format: json", then a progress indicator, followed by "Results written to /data/results/result.json". The console has a dark background with monospace font, timestamps on the left, and a "Copy Output" button in the top-right corner. -->
 
 ### Artifacts
 
-![Build Artifacts](../assets/screenshots/placeholder-artifacts.png)
+<!-- ![Build Artifacts](../assets/screenshots/placeholder-artifacts.png) -->
 
 <!-- PLACEHOLDER: Screenshot showing the artifacts panel listing archived files: "result.json (2.4 KB)" and "result.csv (1.8 KB)" with download icons next to each. A "Download All" button is at the top right. File type icons distinguish JSON and CSV files. -->
 
@@ -435,7 +435,7 @@ tasks:
     type: dev.bringup.plugin.core.shell.Shell
     commands:
       - echo "Hello {{ inputs.user_name }}!"
-      - echo "Welcome to Bagmaster Flows"
+      - echo "Welcome to Bringup Flows"
       - date
 ```
 
@@ -631,5 +631,5 @@ tasks:
 
 - [Inputs Reference](./inputs-reference.md) - Learn about all 13 input types
 - [Advanced Features](./advanced-features.md) - Retry policies, concurrency, checks, and triggers
-- [Plugin Reference](../README.md#task-plugins) - Detailed documentation for each task type
-- [Marketplace](../README.md) - Share your flows with the community
+- [Plugin Reference](../index.md#task-plugins) - Detailed documentation for each task type
+- [Marketplace](../index.md) - Share your flows with the community
