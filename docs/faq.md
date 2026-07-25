@@ -1,0 +1,91 @@
+---
+title: FAQ
+sidebar_position: 6
+description: Frequently asked questions about Bringup — concepts, troubleshooting, and plans.
+---
+
+## Getting started & concepts
+
+### What is Bringup?
+
+Bringup is the operating layer for robotics development — one platform for data, secure access, CI, and fleet operations. See [What is Bringup?](/) for the full overview.
+
+### What is the daemon, and why does it need administrator rights?
+
+`bringupd` is a privileged local daemon: the desktop app talks to one running on your machine, and the same software runs standalone on each device you connect. Installing it as a system service is what makes your OS prompt for an administrator password. See [The bringupd daemon](/reference/daemon).
+
+### What are extensions?
+
+Extensions are how capability arrives in Bringup — fleet management, shell access, file browsing, and the rest are each their own extension rather than being built into the core app. See [Extensions](/extensions/).
+
+### Which platforms are supported?
+
+The desktop app runs on macOS and Linux. The `bringupd` edge agent you install on devices is Linux-only. See [Install Bringup](/get-started/install) for details.
+
+### Does Bringup work offline?
+
+Yes. Bringup is built offline-first, for places like factories, fields, and air-gapped sites. All communication is outbound-only, so a device never needs an open inbound port to stay reachable.
+
+### What is a setup key?
+
+A setup key authorizes a new device to enroll into your fleet, and determines which groups it joins automatically. You get one from the Fleet Manager extension when onboarding a device. See [Connect your first device](/get-started/connect-first-device).
+
+## Troubleshooting
+
+### Why does Bringup ask for my administrator password?
+
+Setting up Bringup installs `bringupd` as a privileged system service, and every OS gates that behind an administrator prompt. It's a one-time step during [first launch](/get-started/first-launch).
+
+### The daemon won't start. What do I do?
+
+See [First Launch](/get-started/first-launch) for the retry steps and where to look next.
+
+### My device isn't coming online. What should I check?
+
+See the "Confirm it's online" section of [Connect your first device](/get-started/connect-first-device).
+
+### Where are the logs?
+
+See [File Locations](/reference/file-locations).
+
+### How do updates work?
+
+See [Updates](/reference/updates) for the check schedule, install flow, and channels.
+
+### What is a trust prompt?
+
+Extensions sourced from a repo or a local path run against a workspace — a folder you've opened. Bringup tracks whether that workspace is trusted before letting its extensions run. See [Workspace trust](/extensions/#workspace-trust).
+
+### How do I uninstall the system service?
+
+See [The bringupd daemon](/reference/daemon#uninstalling-the-system-service).
+
+## Plans & licensing
+
+Pricing and plan details live at [bringup.dev/pricing](https://bringup.dev/pricing) — treat that page as the source of truth, since the answers below summarize it and can drift out of date.
+
+### What plans does Bringup offer?
+
+Three:
+
+- **Personal** — free, available today. Local-first desktop workspace (works offline), a personal cloud workspace, rosbag and MCAP ingest/search/visualization, repeatable YAML data-processing pipelines, a self-hosted worker option, and community support.
+- **Team** — billed per seat, per organization. Everything in Personal, plus org workspaces, RBAC and team management, zero-trust robot access with recorded sessions, fleet monitoring, and priority support.
+- **Enterprise & Self-Host** — custom, license-based. Everything in Team, plus self-hosting (cloud, on-prem, or air-gapped), identical APIs everywhere, source-available code, offline licensing, and design-partner onboarding.
+
+### Is Personal really free?
+
+Yes — "Personal workspaces stay free," and the Personal plan is available today at no cost.
+
+### How much does the Team plan cost?
+
+Team is billed per seat, per organization. The exact price will be announced at launch — check [bringup.dev/pricing](https://bringup.dev/pricing) for the current figure rather than relying on a number here.
+
+### Can I self-host Bringup?
+
+Yes, on the Enterprise & Self-Host plan — cloud, on-prem, or air-gapped, with identical APIs across all of them and source-available code. Pricing there is custom and license-based. See [bringup.dev/pricing](https://bringup.dev/pricing).
+
+### What about support SLAs, contract terms, or other commercial questions?
+
+<!-- TODO(maintainers): confirm support SLAs, contract terms, and refund policy for Team and Enterprise, and where they should be documented -->
+
+Contact us for details — this isn't covered on the public pricing page yet.
