@@ -57,7 +57,7 @@ const config: Config = {
     locales: ['en'],
   },
 
-  onBrokenLinks: 'warn',
+  onBrokenLinks: 'throw',
 
   presets: [
     [
