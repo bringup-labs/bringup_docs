@@ -1,3 +1,4 @@
 {
-  "label": "Bag Master"
+  "label": "Bag Master",
+  "link": { "type": "doc", "id": "extensions/bag-master/index" }
 }
