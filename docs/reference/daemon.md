@@ -23,7 +23,7 @@ sudo launchctl bootout system/com.bringup.daemon
 Remove the binary and plist:
 
 ```bash
-sudo rm /Library/PrivilegedHelperTools/bringupd
+sudo rm /Library/PrivilegedHelperTools/com.bringup.daemon
 ```
 
 ```bash
