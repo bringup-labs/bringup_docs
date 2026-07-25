@@ -10,7 +10,7 @@ The first time you open Bringup, a two-step flow runs before the workbench appea
 
 The welcome screen introduces the app, with links to Bringup's privacy policy and terms of service. Click **Next** to continue.
 
-<!-- screenshot: welcome-screen -->
+![The Bringup welcome screen on first launch, with the Next button](../assets/screenshots/welcome-screen.png)
 
 ## Step 2 — Setup
 
@@ -18,13 +18,17 @@ Setup installs `bringupd`, the privileged local daemon the desktop app talks to.
 
 If Docker isn't available on your machine, setup will also ask you to install it, since Bringup uses Docker to run containers and workloads.
 
-<!-- screenshot: daemon-setup -->
+![The Setup step, showing System Service Required and the Install button](../assets/screenshots/daemon-setup.png)
 
 When the daemon is running, the screen changes to **Service Installed** with a **Finish** button.
 
 ## What to expect when setup completes
 
 Click **Finish** and Bringup opens the workbench — the main app window. From there you can [sign in](/get-started/sign-in) and [connect your first device](/get-started/connect-first-device).
+
+![The Bringup workbench, showing the Devices view with an empty fleet](../assets/screenshots/workbench.png)
+
+A new install has no devices yet, so the fleet counters read zero.
 
 ## If the daemon doesn't start
 
