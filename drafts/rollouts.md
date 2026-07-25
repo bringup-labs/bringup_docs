@@ -3,6 +3,18 @@ title: Rollouts
 description: OTA rollouts, A/B experiments, artifact registry.
 ---
 
+> **PARKED — not published.** This page is written and accurate, but it is held out of
+> `docs/` until the Rollouts backend is wired up. As of 2026-07-26 the extension serves a
+> hardcoded in-memory dataset (`ext_rollout/src/main.ts:37`, headed `── In-memory
+> Database ──`); only Pause, Resume, and Rollback are connected to anything, and OS
+> Builder's progress is simulated client-side. The manifest requests only
+> `commands.register` and `devices.read` — no network permissions — which corroborates
+> that it cannot reach a backend.
+>
+> **To publish:** move this file to `docs/extensions/rollouts.md`, re-add the table row in
+> `docs/extensions/index.md`, and update the extension count in that file and in
+> `docs/index.mdx`. Re-verify the Known Limits section against the wired behaviour first.
+
 Version 0.1.0.
 
 ## What it does

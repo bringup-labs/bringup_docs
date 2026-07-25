@@ -3,7 +3,7 @@ title: Extensions
 description: What extensions are, where they come from, and how to install, enable, and manage them.
 ---
 
-The desktop app on its own gives you a workbench and a connection to `bringupd`. Everything you actually do with a device — get a shell, browse files, deploy an image, manage a fleet — arrives through an extension. Eleven ship today. This page covers the model they share; each one also has its own reference page, linked from the table at the bottom.
+The desktop app on its own gives you a workbench and a connection to `bringupd`. Everything you actually do with a device — get a shell, browse files, deploy an image, manage a fleet — arrives through an extension. Ten are documented here. This page covers the model they share; each one also has its own reference page, linked from the table at the bottom.
 
 ## The Extensions view
 
@@ -11,7 +11,7 @@ The desktop app on its own gives you a workbench and a connection to `bringupd`.
 
 The header reads "*N* installed · *N* enabled". Below it, a search box and **All** / **Desktop** / **Agents** filter tabs sit next to **Refresh** and **Install from local**. The grid below groups extensions into up to three collapsible sections — **Local**, **Marketplace**, and **Built-in** (built-in starts collapsed, since it's usually the longest list and the least often touched).
 
-The marketplace catalog listed 10 entries when this was written. Three of those were badged **AGENT PLUGIN**, with a **Download** button in place of **Install**: **Direct Image Deploy**, **Resource Telemetry Collector**, and a Zenoh Bridge agent-plugin variant. Not everything in the [table below](#all-extensions) is installable from the marketplace this way — **Bag Master**, **Yocto Builder**, and **Rollouts** did not appear in the catalog.
+The marketplace catalog listed 10 entries when this was written. Three of those were badged **AGENT PLUGIN**, with a **Download** button in place of **Install**: **Direct Image Deploy**, **Resource Telemetry Collector**, and a Zenoh Bridge agent-plugin variant. Not everything in the [table below](#all-extensions) is installable from the marketplace this way — **Bag Master** and **Yocto Builder** did not appear in the catalog.
 
 **A naming note:** the marketplace lists **Direct Image Deploy**. The extension's own manifest (`displayName` in its `package.json`) says **Image Deploy**, and that's the name its [reference page](./image-deploy) and the table below use. Both names point at the same extension — if you're searching the marketplace for it, look for either.
 
@@ -56,5 +56,4 @@ Extensions sourced from a repo or a local path run against a workspace — a fol
 | [Zenoh Bridge](./zenoh-bridge) | 0.1.1 | Per-device ROS 2 topic forwarding over Zenoh |
 | [Image Deploy](./image-deploy) | 0.1.0 | Deploy local Docker images to devices, no registry |
 | [Yocto Builder](./yocto-builder) | 0.1.0 | Build, monitor, and flash Raspberry Pi Yocto images |
-| [Rollouts](./rollouts) | 0.1.0 | OTA rollouts, A/B experiments, artifact registry |
 | [Bag Master](./bag-master/) | 0.1.0 | Rosbag post-processing, datasets, pipelines |
