@@ -34,6 +34,10 @@ outputs:                              # Values exposed after flow completion
     value: "{{ task_outputs.step-1.path }}"
 ```
 
+Once saved, a flow's **Overview** tab summarises that same structure — its inputs, tasks, triggers, and outputs — alongside its namespace, revision, and status. The **Edit** tab is where the YAML itself is authored, and **Execute** runs the flow.
+
+![A flow's Overview tab, showing its flow structure counts and metadata](./assets/screenshots/flow_overview.png)
+
 ---
 
 ## Documentation Index
