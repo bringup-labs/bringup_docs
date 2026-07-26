@@ -12,7 +12,12 @@ const commonDocsOptions: Partial<PluginContentDocs.Options> = {
   breadcrumbs: false,
   showLastUpdateAuthor: true,
   showLastUpdateTime: true,
-  editUrl: 'https://github.com/bringup-labs/bringup_docs/edit/main/',
+  // Function form, not a string. `docs/` lives outside this site dir (`path: '../docs'`),
+  // so Docusaurus appends `path.relative(siteDir, docsDir)` — i.e. `../docs` — to a string
+  // editUrl. That yields `.../edit/main/../docs/<file>`, which the browser collapses to
+  // `.../edit/docs/<file>`, silently eating the branch segment and 404ing on GitHub.
+  editUrl: ({ docPath }) =>
+    `https://github.com/bringup-labs/bringup_docs/edit/main/docs/${docPath}`,
 };
 
 const config: Config = {
