@@ -4,6 +4,78 @@ sidebar_position: 6
 description: Frequently asked questions about Bringup — concepts, troubleshooting, and plans.
 ---
 
+import Head from '@docusaurus/Head';
+
+{/*
+  FAQPage structured data. Schema.org requires the marked-up Q&A to be visible on the
+  page, so every entry below must stay a faithful plain-text copy of the corresponding
+  heading and answer in this file. If you edit an answer, edit it here too — or drop the
+  entry rather than let the two drift apart.
+
+  Scoped to the "Getting started & concepts" section deliberately: those answers are
+  stable and self-contained. Troubleshooting answers are mostly pointers to other pages,
+  which make poor standalone snippets.
+*/}
+
+<Head>
+  <script type="application/ld+json">
+    {JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: 'What is Bringup?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Bringup is the operating layer for robotics development — one platform for data, secure access, CI, and fleet operations.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'What is the daemon, and why does it need administrator rights?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'bringupd is a privileged local daemon: the desktop app talks to one running on your machine, and the same software runs standalone on each device you connect. Installing it as a system service is what makes your OS prompt for an administrator password.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'What are extensions?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Extensions are how capability arrives in Bringup — fleet management, shell access, file browsing, and the rest are each their own extension rather than being built into the core app.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Which platforms are supported?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'The desktop app runs on macOS and Linux. The bringupd edge agent you install on devices is Linux-only.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Does Bringup work offline?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Yes. Bringup is built offline-first, for places like factories, fields, and air-gapped sites. All communication is outbound-only, so a device never needs an open inbound port to stay reachable.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'What is a setup key?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'A setup key authorizes a new device to enroll into your fleet, and determines which groups it joins automatically. You get one from the Fleet Manager extension when onboarding a device.',
+          },
+        },
+      ],
+    })}
+  </script>
+</Head>
+
 ## Getting started & concepts
 
 ### What is Bringup?

@@ -1,4 +1,7 @@
-# Log
+---
+title: Log
+description: Echo messages to the console from a flow, with full template variable support.
+---
 
 Echo messages to the console with full template variable support.
 

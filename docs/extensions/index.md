@@ -7,7 +7,7 @@ The desktop app on its own gives you a workbench and a connection to `bringupd`.
 
 ## The Extensions view
 
-![The Extensions view, showing the marketplace catalog](../assets/screenshots/extensions-panel.png)
+![The Extensions view, showing the marketplace catalog](../assets/screenshots/extensions-panel.webp)
 
 The header reads "*N* installed · *N* enabled". Below it, a search box and **All** / **Desktop** / **Agents** filter tabs sit next to **Refresh** and **Install from local**. The grid below groups extensions into up to three collapsible sections — **Local**, **Marketplace**, and **Built-in** (built-in starts collapsed, since it's usually the longest list and the least often touched).
 

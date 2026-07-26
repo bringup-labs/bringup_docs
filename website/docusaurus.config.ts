@@ -94,9 +94,15 @@ const config: Config = {
             './src/css/custom.css',
           ],
         },
-        gtag: {
-          trackingID: 'G-XXXXXXXXXX', // TODO: Replace with your tracking ID
-          anonymizeIP: true,
+        // Analytics is intentionally disabled. It previously shipped the literal
+        // placeholder `G-XXXXXXXXXX`, so production pages loaded gtag.js and fired
+        // hits against a measurement ID that does not exist. Re-enable by restoring
+        // this block with a real ID:
+        //   gtag: { trackingID: 'G-XXXXXXXXXX', anonymizeIP: true },
+        sitemap: {
+          // `/search` carries a noindex meta tag; listing it in the sitemap would ask
+          // crawlers to index a page that tells them not to.
+          ignorePatterns: ['/search'],
         },
       } satisfies Preset.Options,
     ],
@@ -137,6 +143,28 @@ const config: Config = {
 
   clientModules: [
     './src/clientModules/anchor-reveal.ts',
+  ],
+
+  // Sitewide Organization schema. Emitted into every page's <head> so crawlers and AI
+  // summarizers can attribute the docs to the right entity.
+  headTags: [
+    {
+      tagName: 'script',
+      attributes: { type: 'application/ld+json' },
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        name: 'Bringup Labs',
+        url: 'https://bringup.dev',
+        logo: 'https://docs.bringup.dev/img/logo.svg',
+        description: 'The operating layer for robotics development.',
+        sameAs: [
+          'https://github.com/bringup-labs',
+          'https://x.com/Bringup_labs',
+          'https://www.linkedin.com/company/bringup-labs',
+        ],
+      }),
+    },
   ],
 
   themeConfig: {
@@ -209,15 +237,20 @@ const config: Config = {
       ],
       copyright,
     },
+    // Self-hosted at static/img/social-card.png. These previously pointed at
+    // https://bringup.dev/img/social-card.png, which 404s — so every shared docs
+    // link rendered a broken preview.
     metadata: [
       {
         property: 'og:image',
-        content: 'https://bringup.dev/img/social-card.png',
+        content: 'https://docs.bringup.dev/img/social-card.png',
       },
+      { property: 'og:image:width', content: '1200' },
+      { property: 'og:image:height', content: '630' },
       { name: 'twitter:card', content: 'summary_large_image' },
       {
         name: 'twitter:image',
-        content: 'https://bringup.dev/img/social-card.png',
+        content: 'https://docs.bringup.dev/img/social-card.png',
       },
     ],
   } satisfies Preset.ThemeConfig,

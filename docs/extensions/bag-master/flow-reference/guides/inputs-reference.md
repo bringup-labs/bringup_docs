@@ -1,4 +1,7 @@
-# Inputs Reference
+---
+title: Inputs Reference
+description: Complete reference for all 13 flow input types, their validation rules, and constraints.
+---
 
 > Complete reference for all 13 input types available in Flows.
 

@@ -113,6 +113,17 @@ npx playwright test e2e/screenshots.spec.ts
 Run it from `bringup_desktop_app` (branch `docs/screenshot-spec`); it writes PNGs
 directly into this repo. Re-run it when the UI changes.
 
+**Then convert the PNGs to WebP.** Playwright can only emit PNG, but the pages reference
+`.webp` — screenshots of the app's UI are 55–88% smaller as WebP with no visible quality
+loss, and the two containing the cover illustration drop from ~680 KB to ~89 KB each.
+Requires ImageMagick (`brew install imagemagick`):
+
+```bash
+find docs -name "*.png" -exec sh -c 'magick "$1" -strip -quality 82 "${1%.png}.webp" && rm "$1"' _ {} \;
+```
+
+If you add a new screenshot, reference it as `.webp` in the markdown.
+
 ### Supported Features
 
 - Code blocks with syntax highlighting

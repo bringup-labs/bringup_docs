@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Client-side search results page — no unique content to index.
+Disallow: /search
+
+Sitemap: https://docs.bringup.dev/sitemap.xml

@@ -1,4 +1,7 @@
-# Flow Creation Guide
+---
+title: Flow Creation Guide
+description: Step-by-step guide to creating, validating, and running your first flow, from metadata through execution.
+---
 
 > A step-by-step guide to creating, validating, and running your first Flow.
 
@@ -35,11 +38,11 @@ Before creating a flow, ensure you have:
 
 Navigate to the **Flows** section in the Bag Master extension and click the flow sidebar item.
 
-![Flow Page - List of Flows](../assets/screenshots/flow_main_page.png)
+![Flow Page - List of Flows](../assets/screenshots/flow_main_page.webp)
 
 Click the **"Create Flow"** button to create a new flow. This will ask you to enter few basic details.
 
-![Flow Editor - Empty State](../assets/screenshots/create_new_flow.png)
+![Flow Editor - Empty State](../assets/screenshots/create_new_flow.webp)
 
 <!-- PLACEHOLDER: Screenshot showing the empty Flow Editor with the YAML editor panel on the left and the visual preview on the right. The editor has syntax highlighting and line numbers. A toolbar at the top shows "Create Flow", "Validate", and "Save" buttons. -->
 
@@ -49,7 +52,7 @@ Go to the Edit tab, there you'll see a YAML editor where you can write your flow
 - Auto-completion for task types and properties
 - Real-time validation feedback
 
-![Flow Editor - Empty State](../assets/screenshots/flow_yaml_editor.png)
+![Flow Editor - Empty State](../assets/screenshots/flow_yaml_editor.webp)
 
 ---
 

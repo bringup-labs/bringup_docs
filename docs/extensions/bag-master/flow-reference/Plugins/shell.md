@@ -1,4 +1,7 @@
-# Shell
+---
+title: Shell
+description: Execute shell commands and Bash scripts within a flow, with environment variables and working directories.
+---
 
 Execute shell commands and Bash scripts within a flow.
 
