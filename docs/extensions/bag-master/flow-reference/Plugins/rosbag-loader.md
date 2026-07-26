@@ -189,7 +189,7 @@ tasks:
 
 ## Notes
 
-- The rosbag loader requires network access to the Bagmaster cloud storage endpoint.
+- The rosbag loader requires network access to the Bringup cloud storage endpoint.
 - Presigned URLs have a limited validity window; flows should be executed promptly after creation.
 - The manifest file (`manifest.json`) contains metadata about all downloaded files, useful for downstream tasks.
 - Large rosbag files may require extended timeouts on the task.

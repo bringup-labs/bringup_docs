@@ -3,7 +3,7 @@
 
 ## Overview
 
-Bagmaster Flows are YAML-based workflow definitions that describe automated pipelines for ROS bag processing, data analysis and more.
+Flows are YAML-based workflow definitions that describe automated pipelines for ROS bag processing, data analysis and more.
 
 ---
 
@@ -44,13 +44,13 @@ Each plugin defines a task type you can use in your flow's `tasks` list.
 
 | Plugin | Task Type | Description |
 |--------|-----------|-------------|
-| [Shell](./plugins/shell.md) | `dev.bringup.plugin.core.shell.Shell` | Execute shell commands and scripts |
-| [Python Script](./plugins/python-script.md) | `dev.bringup.plugin.scripts.python.Script` | Run Python code with dependency management |
-| [Docker Run](./plugins/docker-run.md) | `dev.bringup.plugin.docker.run` | Run containers with full Docker configuration |
-| [ROS Bag Loader](./plugins/rosbag-loader.md) | `dev.bringup.plugin.core.rosbag.LoadById` | Download ROS bag files via JIT manifest |
-| [HTTP Request](./plugins/http-request.md) | `dev.bringup.plugin.core.http.Request` | Make HTTP/REST API calls |
-| [Log](./plugins/log.md) | `dev.bringup.plugin.core.log.Log` | Echo messages with template variable support |
-| [Subflow](./plugins/subflow.md) | `dev.bringup.plugin.core.flow.Subflow` | Compose flows by calling other flows as tasks |
+| [Shell](./Plugins/shell.md) | `dev.bringup.plugin.core.shell.Shell` | Execute shell commands and scripts |
+| [Python Script](./Plugins/python-script.md) | `dev.bringup.plugin.scripts.python.Script` | Run Python code with dependency management |
+| [Docker Run](./Plugins/docker-run.mdx) | `dev.bringup.plugin.docker.run` | Run containers with full Docker configuration |
+| [ROS Bag Loader](./Plugins/rosbag-loader.md) | `dev.bringup.plugin.core.rosbag.LoadById` | Download ROS bag files via JIT manifest |
+| [HTTP Request](./Plugins/http-request.md) | `dev.bringup.plugin.core.http.Request` | Make HTTP/REST API calls |
+| [Log](./Plugins/log.md) | `dev.bringup.plugin.core.log.Log` | Echo messages with template variable support |
+| [Subflow](./Plugins/subflow.md) | `dev.bringup.plugin.core.flow.Subflow` | Compose flows by calling other flows as tasks |
 
 ### Guides
 
@@ -69,7 +69,7 @@ Each plugin defines a task type you can use in your flow's `tasks` list.
 ```yaml
 id: hello-world
 namespace: quickstart
-description: My first Bagmaster flow
+description: My first Bringup flow
 
 inputs:
   - id: name
@@ -86,7 +86,7 @@ tasks:
 
 ## Template Expressions
 
-Bagmaster uses Pebble-style template expressions throughout flow definitions:
+Flows use Pebble-style template expressions throughout flow definitions:
 
 | Expression | Resolves To | Example |
 |------------|-------------|---------|

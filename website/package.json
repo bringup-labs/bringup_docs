@@ -1,13 +1,13 @@
 {
-  "name": "bagmaster-website",
-  "description": "Bagmaster Documentation Website",
+  "name": "bringup-website",
+  "description": "Bringup Documentation Website",
   "version": "0.0.1",
   "private": true,
   "license": "MIT",
   "homepage": "https://docs.bringup.dev/",
-  "repository": "github:bringup-labs/bagmaster_docs",
+  "repository": "github:bringup-labs/bringup_docs",
   "bugs": {
-    "url": "https://github.com/bringup-labs/bagmaster_docs/issues"
+    "url": "https://github.com/bringup-labs/bringup_docs/issues"
   },
   "scripts": {
     "docusaurus": "docusaurus",

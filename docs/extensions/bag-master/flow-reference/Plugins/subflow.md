@@ -21,7 +21,7 @@ The Subflow task allows you to invoke another flow as a step within your current
 
 - **Modularity** - Break complex workflows into reusable components
 - **Composition** - Build parent flows that orchestrate multiple child flows
-- **Marketplace reuse** - Reference published flows from the Bagmaster Marketplace
+- **Marketplace reuse** - Reference published flows from the Bringup Marketplace
 - **Input/output passing** - Pass data between parent and child flows
 
 Subflows can reference flows in two ways:

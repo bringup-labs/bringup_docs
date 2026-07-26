@@ -12,7 +12,7 @@ const commonDocsOptions: Partial<PluginContentDocs.Options> = {
   breadcrumbs: false,
   showLastUpdateAuthor: true,
   showLastUpdateTime: true,
-  editUrl: 'https://github.com/bringup-labs/bagmaster_docs/edit/main/',
+  editUrl: 'https://github.com/bringup-labs/bringup_docs/edit/main/',
 };
 
 const config: Config = {
@@ -44,7 +44,7 @@ const config: Config = {
   ],
 
   title: 'Bringup Labs',
-  tagline: 'ROS Bag Management and Visualization Platform',
+  tagline: 'The operating layer for robotics development',
   organizationName: 'Bringup Labs',
   projectName: 'Bringup Docs',
   url: 'https://docs.bringup.dev',
@@ -57,7 +57,7 @@ const config: Config = {
     locales: ['en'],
   },
 
-  onBrokenLinks: 'warn',
+  onBrokenLinks: 'throw',
 
   presets: [
     [
@@ -174,19 +174,18 @@ const config: Config = {
         {
           title: 'Documentation',
           items: [
-            {
-              label: 'Getting Started',
-              to: '/getting-started',
-            },
+            { label: 'Get Started', to: '/get-started/install' },
+            { label: 'Tutorials', to: '/tutorials/get-a-shell' },
+            { label: 'Extensions', to: '/extensions/' },
+            { label: 'FAQ', to: '/faq' },
           ],
         },
         {
           title: 'Community',
           items: [
-            {
-              label: 'GitHub',
-              href: 'https://github.com/bringup-labs',
-            },
+            { label: 'GitHub', href: 'https://github.com/bringup-labs' },
+            { label: 'X', href: 'https://x.com/Bringup_labs' },
+            { label: 'LinkedIn', href: 'https://www.linkedin.com/company/bringup-labs' },
           ],
         },
         {
@@ -194,7 +193,7 @@ const config: Config = {
           items: [
             {
               label: 'Blog',
-              to: 'blog',
+              href: 'https://bringup.dev/blog',
             },
             {
               label: 'ROS',

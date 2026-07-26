@@ -1,16 +1,16 @@
 {
-  "name": "bagmaster-documentation-monorepo",
+  "name": "bringup-documentation-monorepo",
   "private": true,
   "type": "module",
   "engines": {
     "node": ">=22"
   },
   "scripts": {
-    "docusaurus": "pnpm --filter bagmaster-website docusaurus",
-    "start": "pnpm --filter bagmaster-website start",
-    "build": "pnpm --filter bagmaster-website build",
-    "build:fast": "pnpm --filter bagmaster-website build:fast",
-    "serve": "pnpm --filter bagmaster-website serve",
+    "docusaurus": "pnpm --filter bringup-website docusaurus",
+    "start": "pnpm --filter bringup-website start",
+    "build": "pnpm --filter bringup-website build",
+    "build:fast": "pnpm --filter bringup-website build:fast",
+    "serve": "pnpm --filter bringup-website serve",
     "lint": "eslint .",
     "lint:website": "eslint ./website ./docs"
   },

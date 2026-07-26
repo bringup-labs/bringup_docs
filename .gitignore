@@ -35,3 +35,8 @@ lerna-debug.log*
 dist
 website/build
 website/.docusaurus
+
+# Internal working documents — never publish these
+specs/
+plans/
+drafts/

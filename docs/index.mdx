@@ -1,7 +1,7 @@
 ---
 id: overview
-title: What is Bringup Labs?
-description: Get an overview of Bringup Labs, Tools and platform it provides.
+title: What is Bringup?
+description: The operating layer for robotics development — one platform for data, secure access, CI, and fleet operations.
 sidebar_label: Overview
 sidebar_position: 1
 slug: /
@@ -9,8 +9,14 @@ slug: /
 
 import DocsOverview from '@site/src/components/DocsOverview';
 
-Bringup Labs provides tools to design, deploy, and scale intelligent robots — from data collection to fleet management. **Bagmaster** is the core data platform for recording, managing, visualizing, and analyzing ROS bags at scale.
+Bringup is the operating layer for robotics development. It's one platform for the entire robotics lifecycle: data, secure access, CI, and fleet operations.
 
-Whether you're an individual developer prototyping on a single robot or a team managing production fleets, Bagmaster gives you a unified pipeline for your robotics data — supporting mcap and rosbag2 formats, workflow automation, and scalable cloud infrastructure.
+You use it as a desktop app, available for macOS and Linux. On first launch, the app installs `bringupd`, a privileged local daemon — this is why your operating system prompts for an administrator password during setup. The desktop app talks to this local `bringupd` daemon on your machine, and to the `bringupd` edge agent running on each of your devices.
+
+Bringup is built offline-first, for where robots actually live: factories, fields, and air-gapped sites. Communication is outbound-only, so you never need to open inbound ports on a robot for Bringup to reach it.
+
+Capability arrives through extensions. Ten are documented today: Fleet Manager, Organization Manager, Shell Access, File Browser, Telemetry, Visualizer, Zenoh Bridge, Image Deploy, Yocto Builder, and Bag Master — the extension for post-processing ROS bags, managing datasets, and running data pipelines. See [Extensions](/extensions/) for the full list.
+
+Ready to get going? Start by [installing the desktop app](/get-started/install).
 
 <DocsOverview />
