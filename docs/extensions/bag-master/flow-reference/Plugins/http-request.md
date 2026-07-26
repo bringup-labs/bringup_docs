@@ -1,4 +1,7 @@
-# HTTP Request
+---
+title: HTTP Request
+description: Make HTTP and REST API calls from a flow, with headers, authentication, and response handling.
+---
 
 Make HTTP/REST API calls using curl within a flow.
 

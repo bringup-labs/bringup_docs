@@ -1,4 +1,7 @@
-# Subflow
+---
+title: Subflow
+description: Compose workflows by calling other flows as tasks, for modular and reusable flow design.
+---
 
 Compose workflows by calling other flows as tasks, enabling modular and reusable flow design.
 

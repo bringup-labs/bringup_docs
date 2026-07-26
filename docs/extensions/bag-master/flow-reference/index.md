@@ -1,5 +1,7 @@
-# Flow Reference
-
+---
+title: Flow Reference
+description: YAML workflow definitions for automating ROS bag processing and data analysis in the Bag Master extension.
+---
 
 ## Overview
 
@@ -36,7 +38,7 @@ outputs:                              # Values exposed after flow completion
 
 Once saved, a flow's **Overview** tab summarises that same structure — its inputs, tasks, triggers, and outputs — alongside its namespace, revision, and status. The **Edit** tab is where the YAML itself is authored, and **Execute** runs the flow.
 
-![A flow's Overview tab, showing its flow structure counts and metadata](./assets/screenshots/flow_overview.png)
+![A flow's Overview tab, showing its flow structure counts and metadata](./assets/screenshots/flow_overview.webp)
 
 ---
 

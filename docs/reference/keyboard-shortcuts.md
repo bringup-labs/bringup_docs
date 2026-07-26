@@ -8,7 +8,7 @@ description: Command palette bindings and integrated terminal shortcuts.
 
 Press **Ctrl+Shift+P** (**Cmd+Shift+P** on macOS) to open the command palette. Type to filter, and press Escape to close it.
 
-![The command palette, showing available workbench commands](../assets/screenshots/command-palette.png)
+![The command palette, showing available workbench commands](../assets/screenshots/command-palette.webp)
 
 | Command | Shortcut |
 |---|---|
@@ -27,7 +27,7 @@ Press **Ctrl+Shift+P** (**Cmd+Shift+P** on macOS) to open the command palette. T
 
 These apply inside the integrated terminal, which opens as a panel at the bottom of the workbench.
 
-![The integrated terminal panel open at the bottom of the workbench](../assets/screenshots/terminal-panel.png)
+![The integrated terminal panel open at the bottom of the workbench](../assets/screenshots/terminal-panel.webp)
 
 The modifier is **Cmd** on macOS and **Ctrl** everywhere else (shown as "Mod" below).
 
