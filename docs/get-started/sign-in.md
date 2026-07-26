@@ -20,6 +20,8 @@ If you already belong to one or more organizations, Bringup activates the only o
 
 To create an additional organization, open the workspace switcher in the top bar and click **Manage workspaces**. Under **New Workspace**, enter a name (for example, `Acme Robotics`) and click **Create**. This creates a new organization and switches you into it immediately; you become its admin.
 
+![The New Workspace form under Settings, Core, Workspace](../assets/screenshots/settings.png)
+
 ## Switching workspaces
 
 The workspace switcher in the top bar, next to your account icon, lists every workspace you belong to. Click one to switch — this exchanges your session for that workspace's scope, so extensions like Fleet Manager show that workspace's devices and data instead.

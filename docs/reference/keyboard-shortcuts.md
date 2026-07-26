@@ -25,7 +25,11 @@ Press **Ctrl+Shift+P** (**Cmd+Shift+P** on macOS) to open the command palette. T
 
 ## Terminal shortcuts
 
-These apply inside the integrated terminal. The modifier is **Cmd** on macOS and **Ctrl** everywhere else (shown as "Mod" below).
+These apply inside the integrated terminal, which opens as a panel at the bottom of the workbench.
+
+![The integrated terminal panel open at the bottom of the workbench](../assets/screenshots/terminal-panel.png)
+
+The modifier is **Cmd** on macOS and **Ctrl** everywhere else (shown as "Mod" below).
 
 | Shortcut | Action |
 |---|---|

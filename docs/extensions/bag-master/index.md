@@ -51,7 +51,7 @@ The **[Flow Reference](./flow-reference/)** is the language reference for that Y
 ## Known limits
 
 - Did not appear in the extensions marketplace catalog when this was observed, unlike several other extensions.
-- The Pipelines tab's YAML view is read-only — Format and Download actions only, no in-place editor. <!-- TODO(maintainers): confirm where flow YAML is actually authored/edited -->
+- The Pipelines tab's YAML view is read-only — Format and Download actions only. Authoring happens on a flow's own **Edit** tab, alongside **Save**, **Publish**, and **Execute**; see the [Flow Reference](./flow-reference/).
 - Datasets carry a `robot` field for display, but this extension declares no per-device capabilities of its own — unlike Fleet Manager, Shell Access, File Browser, or Image Deploy, it works from uploaded datasets rather than browsing a live device.
 
 ## Related
