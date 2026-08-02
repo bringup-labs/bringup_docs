@@ -64,17 +64,30 @@
 /* ── Navbar ──────────────────────────────────────────────── */
 .navbar {
   border-bottom: 1px solid var(--ifm-toc-border-color);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
 }
 
 [data-theme='dark'] .navbar {
-  background-color: rgba(16, 28, 34, 0.9);
   border-bottom-color: #233648;
 }
 
-[data-theme='light'] .navbar {
-  background-color: rgba(250, 249, 246, 0.9);
+/* Translucent blurred navbar on desktop only. In WebKit, backdrop-filter makes
+   .navbar the containing block for position:fixed descendants — and the mobile
+   drawer (.navbar-sidebar) is one, so on iPhone its height collapsed to the
+   navbar's 60px and the menu never showed. Mobile keeps the solid
+   --ifm-navbar-background-color instead. */
+@media (min-width: 997px) {
+  .navbar {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  [data-theme='dark'] .navbar {
+    background-color: rgba(16, 28, 34, 0.9);
+  }
+
+  [data-theme='light'] .navbar {
+    background-color: rgba(250, 249, 246, 0.9);
+  }
 }
 
 /* Navbar logo: invert in dark mode (logo is black monochrome) */
@@ -156,7 +169,17 @@
 .navbar .DocSearch-Button,
 .navbar .navbar__search-input {
   border-radius: 8px;
-  min-width: 280px;
+}
+
+/* Widen the search input on desktop only. Below Docusaurus's 996px mobile
+   breakpoint the search plugin collapses the input; forcing a min-width there
+   makes it overlap the navbar brand — and on narrow phones the hamburger
+   button itself, which then can't be tapped. */
+@media (min-width: 997px) {
+  .navbar .DocSearch-Button,
+  .navbar .navbar__search-input {
+    min-width: 280px;
+  }
 }
 
 /* ── PWA theme color matches dark navy ───────────────────── */
@@ -264,5 +287,13 @@ div[class*='language-yml'] .token.punctuation {
 
 :target {
   scroll-margin-top: 90px;
-  background: rgba(19, 191, 76, 0.796);
+}
+
+/* The mobile drawer's primary panel is empty (the navbar has no link items —
+   only search, which doesn't render there), so "← Back to main menu" led to a
+   blank screen. Hide it until the navbar has real items. */
+@media (max-width: 996px) {
+  .navbar-sidebar__back {
+    display: none;
+  }
 }
