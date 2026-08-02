@@ -64,17 +64,30 @@
 /* ── Navbar ──────────────────────────────────────────────── */
 .navbar {
   border-bottom: 1px solid var(--ifm-toc-border-color);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
 }
 
 [data-theme='dark'] .navbar {
-  background-color: rgba(16, 28, 34, 0.9);
   border-bottom-color: #233648;
 }
 
-[data-theme='light'] .navbar {
-  background-color: rgba(250, 249, 246, 0.9);
+/* Translucent blurred navbar on desktop only. In WebKit, backdrop-filter makes
+   .navbar the containing block for position:fixed descendants — and the mobile
+   drawer (.navbar-sidebar) is one, so on iPhone its height collapsed to the
+   navbar's 60px and the menu never showed. Mobile keeps the solid
+   --ifm-navbar-background-color instead. */
+@media (min-width: 997px) {
+  .navbar {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  [data-theme='dark'] .navbar {
+    background-color: rgba(16, 28, 34, 0.9);
+  }
+
+  [data-theme='light'] .navbar {
+    background-color: rgba(250, 249, 246, 0.9);
+  }
 }
 
 /* Navbar logo: invert in dark mode (logo is black monochrome) */
