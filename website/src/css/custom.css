@@ -156,7 +156,17 @@
 .navbar .DocSearch-Button,
 .navbar .navbar__search-input {
   border-radius: 8px;
-  min-width: 280px;
+}
+
+/* Widen the search input on desktop only. Below Docusaurus's 996px mobile
+   breakpoint the search plugin collapses the input; forcing a min-width there
+   makes it overlap the navbar brand — and on narrow phones the hamburger
+   button itself, which then can't be tapped. */
+@media (min-width: 997px) {
+  .navbar .DocSearch-Button,
+  .navbar .navbar__search-input {
+    min-width: 280px;
+  }
 }
 
 /* ── PWA theme color matches dark navy ───────────────────── */
@@ -264,5 +274,13 @@ div[class*='language-yml'] .token.punctuation {
 
 :target {
   scroll-margin-top: 90px;
-  background: rgba(19, 191, 76, 0.796);
+}
+
+/* The mobile drawer's primary panel is empty (the navbar has no link items —
+   only search, which doesn't render there), so "← Back to main menu" led to a
+   blank screen. Hide it until the navbar has real items. */
+@media (max-width: 996px) {
+  .navbar-sidebar__back {
+    display: none;
+  }
 }
