@@ -10,6 +10,11 @@ COPY website/package.json ./website/
 RUN pnpm install --frozen-lockfile
 
 COPY . .
+
+# The site is static, so analytics has to be baked in here — an env var supplied at
+# `docker run` would come too late to affect the already-built HTML.
+ARG ANALYTICS_SITE_ID
+ENV ANALYTICS_SITE_ID=$ANALYTICS_SITE_ID
 RUN pnpm build
 
 # Stage 2: Serve

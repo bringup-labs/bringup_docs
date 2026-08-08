@@ -6,6 +6,18 @@ import type { Config } from '@docusaurus/types';
 const isProductionDeployment = process.env.NODE_ENV === 'production';
 const isDeployPreview = process.env.PREVIEW_DEPLOY === 'true';
 
+// Supplied per environment rather than committed. Absent locally, so dev and preview
+// builds simply ship no analytics instead of reporting into the production site.
+const analyticsSiteId = process.env.ANALYTICS_SITE_ID;
+
+// Analytics previously went missing without anyone noticing. A build that omits it
+// should say so out loud rather than silently producing an untracked site.
+if (isProductionDeployment && !analyticsSiteId) {
+  console.warn(
+    '[analytics] ANALYTICS_SITE_ID is unset — building without analytics.',
+  );
+}
+
 const copyright = `Copyright © ${new Date().getFullYear()} Bringup Labs.`;
 
 const commonDocsOptions: Partial<PluginContentDocs.Options> = {
@@ -144,6 +156,21 @@ const config: Config = {
   clientModules: [
     './src/clientModules/anchor-reveal.ts',
   ],
+
+  // Self-hosted analytics, wired up only when ANALYTICS_SITE_ID is present at build
+  // time. Key/value pairs beyond `src` are emitted verbatim as attributes, which is
+  // how the `data-site-id` the collector keys on gets through. Note the site ID is
+  // public either way — it ships in the HTML of every page. The env var keeps it out
+  // of the repo and lets each environment point at its own site; it is not a secret.
+  scripts: analyticsSiteId
+    ? [
+        {
+          src: 'https://analytics.bringup.dev/api/script.js',
+          'data-site-id': analyticsSiteId,
+          defer: true,
+        },
+      ]
+    : [],
 
   // Sitewide Organization schema. Emitted into every page's <head> so crawlers and AI
   // summarizers can attribute the docs to the right entity.
